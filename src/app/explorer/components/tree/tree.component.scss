@@ -1,0 +1,68 @@
+@import "../vars.scss";
+
+$item-spacing: 10px;
+
+.nxe-tree {
+    // position: absolute;
+    // width:100%;
+
+    ul {
+        list-style-position: inside;
+        padding: 0;
+        margin: 0;
+        margin-left: 0px;
+    }
+
+    li {
+        list-style-type: none;
+        position: relative;
+        padding: 0;
+    }
+
+    .chevron {
+        position: absolute;
+        cursor: pointer;
+        text-align: center;
+        color: #333;
+        width: 21px;
+        top: 7px;
+        left: 0px;
+        font-size: 1.3rem;
+    }
+
+    .item {
+        display: flex;
+        cursor: pointer;
+        padding: 10px 10px 10px 30px;
+        border-radius: 5px;
+
+        .folder-icon {
+            margin-right: 8px;
+
+            i {
+                color: #555;
+                font-weight: 500;
+                font-size:15px;
+
+                &.nxe-folder {
+                    color: #fdb900;
+                }
+            }
+        }
+
+        .grow {
+            flex: 1;
+        }
+
+        &:hover {
+            background-color: #d7edff;
+        }
+    }
+
+    ul li ul{
+  margin-left: 20px;
+}
+
+}
+
+

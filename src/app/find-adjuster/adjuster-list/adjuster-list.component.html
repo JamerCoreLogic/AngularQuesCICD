@@ -1,0 +1,82 @@
+<div class="adj_list">
+    <mat-label class="fnt mb-0">Total Adjusters Available: {{adjusters.length}}</mat-label>
+    <button mat-raised-button class="initiate-request mb-0" *ngIf="isCheckboxSelected" (click)="initiateRequest()" [disabled]="!isCheckboxSelected">Initiate Request</button>
+    <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" #trigger="matMenuTrigger" (click)="trigger.openMenu(); $event.stopPropagation()" aria-label="Example icon-button with a menu">
+        <mat-icon class="filter" [ngClass]="{'applied-filter': isFilterApplied}">filter_list</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" class="custom-mat-menu">
+      
+        <div  >
+            <div class="clse">
+                <button mat-icon-button class="float-end close-icon-inmenue" (click)="menuTrigger.closeMenu(); $event.stopPropagation()">
+                    <mat-icon >remove</mat-icon>
+                </button>
+            </div>
+            <app-filter-list  (data)="updateFilterData($event)" ></app-filter-list>
+        </div>
+        
+    </mat-menu>
+</div>
+<div class="total_adjuster">
+    <div class="adj_crd  my-1 me-3" style="width:470px;" *ngFor="let adjuster of adjusters; trackBy: trackByFn" (mouseover)="hoverAdjuster(adjuster.userId)"(mouseleave)="unhoverAdjuster(adjuster.userId)" 
+    [ngClass]="{'highlighted': isClickedAdjuster(adjuster.userId)}"
+    #cardElement [attr.id]="adjuster.userId">
+        <div class="d-flex pb-2">
+            <div class="nm">
+                <mat-checkbox (change)="updateCheckboxSelection(adjuster, $event)" [checked]="checkSelectedAdjuster(adjuster)"></mat-checkbox>
+                <span class="ms-2">{{ adjuster.name}}</span>
+            </div>
+            <div class="ms-auto view">
+                <a (click)="viewProfile(adjuster)">View Profile</a>
+            </div>
+        </div>
+        <div class="ps-3 details-side" *ngIf="adjuster.deploymentLocationCheck">
+            <div class="item_group">
+                <div class="item">
+                    <i class="fa fa-location-dot"></i>
+                    <span class="ms-2">{{ adjuster.deploymentCity }}, {{adjuster.deploymentState}}</span>
+                </div>
+                <div class="item"  style="text-wrap: nowrap;">
+                    <i class="fa fa-envelope"></i>
+                    <a class="ms-2">{{ adjuster.emailAddress }}</a>
+                </div>
+                <div class="item">
+                    <div class="phon">
+                        <i class="fa fa-phone"></i>
+                        <span class="ms-2">{{ adjuster.mobile | phoneMask }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="popup_btn ms-auto d-flex align-items-center gap-2 ">
+                <button mat-button style="cursor: text;" >{{ adjuster.distance?.toFixed(2) }} Miles</button>
+                <button mat-mini-fab style="cursor: text;"  matTooltip="Number of Survey Responses" matTooltipPosition="above" matTooltipClass="custom-tooltip">{{adjuster.surveyResponded}}</button>
+                <button mat-mini-fab style="cursor: text;"  class="theam-btn-counter" matTooltip="Number Of Claims Received" matTooltipPosition="above" matTooltipClass="custom-tooltip-claims">{{adjuster.totalNumberOfClaims}}</button>
+            </div>
+           
+        </div>
+        <div class="ps-3 details-side" *ngIf="adjuster.deploymentLocationCheck==false">
+            <div class="item_group">
+                <div class="item">
+                    <i class="fa fa-location-dot"></i>
+                    <span class="ms-2">{{ adjuster.city }}, {{adjuster.state}}</span>
+                </div>
+                <div class="item"  style="text-wrap: nowrap;">
+                    <i class="fa fa-envelope"></i>
+                    <a class="ms-2">{{ adjuster.emailAddress }}</a>
+                </div>
+                <div class="item">
+                    <div class="phon">
+                        <i class="fa fa-phone"></i>
+                        <span class="ms-2">{{ adjuster.mobile | phoneMask }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="popup_btn ms-auto d-flex align-items-center gap-2 ">
+                <button mat-button  style="cursor: text;" >{{ adjuster.distance?.toFixed(2) }} Miles</button>
+                <button mat-mini-fab style="cursor: text;"  color="accent"  matTooltip="Number of Survey Responses" matTooltipPosition="above" matTooltipClass="custom-tooltip">{{adjuster.count}}</button>
+                <button mat-mini-fab style="cursor: text;"  class="theam-btn-counter" matTooltip="Number Of Claims Received" matTooltipPosition="above" matTooltipClass="custom-tooltip-claims">{{adjuster.totalNumberOfClaims}}</button>
+            </div>
+           
+        </div>
+    </div>
+</div>

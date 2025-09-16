@@ -1,0 +1,23 @@
+<div class="nxe-explorer container-fluid-lg bg-opprtunity p-0">
+    <div class="nxe-eplorer-menu">
+        <app-menu-bar></app-menu-bar>
+    </div>
+    <div class="nxe-explorer-containers folder-bg">
+        <div class="nxe-explorer-left-container">
+            <app-tree></app-tree>
+        </div>
+        <div class="nxe-explorer-right-container">
+            <div class="nxe-explorer-right-menu">
+                <app-second-menu-bar></app-second-menu-bar>
+            </div>
+            <div class="nxe-explorer-right-content">
+                <ng-container *ngIf="view === avialableView.Icon">
+                    <app-icons></app-icons>
+                </ng-container>
+                <ng-container *ngIf="view === avialableView.List">
+                    <app-list></app-list>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div> 

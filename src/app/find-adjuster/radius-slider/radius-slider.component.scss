@@ -1,0 +1,40 @@
+.input-radius {
+    width: 78px;
+}
+
+::ng-deep .mat-slider-wrapper {
+    .mat-slider-thumb-container {
+        .mat-slider-thumb-label {
+            width: 50px;
+            height: 50px;
+            top: -62px;
+            right: -25px;
+        }
+    }
+}
+
+.slider_line {
+    mat-card {
+        border-radius: 8px;
+        padding: 1px 18px;
+        background: #fff;
+    }
+    mat-card-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    mat-icon {
+        cursor: pointer;
+    }
+    mat-icon:hover {
+        cursor: pointer;
+        color: #00b1c3;
+        transition: all .44s ease-in-out;
+    }
+    .crl:hover {
+        background: #fff;
+        transition: all .44s ease-in;
+        box-shadow: 0px 4px 5px 1px rgba(245, 180, 51, 0.2), 0px 1px 1px 1px rgba(240, 168, 25, 0.14), 0px 1px 3px 2px rgba(235, 167, 9, 0.12);
+    }
+}

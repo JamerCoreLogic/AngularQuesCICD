@@ -1,0 +1,55 @@
+.nxe-filter {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+
+    .nxe-filter-input {
+        width: 100%;
+        padding-right: 60px; // Space for both icons
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        height: 36px;
+        font-size: 14px;
+        
+        &:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 35px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+    .nxe-filter-button {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 18px;
+        line-height: 1;
+        padding: 0 5px;
+        cursor: pointer;
+        color: #666;
+
+        &:hover {
+            color: #333;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+
+
+

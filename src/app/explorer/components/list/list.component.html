@@ -1,0 +1,54 @@
+<div class="nxe-list" nxeDragDrop (dragging)="dragging = $event">
+    <div class="nxe-list-drag" (click)="emptySpaceClick()" (contextmenu)="emptySpaceClick()"
+        [ngClass]="{ dragging: dragging }"></div>
+    <div class="nxe-list-backpad"></div>
+    <div class="nxe-list-container">
+        <div class="nxe-list-wrapper ">
+            <table>
+                <thead>
+                    <tr>
+                        <!-- Select All Checkbox -->
+                        <th style="width: 5%;" *ngIf="downloadableFiles">
+                            <!-- <input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()" /> -->
+                        </th>
+                        <th style="width: 30%;" (click)="orderByName()">Name</th>
+                        <th style="width: 30%;">Description</th>
+                        <th style="width: 20%;">Type</th>
+                        <th style="width: 20%;" (click)="orderByDate()">Last Modified</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of filteredItems" 
+                        (dblclick)="openner($event, item)"
+                        (click)="select($event, item)" 
+                        (contextmenu)="rightClick($event, item)"
+                        [ngClass]="{'nxe-list-row-selected': isSelected(item)}">
+                        
+                        <!-- Individual file checkbox based on isDownloadable -->
+                        <td *ngIf="downloadableFiles">
+                            <input type="checkbox" [hidden]="isFolder(item)"
+                            [checked]="isSelectedList(item)" 
+                            (change)="onCheckboxChange(item)" />
+                        </td>
+                        
+                        <td>
+                          <div class="fileName">
+                            <span class="nxe-list-icon">
+                                <i [className]="getIcons(item)"></i>
+                                <!-- Overlay icon only for downloadable files -->
+                                <!-- <span *ngIf="isDownloadable(item)" class="download-overlay-icon">
+                                    <i class="fas fa-arrow-down"></i>
+                                </span> -->
+                            </span>
+                            {{ getDisplayName(item.data) }}
+                          </div>
+                        </td>
+                        <td>{{ getContent(item.data) }}</td>
+                        <td>{{ getFileType(item.data) }}</td>
+                        <td>{{ getLastModified(item.data) | date: 'MM/dd/yyyy' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

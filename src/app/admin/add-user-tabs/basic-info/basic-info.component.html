@@ -1,0 +1,197 @@
+<div class="container-fluid basic-container">
+    <div [formGroup]="addUserForm">
+        <div class="row">
+            <div class="col-12 col-sm-4 col-md-3 col-lg-3 mb-3">
+                <div style="height:193px;">
+                    <mat-label for="formcontrolinput" class="fnt">Profile photo</mat-label>
+                    <input type="file" class="file-input" requiredFileType="image/png, image/jpg, image/jpeg" [accept]="requiredFileType" (change)="onFileSelected($event)" #fileUpload>
+                    <div class="file-upload text-start">
+                        <img *ngIf="transform()" [src]="transform()" style="border-radius: 8px;margin: .4rem 0; padding:.4rem;position:relative;" class="shadow" width="150" height="150">
+                        <img *ngIf="!transform()" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="" style="border-radius: 8px;margin: .4rem 0;padding:.4rem;position:relative;" class="shadow" width="150" height="150">
+                        <button mat-raised-button class="upload-btn" (click)="fileUpload.click()">
+                        <!-- <mat-icon>attach_file</mat-icon> -->
+                        Change
+                    </button>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-sm-6 text-end mb-3">
+
+            </div> -->
+            <!-- <div class="col-12 mb-3">
+                <span class="text-color-green " *ngIf="(base64textString)">Profile picture uploaded
+                        successfully.</span>
+            </div> -->
+            <div class=" col-12 col-sm-8 col-md-9 col-lg-9 mb-3">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+                        <mat-label class=" fnt mendatory-field">First Name</mat-label>
+                        <input formControlName="firstName" type="text" class="form-control fs" placeholder="First Name" maxlength="50" [ngClass]="{'danger':submit && addUserForm.get('firstName')?.invalid,'nodanger':addUserForm.get('firstName')?.valid}">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+                        <mat-label class=" fnt">Middle Name</mat-label>
+                        <input formControlName="middleName" type="text" class="form-control fs" placeholder="Middle Name" maxlength="50" [ngClass]="{'danger':submit && addUserForm.get('middleName')?.invalid,'nodanger':addUserForm.get('middleName')?.valid}">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+                        <mat-label class="fnt mendatory-field">Last Name</mat-label>
+                        <input formControlName="lastName" type="text" class="form-control fs" placeholder="Last Name" maxlength="50" [ngClass]="{'danger':submit && addUserForm.get('lastName')?.invalid,'nodanger':addUserForm.get('lastName')?.valid}">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+                        <mat-label class="fnt mendatory-field">Email</mat-label>
+                        <input formControlName="email" (focusout)="toLower($event)" (input)="emailValidator(addUserForm)" type="email" class="form-control fs" placeholder="Email" [ngClass]="{'danger':submit && addUserForm.get('email')?.invalid,'nodanger':addUserForm.get('email')?.valid}">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+                        <mat-label class="fnt mendatory-field">Confirm Email</mat-label>
+                        <input formControlName="confirmEmail" (focusout)="toLower($event)" type="email" class="form-control fs" placeholder="Confirm Email" [ngClass]="{'danger':submit && addUserForm.get('confirmEmail')?.invalid,'nodanger':addUserForm.get('confirmEmail')?.valid}">
+                        <div *ngIf="submit && addUserForm.get('confirmEmail')?.invalid" class="invalid-feedback">
+                            <p style="color: red;">Email must match.</p>
+                        </div>
+                    </div>
+                    <div class=" col-12 col-sm-12 col-md-6 col-lg-4 mb-3 form-outline add_label">
+                        <mat-label for="form-label" class="fnt mendatory-field">Country</mat-label>
+                        <mat-form-field class="addin-field" appearance="outline" [hideRequiredMarker]="true" [ngClass]="{'danger':submit && addUserForm.get('country')?.invalid}">
+                            <mat-select formControlName="country" (selectionChange)="getStateZipLabel()" placeholder="Select">
+                                <mat-option *ngFor="let country of countries" [value]="country.value"> {{country.value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-sm-4 mb-3">
+            <mat-label class=" fs mendatory-field">Company Name</mat-label>
+            <input formControlName="companyName" type="text" class="form-control fs" placeholder="Company Name" [ngClass]="{'danger':submit && addUserForm.get('companyName')?.invalid,'nodanger':addUserForm.get('companyName')?.valid}">
+        </div> -->
+                    <!-- <div class="col-sm-4 mb-3">
+            <mat-label class="form-mat-label fs mendatory-field">Phone Type</mat-label><br>
+            <mat-radio-group formControlName="typeOfPhone" class="admn_tbs">
+                <mat-radio-button value="iphone">iPhone</mat-radio-button>
+                <mat-radio-button value="android">Android</mat-radio-button>
+            </mat-radio-group>
+        </div> -->
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+            <mat-label class="fnt"><span style="color: red;">**</span> provide either Phone or Mobile number.</mat-label>
+            
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+            <mat-label class="fnt mendatory-field2">Phone</mat-label>
+            <input formControlName="phone" type="text" (focusout)="transformToPhonePipe()" appPhoneMask class="form-control fs"
+                placeholder="phone" maxlength="14"
+                oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);}"
+                [ngClass]="{'danger':submit && addUserForm.get('phone')?.invalid,'nodanger':addUserForm.get('phone')?.valid}">
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+            <mat-label class="fnt mendatory-field2">Mobile</mat-label>
+            <input formControlName="mobile" type="text" (focusout)="transformToPhonePipe()" appPhoneMask class="form-control fs"
+                placeholder="mobile" maxlength="14"
+                oninput="javascript: if (this.value.length > this.maxlength) {this.value = this.value.slice(0, this.maxlength);}"
+                [ngClass]="{'danger':submit && addUserForm.get('mobile')?.invalid,'nodanger':addUserForm.get('mobile')?.valid}">
+        </div>
+
+
+
+
+                    <!-- <div class="col-sm-4 mb-3">
+            <mat-label class=" fs">Address Line 2</mat-label>
+            <input formControlName="address2" type="text" class="form-control fs" placeholder="address line 2" [ngClass]="{'danger':submit && addUserForm.get('address2')?.invalid}">
+        </div> -->
+
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
+                <mat-label class=" fnt mendatory-field">Street Address</mat-label>
+                <input formControlName="address1" type="text" class="form-control fs" placeholder="Street Address" [ngClass]="{'danger':submit && addUserForm.get('address1')?.invalid,'nodanger':addUserForm.get('address1')?.valid}">
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3">
+                <mat-label class=" fnt mendatory-field">City</mat-label>
+                <input formControlName="city" type="text" class="form-control fs" placeholder="City" [ngClass]="{'danger':submit && addUserForm.get('city')?.invalid,'nodanger':addUserForm.get('city')?.valid}">
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3 form-outline add_label">
+                <mat-label class="fnt mendatory-field">{{stateLabel}}</mat-label>
+                <mat-form-field class="addin-field" appearance="outline" [hideRequiredMarker]="true" [ngClass]="{'danger':submit && addUserForm.get('state')?.invalid}">
+                    <mat-select formControlName="state" placeholder="Select">
+                        <mat-option *ngFor="let option of StatesList" [value]="option.stateName"> {{ option.stateName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- <div class="col-sm-4 mb-3">
+    <mat-label class=" fs mendatory-field">{{stateLabel}}</mat-label>
+    <input formControlName="state" type="text" class="form-control fs" [placeholder]=stateLabel
+        [ngClass]="{'danger':submit && addUserForm.get('state')?.invalid,'nodanger':addUserForm.get('state')?.valid}">
+</div> -->
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3">
+                <mat-label class="fnt mendatory-field">{{zipLabel}}</mat-label>
+                <input formControlName="zip" type="text" class="form-control fs" minlength="5" maxlength="11" oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);}" [placeholder]=zipLabel [ngClass]="{'danger':submit && addUserForm.get('zip')?.invalid,'nodanger':addUserForm.get('zip')?.valid}">
+            </div>
+            <div class=" col-12 col-sm-12 col-md-6 col-lg-3 mb-3 form-outline add_label">
+                <mat-label for="form-label" class="fnt mendatory-field">Role</mat-label>
+                <mat-form-field class="addin-field" appearance="outline" [hideRequiredMarker]="true" [ngClass]="{'danger':submit && addUserForm.get('userRole')?.invalid}">
+                    <mat-select [disabled]="isUpdateProfile" formControlName="userRole" multiple placeholder="Select" (selectionChange)="onRoleSelectionChange()">
+                        <mat-option *ngFor="let user of userRoles" [value]="user.roleId" [disabled]="shouldDisableRoleOption(user.roleId)" [hidden]="shouldHideRoleOption(user.roleId)">{{user.role}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3 form-outline add_label">
+                <mat-label for="form-label" class="fnt mendatory-field">User Type</mat-label>
+                <mat-form-field class="addin-field" appearance="outline" [hideRequiredMarker]="true" [ngClass]="{'danger':submit && addUserForm.get('userType')?.invalid}">
+                    <mat-select [disabled]="isUpdateProfile" formControlName="userType" placeholder="Select">
+                        <mat-option *ngFor="let option of userTypes" [value]="option.typeId"> {{ option.type }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- <div class="col-sm-12 col-md-6 col-lg-3 mb-3 "></div> -->
+            <div class="col-12 col-sm-6 col-md-3 col-lg-auto mb-3 flex-row" *ngIf="!isUpdateProfile && LoggedUserTypeInternal">
+                <mat-label class="fnt mendatory-field">Profile Status</mat-label>
+                <div class="switchToggle-basic">
+                    <input type="checkbox" formControlName="isLocked" id="profile_switch" (click)="onLock()">
+                    <label for="profile_switch" [ngClass]="{'danger':submit && addUserForm.get('isLocked')?.invalid}"></label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 col-lg-auto mb-3 offset-lg-0" *ngIf="!isUpdateProfile && LoggedUserTypeInternal">
+                <mat-label class="fnt mendatory-field">Active Status</mat-label>
+                <div class="switchToggle-end">
+                    <input type="checkbox" formControlName="isActive" id="status_switch" (click)="onActive()">
+                    <label for="status_switch" [ngClass]="{'danger':submit && addUserForm.get('isActive')?.invalid}"></label>
+                </div>
+            </div>
+            
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3 form-outline add_label" *ngIf="isStandby">
+                <mat-label for="form-label" class="fnt">Please put me on CAT standby for:</mat-label>
+                <mat-form-field class="addin-field" appearance="outline" [hideRequiredMarker]="true" [ngClass]="{'danger':submit && addUserForm.get('Standby')?.invalid}">
+                    <mat-select formControlName="standby" placeholder="Select">
+                            <mat-option value="Field">Field</mat-option>
+                            <mat-option value="Desk/Reviewer">Desk/Reviewer</mat-option>
+                            <mat-option value="Both">Both</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-12 mb-3"></div>
+            <!-- <div class="col-sm-12">
+    <mat-label class="lg_fnt">
+        IMPORTANT <span style="color:#f39811;">:</span>
+    </mat-label>
+</div>
+<div class="col-sm-12 mb-3">
+    <mat-label class="fnt"> <span class="dst_info"> <mat-icon>info</mat-icon></span>You might be able to receive fewer deployment alert notifications if you uncheck one of these boxes. If you change your mind and decide you no longer want to receive emails or text messages,<br>                you can always opt-out.</mat-label>
+</div>
+<div class="col-sm-12 mb-3"></div> -->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-3">
+                <mat-checkbox (change)="onUncheckEmailCommOrPhoneText('email')"  formControlName="i_Would_Like_To_Receive_Email_Communications_From_Field_Pros_Direct_Email_Opt_In" class="example-margin fs">
+                </mat-checkbox>
+                <mat-label >&#x20; I'd like to receive email communications from FPD (including deployment alerts, company updates, and special events)</mat-label>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-3">
+                <mat-checkbox (change)="onUncheckEmailCommOrPhoneText('phone')"  formControlName="i_Would_Like_To_Receive_Text_Communications_From_Field_Pros_Direct_Text_Opt_In" class="example-margin fs">
+                </mat-checkbox>
+                <mat-label >&#x20; I'd like to receive text communications from FPD (including deployment alerts, company updates, and special events)</mat-label>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-3">
+                <mat-label class="fnt"> <span class="dst_info"> <mat-icon>info</mat-icon></span>You may receive fewer deployment alert notifications if you uncheck one of these boxes. If you change your mind and decide you no longer want to receive emails or text messages, you
+                    can always opt-out.
+                </mat-label>
+            </div>
+            <div class="col-12 col-sm-2 col-md-2 col-lg-2 mb-3"></div>
+        </div>
+    </div>
+</div>

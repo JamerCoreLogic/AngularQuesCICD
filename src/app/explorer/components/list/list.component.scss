@@ -1,0 +1,305 @@
+@import "../vars.scss";
+
+.nxe-list {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    .nxe-list-drag {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        bottom: 2px;
+        right: 2px;
+        z-index: 1;
+
+        &.dragging {
+            border: 2px #30a2ff dashed;
+            margin: -2px;
+        }
+    }
+
+    .nxe-list-backpad {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .download-icon {
+        color: green;
+        font-weight: bold;
+    }
+    .not-downloadable-icon {
+        color: red;
+        font-weight: bold;
+    }
+
+    .nxe-list-container {
+        display: flex;
+        flex-wrap: wrap;
+
+        .nxe-list-wrapper {
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            flex-grow: 0;
+            z-index: 1;
+            box-shadow: -2px 0px 24px 0px #ececec;
+            overflow-y: auto;
+            border-radius: 8px;
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                border-spacing: 0;
+                position: absolute;
+
+
+                thead {
+                    tr {
+
+                        th {
+                            text-align: left;
+                            padding: 10px 10px;
+                            // border-right: 1px solid #ccc;
+                            border-spacing: 0;
+                            border-collapse: collapse;
+                            font-weight:600;
+                            position: sticky;
+                            top: 0;
+                            background-color: white; /* Or any other background color you want */
+                            z-index: 10;
+
+                            &:last-child {
+                                border-right: none;
+                            }
+                        }
+
+                         th:first-child{
+                            //border-left: 1px solid #ccc;
+                            border-top-left-radius:8px;
+
+                         }
+                         th:last-child{
+                            // border-right: 1px solid #ccc;
+                            border-top-right-radius: 8px;
+                        }
+                    }
+
+                    //border-top: 1px solid #e2e0e0;
+                    border-bottom: 1px solid #e2e0e0;
+
+                    // border-top:1px solid #ccc;
+                }
+
+                tbody {
+                    tr {
+                      border-bottom: 1px solid #e2e0e0;
+                        &:nth-child(even) {
+                            // background-color: #f4f4f4;
+                        }
+
+                        &:hover {
+                            background-color: #d7edff;
+                        }
+
+                        &.nxe-list-row-selected {
+                            background-color: #d7edff;
+                        }
+
+                        &:last-child {
+                            border-bottom: 1px solid transparent;
+                        }
+
+                        td {
+                            padding: 10px 10px;
+
+
+                            .nxe-list-icon {
+                                margin-right: 5px;
+                                color: #555;
+                                position: relative; /* Positioning context for overlay */
+
+                                .download-overlay-icon {
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    width: 12px; /* Adjust size as needed */
+                                    height: 12px;
+                                    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+                                    border-radius: 50%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    color: white; /* Icon color */
+                                    font-size: 10px; /* Adjust icon size as needed */
+                                    pointer-events: none; /* So it doesn’t interfere with clicks */
+                                }
+                                
+                                .icon-download {
+                                    /* Style your download icon here */
+                                    font-size: 10px; /* Adjust based on the overlay size */
+                                }
+
+                                & .nxe-folder {
+                                    color: $folder-bg;
+                                }
+                            }
+                        }
+
+                        td:first-child {
+                            // border-left: 1px solid #e2e0e0;
+
+                        }
+
+                        td:last-child {
+                            // border-right: 1px solid #e2e0e0;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+.txt {
+    background-image: url('../../../../assets/docIcons/txt.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.pdf {
+    background-image: url('../../../../assets/docIcons/pdf.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.audio {
+    background-image: url('../../../../assets/docIcons/audio.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.code {
+    background-image: url('../../../../assets/docIcons/code.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.doc {
+    background-image: url('../../../../assets/docIcons/docx.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.exe {
+    background-image: url('../../../../assets/docIcons/exe.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.odp {
+    background-image: url('../../../../assets/docIcons/odp.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.photo {
+    background-image: url('../../../../assets/docIcons/photo.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.pptx {
+    background-image: url('../../../../assets/docIcons/pptx.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.vector {
+    background-image: url('../../../../assets/docIcons/vector.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+.link{
+    background-image: url('../../../../assets/docIcons/link.svg');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+.video {
+    background-image: url('../../../../assets/docIcons/video.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.xlsx {
+    background-image: url('../../../../assets/docIcons/xlsx.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.zip {
+    background-image: url('../../../../assets/docIcons/zip.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+
+.nxe-list .nxe-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+.fileName{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}

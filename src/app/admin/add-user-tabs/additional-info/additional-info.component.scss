@@ -1,0 +1,212 @@
+// .additional-container {
+//     width: 100%;
+//     padding: 1rem 1.5rem;
+//     height: calc(100vh - 221px);
+// }
+.matDatepickerToggleIcon {
+    font-size: 12px;
+}
+
+.uplod {
+    iframe {
+        border: 0;
+        max-width: 100%;
+        width: 1920px;
+        height: 100%;
+    }
+}
+
+.btn-preview {
+    color: #fff;
+    background-color: #00b1c3;
+    border-color: #00b1c3;
+    // min-height: 45px;
+    font-size: 12px;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    padding: 3px 12px;
+    border: none;
+}
+
+.btn-preview:hover {
+    color: #fff;
+    transition: all .55s ease-in-out;
+    background-color: #00b1c3;
+    border-color: #00b1c3;
+    // box-shadow: 0 0 18px 0px #f3f3f4;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.btn-preview:focus,
+.btn-preview:active,
+.btn-preview:focus-within,
+.btn-preview:focus-visible {
+    color: #fff;
+    background-color: #00b1c3;
+    border-color: #00b1c3;
+    box-shadow: none;
+}
+
+// .min_ht {
+//     textarea.form-control {
+//         min-height: calc(1.5em + 4.75rem + 2px);
+//     }
+// }
+// ................................................................
+.drop-title {
+    color: #8e8e8e;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
+
+input[type=file] {
+    width: 100%;
+    max-width: 100%;
+    color: #8e8e8e;
+    padding: 5px;
+    background: #fff;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+    font-size: 12px;
+    font-weight: 501;
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #00b1c3;
+    padding: 2px 20px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 12px;
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #00b1c5;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+// ...................resume upload 
+.resme_uplod {
+    // .mat-form-field {
+    //     width: 500px !important;
+    // }
+    position: relative;
+    .mat-toolbar-single-row {
+        height: auto !important;
+        background: transparent;
+        font-size: 12px;
+        padding: 12px 12px 16px 12px;
+    }
+    .mat-toolbar-single-row button {
+        width: 200px;
+    }
+    .addinl {
+        background: #ffa022;
+        color: #fff;
+        font-size: 12px;
+    }
+    .mat-form-field {
+        width: 100%;
+    }
+    #uploadFile {
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        z-index: 9;
+        opacity: 0;
+        height: 100%;
+        cursor: pointer;
+        position: absolute;
+    }
+    mat-icon {
+        cursor: pointer;
+        position: absolute;
+        left: 28px;
+        z-index: 999;
+        top: 50px;
+        font-size: 40px;
+        width: 75px;
+        height: 37px;
+        color: #ffa022;
+    }
+}
+
+.min_ht textarea {
+    min-height: 76px;
+}
+
+.danger {
+    border: 1px solid red;
+}
+
+.question_header {
+    padding: .8rem;
+    font-size: 13px;
+    font-weight: 501;
+    color: #3c4043;
+}
+
+// ............................................................
+@media (min-width:340px) {
+    .additional-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 356px);
+    }
+    .radio_scroll {
+        text-align: center;
+        overflow-x: auto;
+        width: 300px;
+    }
+    .boxes {
+        display: inline-flex;
+        max-width: 100%;
+        flex-wrap: wrap;
+        mat-checkbox,
+        mat-radio-button {
+            // width: 232px;
+            width: 100px;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+@media (min-width:576px) {
+    .additional-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 275px);
+    }
+    .boxes {
+        display: inline-flex;
+        max-width: 100%;
+        flex-wrap: wrap;
+        mat-checkbox,
+        mat-radio-button {
+            // width: 232px;
+            width: 120px;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+@media (min-width:768px) {
+    .additional-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 225px);
+    }
+    .boxes {
+        display: inline-flex;
+        max-width: 100%;
+        flex-wrap: wrap;
+        mat-checkbox,
+        mat-radio-button {
+            // width: 232px;
+            width: 180px;
+            margin-bottom: 1rem;
+        }
+    }
+}

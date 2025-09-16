@@ -1,0 +1,121 @@
+<head>
+    <style>
+         ::placeholder {
+            color: rgb(184, 181, 181);
+            opacity: 1;
+            text-align: left !important;
+        }
+    </style>
+</head>
+<section class="container-fluid-lg login_fpd">
+    <div class="container container_fpd">
+        <div class="row login_card align-items-center">
+            <div class="col-sm-12 col-lg-6 form_pd">
+                <div class="text-center login_hd d-block my-3">
+                    <a href="#" class="nav-logo">
+                        <img src="../../../assets/assets/image/FPD Solutions Logo.png" alt="logo" class="img-fluid" style="width: 250px;
+                        height: 58px;" target="_blank" #tooltip="matTooltip" matTooltipClass="bg-light text-dark border border-info" matTooltip="MyFPD Portal" matTooltipPosition="right">
+                    </a>
+                    <h3 class="py-3">Please enter OTP received on your email</h3>
+                </div>
+                <div class="d-flex align-items-center pt-xl-0 justify-content-center">
+                    <form [formGroup]="SavePasswordForm" style="width: 26rem;">
+                        <div class="form-outline mb-3">
+                            <label class="ciFormLabel mendatory-field" for="form2Example18">OTP</label>
+                            <input formControlName="otp" autocomplete="new-password" trim="" type="text" #form2Example18 class="form-control form-control-lg crn" placeholder="OTP" [ngClass]="{'danger':passwordSubmit && SavePasswordForm.get('otp')?.hasError('required'),'nodanger': SavePasswordForm.get('otp')?.valid}"
+                            />
+                            <div *ngIf="isOtpValid==false">
+                                <p style="color: red;">The OTP code you’ve entered is incorrect. Please check your email for the correct OTP.</p>
+                            </div>
+                        </div>
+                        <div class="form-outline mb-3">
+                            <label class="ciFormLabel mendatory-field" for="form2Example18">New Password</label>
+                            <a #tooltip="matTooltip" matTooltipClass="bg-light text-dark border border-info" [matTooltip]="generatePasswordTooltip()" matTooltipPosition="right">
+                                <span class="info_button"> <mat-icon>info</mat-icon></span>
+                            </a>
+
+                            <span class="confirm_show_hide">
+                                <input formControlName="newPassword" (input)="confirmpassfunction($event)" trim=""
+                                    [type]="hide ? 'password' : 'text'" autocomplete="new-password"
+                                    class="form-control form-control-lg crn" placeholder="********"
+                                    [ngClass]="{'danger':passwordSubmit && SavePasswordForm.get('newPassword')?.invalid,'nodanger': SavePasswordForm.get('newPassword')?.valid}" />
+                                <button mat-icon-button matSuffix [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                            </span>
+                            <div class="card" style=" --bs-card-border-color: none;">
+                                <ul class="alert_section" *ngIf="SavePasswordForm.controls['newPassword'].touched && SavePasswordForm.controls['newPassword'].errors?.['strength']">
+                                    <li *ngIf="!hasUpperCase" class="alert_item">
+                                        <a class="cross_button" data-dismiss="alert">
+                                            <span aria-hidden="true">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                        </a>
+                                        <span class="alert_box"> Password must contain at least one uppercase letter.</span>
+                                    </li>
+                                    <li *ngIf="!hasLowerCase" class="alert_item">
+                                        <a class="cross_button" data-dismiss="alert">
+                                            <span aria-hidden="true">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                            <span class="sr-only text-light">Close</span>
+                                        </a>
+                                        <span class=alert_box> Password must contain at least one lowercase letter. </span>
+                                    </li>
+                                    <li *ngIf="!hasNumber" class="alert_item">
+                                        <a class="cross_button" data-dismiss="alert">
+                                            <span aria-hidden="true">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                            <span class="sr-only text-light">Close</span>
+                                        </a>
+                                        <span class="alert_box"> Password must contain at least one number. </span>
+                                    </li>
+                                    <li *ngIf="!hasSpecialChar" class="alert_item">
+                                        <a class="cross_button" data-dismiss="alert">
+                                            <span aria-hidden="true">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                            <span class="sr-only text-light">Close</span>
+                                        </a>
+                                        <span class="alert_box"> Password must contain at least one special character. </span>
+                                    </li>
+                                    <li *ngIf="!hasMinLength" class="alert_item">
+                                        <a class="cross_button" data-dismiss="alert">
+                                            <span aria-hidden="true">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                            <span class="sr-only text-light">Close</span>
+                                        </a>
+                                        <span class="alert_box"> Password must be at least 8 characters. </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-outline mb-3">
+                            <label class="ciFormLabel mendatory-field" for="form2Example18">Confirm Password</label>
+                            <input formControlName="confirmPassword" (input)="confirmpassfunction($event)" trim="" type="password" autocomplete="new-password" class="form-control form-control-lg crn" placeholder="********" [ngClass]="{'danger':passwordSubmit && SavePasswordForm.get('confirmPassword')?.invalid,'nodanger': SavePasswordForm.get('confirmPassword')?.valid}"
+                            />
+                        </div>
+                        <div class="col-xl-12 col-sm-12 ps-0">
+                            <span class="text-color-red" *ngIf="SavePasswordForm.get('confirmPassword')?.hasError('notMatched')">
+                                Your passwords must match.</span>
+                        </div>
+                        <div class="pt-1 mb-3">
+                            <button mat-raised-button class="btn-default w-100 btn-block text-light crn" (click)="savePassword()" type="button">Save Password</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="text-center pt-3">
+                    <p> <a class="text-decoration-none text-muted">© {{currentYear}} FPD Solutions All Rights Reserved.</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 g-0 view">
+                <div class="login_bg">
+                    <img src="../../../assets/assets/image/locate_img/log.png" alt="Login image" class="img-fluid w-100">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

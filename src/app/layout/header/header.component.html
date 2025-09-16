@@ -1,0 +1,151 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <!-- Logo Section -->
+        <a class="navbar-brand" [routerLink]="['dashboard']">
+          <img src="../../../assets/assets/image/FPD Solutions Logo.png" alt="FPD Solutions Logo" class="img-fluid" width="250">
+        </a>
+        <!-- Navbar Toggle for Mobile View -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <mat-button-toggle value="right" aria-label="Text align right">
+            <mat-icon>format_align_right</mat-icon>
+          </mat-button-toggle>
+        </button>
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-5">
+            <!-- Dashboard -->
+            <li class="nav-item dropdown" *ngIf="hasUserRole('Dashboard')" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+              <a class="nav-link dropdown-toggle" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dashboard
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dashboardDropdown">
+                <li ><a class="dropdown-item" [routerLink]="['survey']" routerLinkActive="router-link-active">Survey Dashboard</a></li>
+                <li><a class="dropdown-item" [routerLink]="['dashboard']" routerLinkActive="router-link-active">Legacy Dashboard</a></li>
+              </ul>
+            </li>
+            <!-- Find Adjuster -->
+            <li class="nav-item dropdown" *ngIf="hasUserRole('Find Adjuster')" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+              <a  class="nav-link dropdown-toggle" id="FindAdjusterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Find Adjuster</a>
+              <ul class="dropdown-menu" aria-labelledby="FindAdjusterDropdown">
+                <li ><a class="dropdown-item" [routerLink]="['find-adjuster']" routerLinkActive="router-link-active">Find Adjuster</a></li>
+                <li><a class="dropdown-item" [routerLink]="['loss-map']" routerLinkActive="router-link-active">Loss Map</a></li>
+              </ul>
+            </li>
+            <!-- Admin -->
+            <li class="nav-item dropdown" routerLinkActive="active" *ngIf="hasUserRole('Admin')" [routerLinkActiveOptions]="{ exact: true }">
+                <a
+                  class="nav-link dropdown-toggle"
+                  id="adminDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  [class.active]="isAdminMenuActive()"
+                >
+                  Admin
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                  <li *ngIf="hasPage('Manage Users')">
+                    <a
+                      class="dropdown-item"
+                      [routerLink]="['/main/admin']"
+                      routerLinkActive="router-link-active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                      Manage Users
+                    </a>
+                  </li>
+                  <li *ngIf="hasPage('Manage Clients')">
+                    <a
+                      class="dropdown-item"
+                      [routerLink]="['/main/admin/clients']"
+                      routerLinkActive="router-link-active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                      Manage Clients
+                    </a>
+                  </li>
+                  <li *ngIf="hasPage('Tasks')">
+                    <a
+                      class="dropdown-item"
+                      [routerLink]="['/main/admin/tasks']"
+                      routerLinkActive="router-link-active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                      Tasks
+                    </a>
+                  </li>
+                  <!-- <li *ngIf="hasPage('Manage Assignments')">
+                    <a
+                      class="dropdown-item"
+                      [routerLink]="['/main/admin/assignment']"
+                      routerLinkActive="router-link-active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                      Manage Assignment Types
+                    </a>
+                  </li> -->
+                </ul>
+              </li>
+            <!-- View Users -->
+            <li class="nav-item dropdown" routerLinkActive="active" *ngIf="loggedUserType === '1' && shouldShowViewUser()" [routerLinkActiveOptions]="{ exact: true }">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+               Users
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    [routerLink]="['/main/admin']"
+                    routerLinkActive="router-link-active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                  >
+                    View Users
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    [routerLink]="['/main/admin/tasks']"
+                    routerLinkActive="router-link-active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                  >
+                    Tasks
+                  </a>
+                </li>
+              </ul>
+            </li>
+            
+            <!-- Reports -->
+            <li class="nav-item" *ngIf="loggedUserType === '1' && !shouldShowReports()">
+              <a class="nav-link" [routerLink]="['/main/report']" routerLinkActive="active">Reports</a>
+            </li>
+          </ul>
+          <!-- User Profile -->
+          <ul class="navbar-nav text-center">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="me-2">{{ userName }}</span>
+                <img *ngIf="imageTransform()" [src]="imageTransform()" class="user-img rounded-circle border" height="40" width="40">
+                <img *ngIf="!imageTransform()" src="../../../assets/assets/image/profile.png" class="user-img shadow rounded-circle" alt="Profile Image" height="40" width="40">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                <li><a class="dropdown-item" [routerLink]="['/main/admin/update-profile']">Profile</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/main/change-password']">Change Password</a></li>
+                <li><a class="dropdown-item cursor-pointer" (click)="navigateFAQ()">FAQs</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/main/explorer']">Resources</a></li>
+                <li><a class="dropdown-item cursor-pointer" (click)="logout()">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  

@@ -1,0 +1,69 @@
+.welcome_myfpd {
+    color: #00b1c3;
+    margin-bottom: 0;
+    letter-spacing: 1.4px;
+    padding: .5rem;
+    border-bottom: 4px solid #ffa022;
+    width: 482px;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 34px;
+    font-weight: 501;
+}
+
+.text_fpd p {
+    padding: 2rem 0;
+    font-size: 18px;
+    letter-spacing: .6px;
+    width: 920px;
+    margin: 0 auto;
+    line-height: 25px;
+}
+
+.hint_text h3 {
+    font-weight: 501;
+    font-size: 20px;
+    letter-spacing: .4px;
+}
+
+.text_portal p {
+    font-size: 16px;
+    letter-spacing: .4px;
+    margin-bottom: 0;
+    padding: 12px;
+}
+
+.hint_text ol {
+    padding-left: 15px;
+}
+
+.hint_text ol li {
+    margin-bottom: 1rem;
+    font-size: 17px;
+    line-height: 21px;
+    box-shadow: 0 0 12px 4px #cccccc4d;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.info_close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 22px;
+    width: 47px;
+    height: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.info_close:hover {
+    border-bottom-left-radius: 18px;
+    background: #ffa022;
+    color: #fff;
+}

@@ -1,0 +1,33 @@
+    .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    
+    .dte {
+        // padding: 15px 8px 0;
+        mat-radio-group {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+    }
+    
+    textarea.form-control {
+        min-height: calc(1.5em + 4.75rem + 2px);
+        font-weight: 410;
+        margin-top: .5rem;
+    }
+    
+    .init_button {
+        mat-icon {
+            cursor: pointer;
+            position: relative;
+            top: 8px;
+            left: 8px;
+            font-size: 19px;
+            color: #00b1c3;
+        }
+    }
+    
+    // ...................................................

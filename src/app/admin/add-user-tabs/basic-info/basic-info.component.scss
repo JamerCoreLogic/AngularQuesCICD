@@ -1,0 +1,154 @@
+@media (min-width:340px) {
+    .basic-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 356px);
+    }
+}
+
+@media (min-width:576px) {
+    .basic-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 275px);
+    }
+}
+
+@media (min-width:768px) {
+    .basic-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 225px);
+    }
+}
+
+.file-input {
+    display: none;
+}
+
+// mat-icon {
+//     position: relative;
+//     bottom: 6px;
+// }
+.danger {
+    border: 1px solid red;
+}
+
+.invalid-feedback {
+    display: block;
+    margin-top: 0px;
+    margin-bottom: -25px;
+}
+
+#test .cdk-overlay-pane {
+    left: 552.4px !important;
+}
+
+// .add_user_profile {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     margin-bottom: 1rem;
+// }
+.file-upload {
+    button {
+        background: #ffa022 !important;
+        border: none;
+        color: #fff;
+        position: absolute;
+        top: 178px;
+        padding: 0 53px;
+        left: 23px;
+    }
+    mat-icon {
+        font-size: 18px !important;
+        bottom: -3px !important;
+    }
+    mat-icon:hover {
+        transition: all .23s ease-in-out;
+        animation: round
+    }
+}
+
+.role-option {
+    .cdk-overlay-pane mat-select-panel {
+        left: 818.6px !important;
+    }
+}
+
+// ...................................................
+.switchToggle-basic {
+    justify-content: flex-start;
+    display: flex;
+}
+
+.switchToggle-basic input[type=checkbox] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+.switchToggle-basic label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 100px;
+    max-width: 200px;
+    height: 30px;
+    background: #d1d1d1;
+    display: block;
+    border-radius: 8px;
+    position: relative;
+}
+
+.switchToggle-basic label:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    background: #fff;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.switchToggle-basic input:checked+label,
+.switchToggle-basic input:checked+input+label {
+    background: green;
+}
+
+.switchToggle-basic input+label:before,
+.switchToggle-basic input+input+label:before {
+    content: "Unlocked";
+    position: absolute;
+    top: 5px;
+    left: 34px;
+    width: 100px;
+    height: 30px;
+    border-radius: 8px;
+    transition: 0.3s;
+    text-indent: 0;
+    color: #fff;
+}
+
+.switchToggle-basic input:checked+label:before,
+.switchToggle-basic input:checked+input+label:before {
+    content: "Locked";
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    width: 100px;
+    height: 30px;
+    border-radius: 8px;
+    transition: 0.3s;
+    text-indent: 0;
+    color: #fff;
+}
+
+.switchToggle-basic input:checked+label:after,
+.switchToggle-basic input:checked+input+label:after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+}
+
+.switchToggle-basic label:active:after {
+    width: 60px;
+}

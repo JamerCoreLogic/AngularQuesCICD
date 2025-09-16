@@ -1,0 +1,107 @@
+<head>
+    <style>
+         ::placeholder {
+            color: rgb(184, 181, 181);
+            opacity: 1;
+            text-align: left !important;
+        }
+        
+        mat-form-field {
+             ::ng-deep .mat-option-required::after {
+                display: none;
+            }
+        }
+        
+        mat-form-field ::ng-deep .mat-option-required .mat-option-pseudo-checkbox::after {
+            color: transparent;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="row">
+        <div class="text-center login_hd d-block my-3">
+            <a href="#" class="nav-logo">
+                <img src="../../../assets/assets/image/FPD Solutions Logo.png" alt="logo" class="img-fluid" width="250" target="_blank" #tooltip="matTooltip" matTooltipClass="bg-light text-dark border border-info" matTooltip="MyFPD Portal" matTooltipPosition="right">
+            </a>
+            <h3 class="fw-bold my-3">Change Password.</h3>
+        </div>
+        <form [formGroup]="SavePasswordForm">
+            <div class="form-outline col-sm-12 mb-3">
+                <label class="ciFormLabel mendatory-field" for="form2Example18">New Password</label>
+                <a [matTooltip]="['Contains an upper & a lower case.',' Contains a number.','Contains a special character.'] | tooltipList" matTooltipClass="tooltip-list bg-light text-dark border border-info" matTooltipPosition="right">
+                    <span class="info_button"> <mat-icon>info</mat-icon></span>
+                </a>
+                <span class="change-pass-firstlogin">
+                    <input formControlName="newPassword" autocomplete="new-password"
+                        (input)="confirmpassfunction($event)" trim="" [type]="hide ? 'password' : 'text'"
+                        #form2Example18 class="form-control form-control-lg crn" placeholder="********"
+                        [ngClass]="{'danger':submit && SavePasswordForm.get('newPassword')?.invalid,'nodanger': SavePasswordForm.get('newPassword')?.valid}" />
+                    <button mat-icon-button matSuffix [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </span>
+                <div class="card" style=" --bs-card-border-color: none;">
+                    <ul class="alert_section" *ngIf="SavePasswordForm.controls['newPassword'].touched && SavePasswordForm.controls['newPassword'].errors?.['strength']" style="height:12em;overflow:auto;">
+                        <li *ngIf="!hasUpperCase" class="alert_item">
+                            <a class="cross_button" data-dismiss="alert">
+                                <span aria-hidden="true">
+                                <i class="fa fa-times"></i>
+                            </span>
+                            </a>
+                            <span class="alert_box"> Password must contain at least one uppercase letter </span>
+                        </li>
+                        <li *ngIf="!hasLowerCase" class="alert_item">
+                            <a class="cross_button" data-dismiss="alert">
+                                <span aria-hidden="true">
+                                <i class="fa fa-times"></i>
+                            </span>
+                                <span class="sr-only text-light">Close</span>
+                            </a>
+                            <span class=alert_box> Password must contain at least one lowercase letter. </span>
+                        </li>
+                        <li *ngIf="!hasNumber" class="alert_item">
+                            <a class="cross_button" data-dismiss="alert">
+                                <span aria-hidden="true">
+                                <i class="fa fa-times"></i>
+                            </span>
+                                <span class="sr-only text-light">Close</span>
+                            </a>
+                            <span class="alert_box"> Password must contain at least one number. </span>
+                        </li>
+                        <li *ngIf="!hasSpecialChar" class="alert_item">
+                            <a class="cross_button" data-dismiss="alert">
+                                <span aria-hidden="true">
+                                <i class="fa fa-times"></i>
+                            </span>
+                                <span class="sr-only text-light">Close</span>
+                            </a>
+                            <span class="alert_box"> Password must contain at least one special character. </span>
+                        </li>
+                        <li *ngIf="!hasMinLength" class="alert_item">
+                            <a class="cross_button" data-dismiss="alert">
+                                <span aria-hidden="true">
+                                <i class="fa fa-times"></i>
+                            </span>
+                                <span class="sr-only text-light">Close</span>
+                            </a>
+                            <span class="alert_box"> Password must be at least 8 characters. </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-outline col-sm-12 mb-3">
+                <label class="ciFormLabel mendatory-field" for="form2Example18">Confirm Password</label>
+                <input formControlName="confirmPassword" autocomplete="new-password" (input)="confirmpassfunction($event)" trim="" type="password" #form2Example18 class="form-control form-control-lg crn" placeholder="********" [ngClass]="{'danger':passwordSubmit && SavePasswordForm.get('confirmPassword')?.invalid,'nodanger': SavePasswordForm.get('confirmPassword')?.valid}"
+                />
+            </div>
+            <div class="col-xl-12 col-sm-12 ps-0 mb-5">
+                <span class="text-color-red" *ngIf="SavePasswordForm.get('confirmPassword')?.hasError('notMatched')">
+                    Your password must match.</span>
+            </div>
+            <div class="btn-group d-flex justify-content-between mb-3">
+                <button mat-raised-button class="out_grn-dark plce">CLEAR</button>
+                <button mat-raised-button class="grn-dark" (click)="savePassword()" [disabled]="SavePasswordForm.invalid">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

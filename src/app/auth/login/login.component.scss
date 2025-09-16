@@ -1,0 +1,97 @@
+.show_hide_password {
+    font-size: 14px;
+    color: #a7a7a7;
+    // position: absolute;
+    // bottom: 263px;
+    // left: 379px;
+    // float: right;
+    cursor: pointer;
+    float: right;
+    margin-left: -35px;
+    margin-top: 0px;
+    position: relative;
+    z-index: 2;
+}
+
+.show_hide {
+    button {
+        margin-left: -44px;
+        margin-bottom: 2px;
+    }
+    mat-icon {
+        font-size: 19px !important;
+        color: #a7a7a7;
+    }
+    mat-icon:hover {
+        font-size: 20px !important;
+        color: #00b1c3;
+        transition: all .55s ease-out;
+    }
+}
+
+// Responsive styles
+.login_fpd {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.container_fpd {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.login_card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.form_pd {
+    padding: 2rem;
+}
+
+.login_bg {
+    height: 100%;
+    
+    img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+// Media queries for responsive design
+@media (max-width: 991px) {
+    .view {
+        display: none; // Hide the image on smaller screens
+    }
+    
+    .form_pd {
+        padding: 1.5rem;
+        width: 100%;
+    }
+    
+    .login_card {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .form_pd {
+        padding: 1rem;
+    }
+    
+    form {
+        width: 100% !important;
+    }
+    
+    .login_hd {
+        img {
+            width: 200px !important;
+        }
+    }
+}

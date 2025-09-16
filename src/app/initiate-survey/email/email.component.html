@@ -1,0 +1,22 @@
+
+
+    <div class="container-preview">
+      <div class="header">
+        <button mat-button [mat-dialog-close]="true" #tooltip="matTooltip" matTooltipClass="bg-light text-dark border border-info" matTooltip="Close" matTooltipPosition="above">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+    <div class="col-md-12">
+      <mat-card class="p-2 ">
+        <mat-card-title  class="font-weight-bold d-flex justify-content-center p-2 email-title mb-2">Preview</mat-card-title>
+        <mat-card-content class="email-card-content quill-editor">
+          <div class="d-flex">
+            <h5 class="themeText font-weight-bold email-subject mr-1">Subject : </h5>
+            <p class="font-weight-bold subject-text"> {{ subject }}</p>
+          </div>
+          <div [innerHTML]="sanitizerHtml(body)" class="email-preview ql-editor"></div>
+        </mat-card-content>
+      </mat-card>
+      </div>
+
+    </div>

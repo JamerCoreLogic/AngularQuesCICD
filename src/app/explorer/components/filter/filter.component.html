@@ -1,0 +1,16 @@
+<!-- <div class="nxe-filter">
+    <input class="nxe-filter-input" type="text" #input (keyup)="onChange($event, input.value)">
+
+
+</div> -->
+<div class="nxe-filter position-relative">
+    <input class="nxe-filter-input form-control" type="text" placeholder="Filter"
+    #input (keyup)="onChange($event, input.value)" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray"
+         class="bi bi-search search-icon position-absolute" viewBox="0 0 16 16" style="right: 10px; top: 50%; transform: translateY(-50%);">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.442 1.318a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z" />
+    </svg>
+    
+</div>
+
+<!-- <button class="nxe-filter-button" (click)="clear()"><i class="nxe-cancel" aria-hidden="true"></i></button> -->

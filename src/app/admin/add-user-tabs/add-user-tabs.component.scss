@@ -1,0 +1,135 @@
+// .add-user-tabs {
+//     height: 100%;
+//     padding: 12px 0 0px;
+//     max-width: 100%;
+// }
+// .mat-tab-body-wrapper {
+//     overflow-y: scroll !important;
+//     height: calc(100vh - 282px);
+// }
+// .inf {
+//     flex: 0 0 auto;
+//     padding: 0 20px;
+// }
+// button group .........................
+.inf {
+    padding: 0 2rem;
+}
+
+// .back_admin {
+//     padding: 1rem 0;
+// }
+.mat-tab-body-content {
+    height: 0%;
+    overflow: auto;
+}
+.mat-tab-group .mat-tab-header .mat-tab-label{
+    min-width: 200px !important;
+}
+.submit-btn {
+    // if isSubmitEnable is false then make the button disabled
+    &[disabled] {
+        background-color: #ccc;
+        color: #666;
+        cursor: not-allowed;
+    }
+}
+.save-btn{
+    &[disabled] {
+        background-color: #ccc;
+        color: #666;
+        cursor: not-allowed;
+    }
+}
+.button-space{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-btn {
+    // Edit button styling to match other action buttons
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    
+    
+    
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.internal-tab-menu-btn{
+    background-color: transparent !important;
+    width: 200px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 16px !important;
+}
+
+.internal-tab-menu-btn span {
+    margin-right: 8px;
+}
+
+.internal-tab-menu-btn mat-icon {
+    margin-left: 4px;
+}
+
+.internal-tab-menu-btn.active {
+    color: #fff !important;
+    background-color: transparent !important;
+    font-weight: inherit !important;
+}
+.internal-overlay-menu .mat-menu-item.active {
+    background: #ffa022;
+    color: #fff;
+}
+
+.internal-menu-panel.mat-menu-panel {
+    min-width: 200px !important;
+    width: 200px !important;
+    max-width: 200px !important;
+    border-radius: 0;
+    .mat-menu-content { padding: 0; }
+}
+
+/* ◾  highlight the active menu item (you already had this) */
+.internal-menu-panel .mat-menu-item.active {
+    background: #ffa022;
+    color: #fff;
+}
+
+// .................................................
+@media (min-width:340px) {
+    .basic-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 356px);
+    }
+    .button-space button {
+        margin: 0 .2rem;
+    }
+}
+
+@media (min-width:576px) {
+    .basic-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 275px);
+    }
+    .button-space button {
+        margin: 0 .2rem;
+    }
+}
+
+@media (min-width:768px) {
+    .basic-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 225px);
+    }
+    .button-space button {
+        margin: 0 .2rem;
+    }
+}

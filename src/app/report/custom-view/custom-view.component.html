@@ -1,0 +1,119 @@
+<!-- Custom Views Layout -->
+<div class="container-fluid-lg bg-opprtunity py-3">
+    <div class="row">
+        <!-- Header with back button -->
+        <div class="col-sm-12 mb-3 d-flex">
+            <div class="d-flex mr-4">
+                <button mat-icon-button class="back-button" (click)="goBack()">
+                    <mat-icon #tooltip="matTooltip" matTooltipClass="bg-light text-dark border border-info"
+                    matTooltip="Back" matTooltipPosition="above">arrow_back</mat-icon>
+                </button>
+                <h3 class="mb-0">{{ selectedCustomView?.name || 'Custom Views' }}</h3>
+            </div>
+            <div class="d-flex align-items-center">
+                <!-- download button -->
+                <button mat-icon-button (click)="downloadExcel()">
+                    <mat-icon 
+                        #tooltip="matTooltip" matTooltipClass="bg-light text-dark border border-info"
+                        matTooltip="Download" matTooltipPosition="above">cloud_download</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main content area with two panels -->
+        <div class="col-md-9 table_pddng">
+            <!-- Data Table Panel -->
+            <mat-card class="shadow-sm">
+                <mat-card-content class="p-0">
+                    <div class="table-responsive">
+                        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="w-100">
+                            <!-- Dynamic columns based on displayedColumns array -->
+                            <ng-container *ngFor="let field of displayedColumns">
+                                <ng-container matColumnDef="{{ field }}">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header="{{ field }}">{{ getHeaderDisplay(field) }}</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <span matTooltip="{{ element[field] }}" matTooltipClass="custom-tooltip-reports">
+                                            {{ formatField(element[field], field) }}
+                                        </span>
+                                    </td>
+                                </ng-container>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            
+                            <!-- No data message -->
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell text-center py-4" [attr.colspan]="displayedColumns.length">
+                                    No data available
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </mat-card-content>
+                
+                <!-- Pagination -->
+                <mat-paginator #paginator 
+                    [pageSize]="pageSize" 
+                    [pageSizeOptions]="[5, 10, 25, 100]"
+                    [length]="totalData" 
+                    showFirstLastButtons>
+                </mat-paginator>
+            </mat-card>
+        </div>
+
+        <!-- Custom Views Sidebar - Made Sticky -->
+        <div class="col-md-3 sticky-sidebar-container">
+            <div class="sticky-sidebar">
+                <mat-card class="shadow-sm h-80">
+                    <mat-card-content>
+                        <h3 class="mb-3">Custom Views</h3>
+                        
+                        <!-- Search box -->
+                        <div class="mb-3 position-relative">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-icon matPrefix class="text-muted mr-2 theam-color">search</mat-icon>
+                                <input matInput placeholder="Search" [(ngModel)]="searchTerm" class="search-input">
+                            </mat-form-field>
+                        </div>
+                        
+                        <!-- New Custom View button -->
+                        <div class="mb-4">
+                            <button mat-stroked-button class="w-100 d-flex align-items-center justify-content-center py-2" 
+                            *ngIf="loggedUserRoleCheck !== 3"  color="primary" (click)="createNewCustomView()">
+                                <mat-icon class="theam-color">add</mat-icon>
+                                <span class="ml-2">New Custom View</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Custom view list -->
+                        <div class="custom-views-scrollable">
+                            <mat-nav-list class="custom-views-list">
+                                <mat-list-item *ngFor="let view of filterCustomViews()" 
+                                            class="rounded mb-1" 
+                                            [class.active-view]="selectedCustomView && view.customViewId === selectedCustomView.customViewId"
+                                            (click)="selectCustomView(view)">
+                                    <span matListItemTitle>{{ view.name }}</span>
+                                    
+                                    <!-- Action Buttons - visible only on hover -->
+                                    <div matListItemMeta class="action-buttons mr-2">
+                                        <button mat-icon-button *ngIf="loggedUserRoleCheck !== 3" (click)="deleteCustomView(view, $event)">
+                                            <mat-icon class="theam-color">delete</mat-icon>
+                                        </button>
+                                        <button mat-icon-button *ngIf="loggedUserRoleCheck !== 3" (click)="editCustomView(view, $event)">
+                                            <mat-icon class="theam-color">edit</mat-icon>
+                                        </button>
+                                        <!-- add view only mode -->
+                                        <button mat-icon-button *ngIf="loggedUserRoleCheck == 3" (click)="viewOnlyMode(view, $event)">
+                                            <mat-icon class="theam-color">visibility</mat-icon>
+                                        </button>
+                                    </div>
+                                </mat-list-item>
+                            </mat-nav-list>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

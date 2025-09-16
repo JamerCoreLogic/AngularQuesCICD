@@ -1,0 +1,63 @@
+<head>
+    <style>
+         ::placeholder {
+            color: rgb(184, 181, 181);
+            opacity: 1;
+            text-align: left !important;
+        }
+    </style>
+</head>
+
+<section class="container-fluid-lg login_fpd">
+    <div class="container container_fpd">
+        <div class="row login_card align-items-center">
+            <div class="col-lg-6 col-md-12 col-sm-12 form_pd order-1 order-lg-1">
+                <div class="text-center login_hd">
+                    <a href="#" class="nav-logo">
+                        <img src="../../../assets/assets/image/FPD Solutions Logo.png" alt="logo" class="img-fluid" width="250" target="_blank" #tooltip="matTooltip" matTooltipClass="bg-light text-dark border border-info" matTooltip="MyFPD Portal" matTooltipPosition="right">
+                    </a>
+                    <h3 class="py-3">Login</h3>
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <form [formGroup]="LoginForm" class="w-100" style="max-width: 23rem; margin: 0 auto;">
+                        <div class="form-outline mb-3">
+                            <label class="ciFormLabel mendatory-field" for="form2Example18">Email</label>
+                            <input formControlName="email" trim="" type="email" #form2Example18 class="form-control form-control-lg crn" placeholder="email@mymail.com" />
+                            <span class="text-color-red" *ngIf="LoginForm.controls['email'].invalid && (submit==true)">Please enter valid email.</span>
+                        </div>
+                        
+                        <div class="form-outline mb-3">
+                            <label class="ciFormLabel mendatory-field">Password</label>
+                            <span class="d-flex align-items-center show_hide">
+                                <input formControlName="password" (keyup.enter)="login()" [type]="hide ? 'password' : 'text'" #form2Example28 class="form-control form-control-lg crn" placeholder="**********" />
+                                <button mat-icon-button matSuffix [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                            </span>
+                            <span class="text-color-red" *ngIf="LoginForm.controls['password'].invalid && (submit==true)">Please enter password.</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-4">
+                            <a class="small fw-bold text-decoration-none text-default" (click)="route()">Forgot password?</a>
+                            <a class="small fw-bold text-decoration-none text-default" (click)="routeToRegister()">Create account</a>
+                        </div>
+
+                        <div class="mb-4">
+                            <button mat-raised-button class="btn-default w-100 btn-block text-light crn" (click)="login()" type="button">Login</button>
+                        </div>
+
+                        <div class="text-center">
+                            <p class="text-muted mb-2">© {{currentYear}} FPD Solutions All Rights Reserved.</p>
+                            <p class="text-muted mb-0">{{versionData}}</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 g-0 view order-2 order-lg-2">
+                <div class="login_bg">
+                    <img src="../../../assets/assets/image/locate_img/log.png" alt="Login image" class="img-fluid w-100">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

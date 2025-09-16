@@ -1,0 +1,172 @@
+<div class="container-fluid-lg bg-opprtunity py-3">
+    <div class="row">
+        <!-- Header with back button -->
+        <div class="col-sm-12 mb-4">
+                       <div class="d-flex justify-content-between align-items-center">
+                         <div class="d-flex align-items-center">
+                             <button mat-icon-button class="back-button" (click)="goBack()">
+                                 <mat-icon>arrow_back</mat-icon>
+                             </button>
+                           
+                                 <h3 class="mb-0 d-flex align-items-center view-name-input">
+                                 <span *ngIf="!isEditingViewName" 
+                                       [matTooltip]="viewName.length > 30 ? viewName : ''" 
+                                       matTooltipPosition="above"
+                                       matTooltipClass="custom-tooltip-view-name"
+                                       class="truncate-text">{{ getTruncatedViewName() }}</span>
+                                 <mat-form-field *ngIf="isEditingViewName" appearance="outline" class="view-name-input">
+                                     <input matInput [(ngModel)]="viewName" 
+                                            (keyup.enter)="toggleEditViewName()" 
+                                            (keyup.escape)="cancelEditViewName()"
+                                            placeholder="View Name"
+                                            maxlength="100"
+                                            #viewNameInput>
+                                     <mat-hint align="end">{{viewName.length}} / 100</mat-hint>
+                                 </mat-form-field>
+                                 <button mat-icon-button class="ml-1" *ngIf="!isViewOnlyMode" (click)="toggleEditViewName()">
+                                     <mat-icon class="theam-color">{{ isEditingViewName ? 'check' : 'edit' }}</mat-icon>
+                                 </button>
+                                 &nbsp;
+                                 <!-- cancel button -->
+                                 <button mat-icon-button class="ml-1" *ngIf="isEditingViewName" (click)="cancelEditViewName()">
+                                     <mat-icon class="theam-color">cancel</mat-icon>
+                                 </button>
+        
+                             </h3>
+                         </div>
+                         <div>
+                             <button mat-stroked-button class="mr-2" (click)="goBack()">Cancel</button>
+                             &nbsp;
+                             <button mat-raised-button class="bg-greendark text-light text-light" *ngIf="!isViewOnlyMode" (click)="saveView()">{{ isCreateView ? 'Create View' : 'Update View' }}</button>
+                         </div>
+                          </div>
+                      </div>
+
+        <!-- Main content area with two panels -->
+         <!-- Criteria Section -->
+       <div class="col-md-12 mb-4">
+            <!-- Data Table Panel -->
+            <mat-card class="shadow-sm  h-100">
+                <mat-card-content class="p-4">
+                                       <div class="mb-3 d-flex align-items-center">
+                                           <h5 class="mb-0 font-weight-bold">Specify Criteria</h5>
+                                           <button mat-icon-button>
+                                               <mat-icon matTooltip="Create a filter for custom view and hit apply button to save your criteria" matTooltipClass="custom-tooltip-reports" position="above">help_outline</mat-icon>
+                                           </button>
+                                       </div>
+                                       
+                                       <!-- Filter Criteria -->
+                                       <div class="criteria-container">
+                                         <app-filters *ngIf="isViewLoaded && FiledsList && FiledsList.length > 0 && originalUserData$"
+                                            [filteredData$]="originalUserData$"
+                                            [filterFieldsData]="FiledsList"
+                                            [hideActionButtons]="true"
+                                            [isViewOnlyMode]="isViewOnlyMode"
+                                            (data)="updateFilterData($event)"
+                                            (operatorValue)="getOperator($event)"
+                                            (companyNamevalue)="getCompanyName($event)"
+                                            (surveyNameValue)="getSurveyName($event)"
+                                            (surveyTitleValue)="getSurveyTitle($event)"
+                                            (dateForFilter)="getDateforFilter($event)"
+                                            (filterObject)="getFilterObject($event)"
+                                            [savedFilterObject]="savedFilterObject"
+                                            (resetSearchvalue)="resetSearchvalueinReports($event)">
+                                         </app-filters>
+                                         
+                                         <!-- Show loading indicator when filters are being loaded -->
+                                         <div *ngIf="!isViewLoaded && !isCreateView" class="text-center p-5">
+                                             <mat-spinner diameter="40" class="mx-auto"></mat-spinner>
+                                             <p class="mt-3">Loading saved filters...</p>
+                                         </div>
+                                       </div>
+                </mat-card-content>
+                
+                <!-- Pagination -->
+              
+            </mat-card>
+        </div>
+       
+  <!-- Column Selection Section -->
+  <div class="col-md-12 mb-4">
+    <mat-card class="shadow-sm h-100">
+        <mat-card-content class="p-4">
+            <div class="mb-3 d-flex align-items-center">
+                <h5 class="mb-0 font-weight-bold">Choose Columns</h5>
+                <button mat-icon-button>
+                    <mat-icon class="theam-color" matTooltip="Choose the columns you want to display in the view" matTooltipClass="custom-tooltip-reports" position="above">help_outline</mat-icon>
+                </button>
+            </div>
+            
+            <div class="row">
+                <!-- Available Columns -->
+                <div class="col-md-6">
+                    <h5 class="mb-3">Available</h5>
+                    
+                    <!-- Search Box -->
+                    <mat-form-field appearance="outline" class="w-100 mb-3">
+                        <mat-icon matPrefix class="text-muted mr-2 theam-color">search</mat-icon>
+                        <input matInput placeholder="Search" [(ngModel)]="availableSearchTerm">
+                    </mat-form-field>
+                    
+                    <!-- Available Columns List -->
+                    <div class="columns-list">
+                        <div *ngFor="let field of filteredAvailableColumns" class="column-item d-flex justify-content-between align-items-center p-2 mb-2">
+                            <span>{{field.keyValue}}</span>
+                            <button mat-icon-button color="primary" *ngIf="!isViewOnlyMode" (click)="addColumn(field)">
+                                <mat-icon class="theam-color">add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Selected Columns -->
+                <div class="col-md-6">
+                    <h5 class="mb-3">Selected</h5>
+                    
+                    <!-- Search Box -->
+                    <mat-form-field appearance="outline" class="w-100 mb-3">
+                        <mat-icon matPrefix class="text-muted mr-2 theam-color">search</mat-icon>
+                        <input matInput placeholder="Search" [(ngModel)]="selectedSearchTerm">
+                    </mat-form-field>
+                    
+                    <!-- Selected Columns List with Drag and Drop -->
+                    <div class="columns-list" cdkDropList (cdkDropListDropped)="onColumnDrop($event)">
+                        <!-- Empty state message -->
+                        <div *ngIf="filteredSelectedColumns?.length === 0" class="text-center p-3 text-muted">
+                            <mat-icon class="d-block mx-auto mb-2">info</mat-icon>
+                            No columns selected
+                        </div>
+                        
+                        <div *ngFor="let field of filteredSelectedColumns" 
+                             class="column-item d-flex justify-content-between align-items-center p-2 mb-2"
+                             cdkDrag
+                             [cdkDragDisabled]="isViewOnlyMode">
+                            <div class="d-flex align-items-center">
+                                <mat-icon *ngIf="!isViewOnlyMode" 
+                                          cdkDragHandle 
+                                          class="drag-handle mr-2">drag_indicator</mat-icon>
+                                <span>{{field.keyValue}}</span>
+                            </div>
+                            <button mat-icon-button color="warn" *ngIf="!isViewOnlyMode" (click)="removeColumn(field)">
+                                <mat-icon class="theam-color">close</mat-icon>
+                            </button>
+                            <!-- Drag Preview Template -->
+                            <div *cdkDragPreview class="column-item-preview">
+                                {{field.keyValue}}
+                            </div>
+                            <!-- Drag Placeholder Template -->
+                            <div *cdkDragPlaceholder class="column-item-placeholder"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    </div>
+        
+        
+    </div>
+</div>
+
+
+

@@ -1,0 +1,58 @@
+.audit-trail-container {
+  padding: 20px;
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .mat-elevation-z8 {
+    overflow: auto;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th.mat-header-cell {
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 600;
+    padding: 12px;
+  }
+
+  td.mat-cell {
+    padding: 12px;
+  }
+
+  .mat-row:hover {
+    background-color: #f0f0f0;
+  }
+
+  .mat-paginator {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .font-bold{
+    font-weight: 600;
+  }
+  
+}
+@media (min-width:340px) {
+  .audit-trail-container {
+      padding: 1rem 1.5rem;
+      height: calc(100vh - 356px);
+  }
+}
+
+@media (min-width:576px) {
+  .audit-trail-container {
+      padding: 1rem 1.5rem;
+      height: calc(100vh - 275px);
+  }
+}
+
+@media (min-width:768px) {
+  .audit-trail-container {
+      padding: 1rem 1.5rem;
+      height: calc(100vh - 225px);
+  }
+}

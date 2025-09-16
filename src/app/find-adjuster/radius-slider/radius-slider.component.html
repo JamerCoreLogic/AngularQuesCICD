@@ -1,0 +1,10 @@
+<div class="slider_line">
+    <mat-card>
+        <mat-card-content>
+            <mat-icon class="crl" (click)="radiusDecrease()">arrow_drop_down</mat-icon>
+            <input class="input-radius" name="radiusInput" [(ngModel)]="radiusDisplay" (change)="onRadiusChange(radiusDisplay)" (keydown)="onKeyDown($event)" />
+            <mat-slider name="radiusSlider" [(ngModel)]="radius" (ngModelChange)="onRadiusChange($event)" thumbLabel [displayWith]="formatLabel" tickInterval="0" step="1" min="1" max="1000" aria-label="units"></mat-slider>
+            <mat-icon class="crl" (click)="radiusIncrease()">arrow_drop_up</mat-icon>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,381 @@
+.example-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  table-layout: auto;
+}
+
+th,
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th {
+  background-color: #ffffff;
+  color: #333;
+  font-weight: bold;
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+td {
+  padding: 8px;
+}
+
+.mat-paginator {
+  background-color: #f5f5f5;
+  padding: 10px;
+  position: sticky;
+  bottom: 0;
+}
+
+::ng-deep th[cdkDrag] {
+  cursor: move;
+}
+
+.search-by {
+  width: 9%;
+}
+
+.whtCon {
+  padding: 5px 5px 5px 5px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.btn-clear{
+  background-color: #ebebeb;
+  color: #333;
+  border: 1px solid #e0e0e0;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  text-transform: capitalize;
+}
+.mr-2{
+  margin-right: 10px;
+}
+.ml-2{
+  margin-left: 10px;
+}
+.k-button {
+  text-transform: capitalize;
+}
+:host ::ng-deep .k-column-chooser {
+width: 400px !important;
+}
+
+::ng-deep .k-column-chooser {
+width: 400px !important; /* Adjust the width as needed */
+max-width: 600px !important; /* Prevents it from becoming too wide */
+}
+
+::ng-deep .k-column-chooser .k-column-chooser-list {
+max-height: 500px !important; /* Adjust height if needed */
+overflow-y: auto; /* Enables scrolling if there are many columns */
+}
+.no-scroll {
+overflow: hidden !important;
+}
+
+// Styles for grid state management
+.dropdown-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+i {
+  visibility: hidden;
+  cursor: pointer;
+  color: #dc3545;
+}
+
+&:hover {
+  i {
+    visibility: visible;
+  }
+}
+}
+
+.modal-backdrop {
+position: fixed;
+top: 0;
+left: 0;
+z-index: 1040;
+width: 100vw;
+height: 100vh;
+background-color: #000;
+
+&.fade {
+  opacity: 0;
+}
+
+&.show {
+  opacity: 0.5;
+}
+}
+
+.modal {
+position: fixed;
+top: 0;
+left: 0;
+z-index: 1050;
+width: 100%;
+height: 100%;
+overflow: hidden;
+outline: 0;
+
+&.fade .modal-dialog {
+  transition: transform .3s ease-out;
+  transform: translate(0, -50px);
+}
+
+&.show .modal-dialog {
+  transform: none;
+}
+}
+
+// Button styling
+.btn-primary {
+background-color: #007bff;
+border-color: #007bff;
+
+&:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+}
+
+.btn-secondary {
+background-color: #6c757d;
+border-color: #6c757d;
+color: white;
+padding: 6px 12px;
+border-radius: 4px;
+
+&:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.mat-icon {
+  font-size: 18px;
+  vertical-align: middle;
+}
+}
+
+// Spacing
+.ml-2 {
+margin-left: 0.5rem !important;
+}
+
+.mr-2 {
+margin-right: 0.5rem !important;
+}
+
+// Custom Modal Styles
+.custom-modal {
+.modal-dialog {
+  max-width: 550px;
+}
+
+.modal-content {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e9ecef;
+
+  .modal-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .close {
+    padding: 0;
+    margin: 0;
+    opacity: 0.5;
+    font-size: 24px;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.modal-body {
+  padding: 24px;
+
+  .custom-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .custom-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #e9ecef;
+
+ 
+
+  .btn-cancel {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    color: #333;
+    
+    &:hover {
+      background-color: #e9ecef;
+    }
+  }
+
+  
+}
+}
+
+// Modal backdrop styles
+.modal-backdrop {
+background-color: rgba(0, 0, 0, 0.5);
+
+&.show {
+  opacity: 1;
+}
+}
+
+// Styles for the material menu
+::ng-deep .saved-views-menu {
+.mat-menu-panel{
+min-height: 50px !important;
+}
+.mat-menu-content {
+  padding: 0;
+  height: auto;
+  max-height: 300px;
+  min-width: 230px;
+  width: fit-content;
+  overflow-y: auto;
+}
+
+.view-menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  
+  span {
+    flex: 1;
+  }
+
+  .delete-btn {
+    visibility: visible;
+    width: 26px;
+    height: 30px;
+    min-width: 26px;
+    line-height: 30px;
+    
+    .mat-icon {
+      font-size: 18px;
+      color: #dc3545;
+    }
+  }
+  .preview-btn {
+    visibility: visible;
+    width: 26px;
+    height: 30px;
+    min-width: 26px;
+    line-height: 30px;
+    margin-right: 8px;
+
+    .mat-icon {
+      font-size: 18px;
+      color: #000000;
+    }
+  }
+
+  .edit-btn {
+    visibility: visible;
+    width: 26px;
+    height: 30px;
+    min-width: 26px;
+    line-height: 30px;
+    margin-right: 8px;
+
+    .mat-icon {
+      font-size: 18px;
+      color: #000000;
+    }
+  }
+
+  &:hover {
+    .delete-btn {
+      visibility: visible;
+    }
+  }
+}
+}
+
+// Make sure the select dropdown has enough width
+::ng-deep .mat-select-panel {
+min-width: 250px !important;
+}
+
+// Update button style to match image
+.dropdown-button {
+background-color: #ebebeb;
+color: #333;
+border: 1px solid #e0e0e0;
+border-radius: 4px;
+box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+line-height: normal;
+height: auto;
+padding: 6px 12px;
+min-width: 230px;
+font-weight: normal;
+
+span {
+  margin-right: 4px;
+}
+
+.mat-icon {
+  font-size: 18px;
+  vertical-align: middle;
+  height: 18px;
+  width: 18px;
+}
+
+&:hover {
+  background-color: #f3f3f3;
+}
+}

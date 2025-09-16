@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Choose Columns</h2>
+<div mat-dialog-content class="dialog-content">
+  <div class="lists">
+    <div class="list available">
+      <div class="header">
+        <span>Available To Add</span>
+        <mat-form-field appearance="outline" class="search">
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput placeholder="Search" [(ngModel)]="availableSearch" />
+        </mat-form-field>
+      </div>
+
+      <div class="columns" cdkDropList [cdkDropListData]="availableColumns" (cdkDropListDropped)="drop($event)">
+        <div class="item" *ngFor="let col of filteredAvailable" cdkDrag>
+          <div class="label">
+            <mat-icon cdkDragHandle>drag_indicator</mat-icon>
+            {{ col.title }}
+          </div>
+          <button mat-icon-button (click)="add(col)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="list selected">
+      <div class="header">
+        <span>Selected</span>
+        <mat-form-field appearance="outline" class="search">
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput placeholder="Search" [(ngModel)]="selectedSearch" />
+        </mat-form-field>
+      </div>
+
+      <div class="columns" cdkDropList [cdkDropListData]="selectedColumns" (cdkDropListDropped)="drop($event)">
+        <div class="item" *ngFor="let col of filteredSelected" cdkDrag>
+          <div class="label">
+            <mat-icon cdkDragHandle>drag_indicator</mat-icon>
+            {{ col.title }}
+            <span class="badge" *ngIf="col.isRequired">Required</span>
+          </div>
+          <button mat-icon-button (click)="remove(col)" [disabled]="col.isRequired">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button class="bg-greendark text-light"  (click)="apply()">Apply</button>
+  
+</div>
+
+

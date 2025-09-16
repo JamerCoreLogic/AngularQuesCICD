@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="row">
+      <div
+        class="d-flex justify-content-between align-items-center ds-form"
+        style="height:57px;padding:0 23px;"
+      >
+        <h5 style="font-weight:501;margin-bottom:0;font-size:15px;">
+          Survey Name - {{ title | uppercase }}
+        </h5>
+        <div
+          class="clse"
+          #tooltip="matTooltip"
+          matTooltipClass="bg-light text-dark border border-info"
+          matTooltip="Close"
+          matTooltipPosition="above"
+        >
+          <button mat-button [mat-dialog-close]="true">
+            <mat-icon (click)="onClose()">clear</mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="row-cols-auto mt-3">
+        <mat-form-field class="search-field item" appearance="outline">
+            <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            class="form-control fs"
+            placeholder="Search"
+            [formControl]="searchControl"
+          />
+        </mat-form-field>
+      </div>
+      <div class="survey-tabel-container">
+  
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          matSort
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.name }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.phone | phoneMask }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="emailId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let element"> {{ element.emailId }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+            <td mat-cell *matCellDef="let element"> {{ element.address }} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="submittedOn">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Responded Date
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.submittedOn | date: 'MM/dd/yyyy' }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="distance">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.distance }}
+            </td>
+          </ng-container>
+  
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5">No data</td>
+          </tr>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        #paginator
+      ></mat-paginator>
+    </div>
+  </div>
+  

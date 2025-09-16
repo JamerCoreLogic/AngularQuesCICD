@@ -1,0 +1,127 @@
+
+// .....................................................................................
+
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.mat-progress-bar-fill::after {
+    background-color: #7af316 !important;
+}
+
+.recources {
+    font-weight: 501;
+}
+
+.non-fpduser {
+    font-size: 10px;
+}
+
+.fpd_user {
+    font-size: 10px;
+}
+
+.dashboard_sticky_container {
+  height: calc(100vh - 62vh);
+  width: 100%;
+  overflow: auto;
+  border-radius: 8px;
+}
+.example-container {
+    height: auto;
+    width: 100%;
+    overflow: auto;
+  }
+  .mat-paginator {
+    background-color: #f5f5f5; /* Matching background with headers */
+    padding: 10px;
+    position: sticky;
+    bottom: 0;
+    z-index: 99;
+}
+
+  // table {
+  //   width: auto;
+  // }
+
+  td.mat-column-star {
+    width: 20px;
+    padding-right: 8px;
+  }
+
+  .mat-table-sticky:last-child {
+    border-left: 1px solid #e0e0e0;
+  }
+
+  /*
+  .mat-column-name {
+    width: 110px;
+  }
+  .mat-column-position {
+    width: 80px;
+    left: 110px !important;
+  }
+  */
+  .mat-cell, .mat-header-cell {
+    padding-left:8px;
+    padding-right:8px;
+  }
+
+  .mat-column-position {
+    border-right: 1px solid #e0e0e0;
+  }
+  .admin-column {
+    min-width: 100px; /* Adjust as needed */
+  }
+  .admin-column-name{
+    min-width: 180px;
+  }
+
+  .mat-table-sticky-border-elem-right {
+    border-left: 1px solid #e0e0e0;
+  }
+
+  // .mat-table-sticky-border-elem-left {
+  //   border-right: 1px solid #e0e0e0;
+  // }
+
+  th[cdkDrag] {
+    cursor: move;
+  }
+.total-users{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.separator{
+  font-size: 10px;
+  font-weight: 500;
+}
+.recources-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+  @media (min-width: 992px){
+    .admin-search-by {
+  width: 11%;
+    }
+  }
+  @media (min-width: 576px) {
+    .col-sm-2{
+      flex: 0 0 auto;
+      width: 11.666667%;
+  }
+}
+
+  .paddingAll{
+ padding: 1.5rem;
+}

@@ -1,0 +1,110 @@
+<head>
+    <style>
+         ::placeholder {
+            color: rgb(184, 181, 181);
+            opacity: 1;
+            text-align: left !important;
+        }
+        
+        mat-form-field {
+             ::ng-deep .mat-option-required::after {
+                display: none;
+            }
+        }
+        
+        mat-form-field ::ng-deep .mat-option-required .mat-option-pseudo-checkbox::after {
+            color: transparent;
+        }
+    </style>
+</head>
+<div class="d-flex justify-content-between align-items-center ds-form" style="height:57px; padding:0 3rem;">
+    <h5 *ngIf="isEdit=='addClientPage'" style="font-weight: bold;margin-bottom:0;font-size:15px;">ADD CLIENT</h5>
+    <h5 *ngIf="isEdit=='editClientPage'" style="font-weight: bold;margin-bottom:0;font-size:15px;">UPDATE CLIENT</h5>
+    <div class="clse" #tooltip="matTooltip" matTooltipClass="bg-light text-dark border border-info" matTooltip="Close" matTooltipPosition="above">
+        <button mat-button [mat-dialog-close]="true">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div class="example-form" style="padding:1rem 3rem;">
+    <div class="row">
+        <form [formGroup]="addClientForm">
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label fs mendatory-field">Client Name</label>
+                    <input formControlName="firstName" type="text" class="form-control fs" placeholder="Client Name" [ngClass]="{'danger':submit && addClientForm.get('firstName')?.invalid,'nodanger':addClientForm.get('firstName')?.valid}">
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label fs mendatory-field">Email</label>
+                    <input formControlName="email" (focusout)="toLower($event)" type="email" class="form-control fs" placeholder="Email" [readOnly]="data" [ngClass]="{'danger':submit && addClientForm.get('email')?.invalid,'nodanger':addClientForm.get('email')?.valid}">
+                </div>
+                <!-- <div class="col-sm-6 mb-3">
+                    <label class="form-label fs mendatory-field">Last Name</label>
+                    <input formControlName="lastName" type="text" class="form-control fs" placeholder="Last Name" [ngClass]="{'danger':submit && addClientForm.get('lastName')?.invalid,'nodanger':addClientForm.get('lastName')?.valid}">
+                </div> -->
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label fs">Address Line 1</label>
+                    <input formControlName="address1" type="text" class="form-control fs" placeholder="Address Line 1" [ngClass]="{'danger':submit && addClientForm.get('address1')?.invalid,'nodanger':addClientForm.get('address1')?.valid}">
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label fs">Address Line 2</label>
+                    <input formControlName="address2" type="text" class="form-control fs" placeholder="Address Line 2" [ngClass]="{'danger':submit && addClientForm.get('address2')?.invalid,'nodanger':addClientForm.get('address2')?.valid}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label fs">City</label>
+                    <input formControlName="city" type="text" class="form-control fs" placeholder="City" [ngClass]="{'danger':submit && addClientForm.get('city')?.invalid,'nodanger':addClientForm.get('city')?.valid}">
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label fs">State</label>
+                    <input formControlName="state" type="text" class="form-control fs" placeholder="State" [ngClass]="{'danger':submit && addClientForm.get('state')?.invalid,'nodanger':addClientForm.get('state')?.valid}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label fs">Zip</label>
+                    <input formControlName="zip" type="text" class="form-control fs" placeholder="Zip" min="5" max="11" oninput="javascript: if (this.value.length > this.max) {this.value = this.value.slice(0, this.max);}" [ngClass]="{'danger':submit && addClientForm.get('zip')?.invalid,'nodanger':addClientForm.get('zip')?.valid}">
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label fs mendatory-field">Primary Phone</label>
+                    <input formControlName="phone" 
+                           type="text" 
+                           appPhoneMask 
+                           class="form-control fs" 
+                           placeholder="Primary Phone" 
+                           maxlength="14" 
+                           (animationstart)="onAutoFill($event)"
+                           oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);}" 
+                           [ngClass]="{'danger':submit && addClientForm.get('phone')?.invalid,'nodanger':addClientForm.get('phone')?.valid}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label fs mendatory-field">Status</label>
+                    <div class="switchToggle-end">
+                        <input type="checkbox" formControlName="isActive" id="status_switch">
+                        <label for="status_switch"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12 col-sm-12 ps-0 mb-3">
+                <span class="text-color-red" *ngIf="submit==true && addClientForm.invalid">Required must be
+                    filled.</span>
+            </div>
+            <div class="btn-group d-flex justify-content-between mb-3">
+                <button *ngIf="isEdit=='addClientPage'" mat-raised-button class="grn-dark" (click)="addClient()">ADD</button>
+                <button *ngIf="isEdit=='editClientPage'" mat-raised-button class="grn-dark" (click)="updateClient()">UPDATE</button>
+                <button mat-raised-button class="out_grn-dark plce" [disabled]="isEdit=='editClientPage'" (click)="reset()">CLEAR</button>
+            </div>
+        </form>
+    </div>
+</div>

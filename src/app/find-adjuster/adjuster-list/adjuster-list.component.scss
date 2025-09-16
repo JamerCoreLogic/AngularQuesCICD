@@ -1,0 +1,34 @@
+.initiate-request {
+    background: #ffa022 !important;
+    border: none;
+    color: #fff;
+    margin: 0 0 12px;
+}
+.mat-menu-panel {
+    max-width: 400px !important; 
+}
+.custom-mat-menu{
+    max-width: 600px !important;
+    padding: 10px !important;
+}
+::ng-deep {.mat-menu-panel.custom-mat-menu { 
+    max-width: 600px;
+    padding: 10px !important;
+} }
+.cdk-overlay-container .cdk-overlay-backdrop {
+    pointer-events: none; /* Allows click events to pass through */
+  }
+  .details-side{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .theam-btn-counter{
+    background: #ffa022 !important;
+  }
+  .highlighted {
+    border: 2px solid #00b1c3; /* Example style */
+    background-color: rgba(173, 216, 230, 0.465);
+  }
+  
+ 

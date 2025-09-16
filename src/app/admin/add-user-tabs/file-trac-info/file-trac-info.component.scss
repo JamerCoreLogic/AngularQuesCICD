@@ -1,0 +1,100 @@
+// .internal-container {
+//     padding: 1rem 1.5rem;
+//     height: calc(100vh - 221px);
+// }
+// ............................................
+table {
+ width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+.arrow-col{
+    width: 10px;
+}
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+  .mat-column-TotalClaims {
+    width: auto;
+    text-align: right;
+  }
+  .table-container {
+    max-height: 330px; /* or any other value */
+    overflow-y: auto;
+}
+.row.d-flex {
+  display: flex;
+  align-items: flex-start; /* Align items to the start of the flex container */
+}
+.mat-table {
+  height: 300px; /* Your preferred height */
+  overflow-y: auto;
+}
+.item-center{
+  align-items: end;
+}
+.k-chart, .k-stockchart {
+  display: block;
+  height: 330px;
+}
+.Filetrac-update-btn{
+
+  &[disabled] {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+}
+
+
+@media (min-width:340px) {
+    .internal-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 356px);
+    }
+}
+
+@media (min-width:576px) {
+    .internal-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 275px);
+    }
+}
+
+@media (min-width:768px) {
+    .internal-container {
+        padding: 1rem 1.5rem;
+        height: calc(100vh - 225px);
+    }
+}

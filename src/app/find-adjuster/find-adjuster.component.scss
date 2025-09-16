@@ -1,0 +1,119 @@
+mat-slider {
+    width: 100%;
+}
+
+ ::ng-deep .mat-slider-ticks {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    top: 14px;
+}
+
+ ::ng-deep .mat-slider-tick {
+    width: 2px;
+    height: 8px;
+    background-color: #ccc;
+}
+
+.google-map-container {
+    height: 100%;
+    width: 100%;
+}
+
+.toggle-list-btn {
+    position: fixed;
+    z-index: 999999;
+    top: 50%;
+    .mat-icon-button{
+        background: #00b1c3;
+    }
+   
+}
+
+.toggle-list-btn:hover {
+    opacity: 1;
+    transition: all .33s ease-in-out;
+}
+
+.mat-drawer {
+    width: 504px;
+    background-color: #ffffff;
+    z-index: 1000;
+}
+
+.mat-drawer-header {
+    background-color: #333333;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.mat-drawer-title {
+    margin: 0;
+}
+
+.mat-drawer-actions {
+    margin-top: 10px;
+}
+
+.mat-drawer-close button {
+    float: right;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+    transform: rotate(270deg);
+    cursor: pointer;
+}
+
+.rotated {
+    position: absolute;
+    top: 50%;
+    left: 68%;
+    transform: translate(-50%, -50%);
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+.arrow span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-bottom: 3px solid #fff !important;
+    border-right: 3px solid #fff !important;
+    transform: rotate(45deg);
+    margin: -7px;
+    animation: animate 2s infinite;
+}
+
+.arrow span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-5px, -5px);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+}
+
+.arrow span:hover {
+    animation: none;
+}
+
+.arrow span:nth-child(2):hover {
+    animation: none;
+}
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+.mat-drawer {
+    overflow-y: hidden !important;
+}

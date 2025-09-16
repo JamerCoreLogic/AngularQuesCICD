@@ -1,0 +1,73 @@
+<section class="response_section">
+    <app-communication-header></app-communication-header>
+    <div class="response_box">
+        <div class="container container-detail">
+            <div class="row">
+                <div class="container_head col-sm-12">
+                    <h2><img class="locate-img" src="../../../assets/assets/image/locate_img/locate3.png" alt="locate" width="47">Opportunity Details</h2>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="example-form">
+                    <div class="row">
+                        <div class="col-sm-4 com">
+                            <div class="mx-4 example_list">
+                                <div class="mb-3 flx">
+                                    <li class="d-flex align-items-center">
+                                        <img src="../../../assets/assets/image/locate_img/client.png" alt="client" width="23" class="me-2">
+                                        <a href="#" target="_blank" title="Title">Title</a>
+                                    </li>
+                                    <span class="opp">{{opDatails?.title}}</span>
+                                </div>
+                                <div class="mb-3 flx">
+                                    <li class="d-flex align-items-center">
+                                        <img src="../../../assets/assets/image/locate_img/assignment.png" alt="client" width="23" class="me-2">
+                                        <a href="#" target="_blank" title="Assignment">Assignment</a>
+                                    </li>
+                                    <span class="opp">{{opDatails?.assignment}}</span>
+                                </div>
+                                <div class="mb-3 flx">
+                                    <li class="d-flex align-items-center">
+                                        <img src="../../../assets/assets/image/locate_img/sub_locate.png" alt="client" width="23" class="me-2">
+                                        <a href="#" target="_blank" title="Location">Location</a>
+                                    </li>
+                                    <span class="opp">{{opDatails?.location}}</span>
+                                </div>
+                                <div class="mb-3 flx">
+                                    <li class="d-flex align-items-center">
+                                        <img src="../../../assets/assets/image/locate_img/description.png" alt="client" width="23" class="me-2">
+                                        <a href="#" target="_blank" title="Claim Type">Claim Type</a>
+                                    </li>
+                                    <span class="opp">{{opDatails?.claimType}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="rght_contnt mx-4">
+                                <span> <img src="../../../assets/assets/image/locate_img/description.png" alt="client" width="23"><a class="discrt">Description :</a></span>
+                                <div>
+                                    <input type="checkbox" class="read-more-state" id="post-1" />
+                                    <p *ngIf="!showMore && shouldShowMoreToggle" class="read-more-wrap">{{ shortDescription }} <a (click)="toggleReadMore()"><span class="read-more-trigger"> Read more...</span></a></p>
+                                    <p *ngIf="showMore && shouldShowMoreToggle" class="read-more-wrap">{{ opDatails?.description }} <a (click)="toggleReadMore()"><span class="read-more-trigger"> Read less...</span></a></p>
+                                    <p *ngIf="!shouldShowMoreToggle">{{ opDatails?.description }}</p>
+                                  </div>
+                            </div>
+                            <div class="text-start">
+                                <div class="d-flex justify-content-center my-3">
+                                    <img src="../../../assets/assets/image/locate_img/locate2.png" alt="locate" width="179" class="img-fluid">
+                                </div>
+                                <div class="text_content">
+                                    <h2 class="fnt text-center">Are you interested in accepting this claim ?</h2>
+                                    <div class="question-button d-flex justify-content-center gap-5 mb-5">
+                                        <button mat-raised-button class="out_grn-dark wth" (click)="decline()">Decline</button>
+                                        <button mat-raised-button class="grn-dark wth" (click)="accept()">Interested</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-communication-footer></app-communication-footer>
+</section>

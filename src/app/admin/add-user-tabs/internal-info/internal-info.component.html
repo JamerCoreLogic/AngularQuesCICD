@@ -1,0 +1,172 @@
+<div class="container-fluid internal-container" *ngIf="selectedSection !== 'auditTrail'" >
+<form [formGroup]="internalInfoForm">
+  <ng-container *ngIf="selectedSection === 'internal'">
+    <!-- Internal content here (move from Internal tab) -->
+    <div class="row">
+      <!-- Headline Overview -->
+      <div class="col-sm-12 mb-3">
+        <mat-label class="fnt">Headline Overview</mat-label>
+        <mat-form-field class="addin-field" appearance="outline">
+          <textarea matInput formControlName="headLineOverview" maxlength="140" rows="2" placeholder="Enter headline"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 mb-3">
+        <mat-label class="fnt">Detailed Overview</mat-label>
+        <mat-form-field class="addin-field" appearance="outline">
+          <textarea matInput formControlName="internalNotes" placeholder="Enter details" rows="5"></textarea>
+        </mat-form-field>
+      </div>
+     
+
+      <!-- Prevetting (formerly QB Rating) -->
+      <div class="form-outline col-sm-12 col-md-6 col-lg-3 mb-3 add_label">
+        <mat-label class="fnt">Prevetting</mat-label>
+        <mat-form-field class="addin-field" appearance="outline">
+          <mat-select formControlName="prevetting" multiple placeholder="Select">
+            <mat-option *ngFor="let option of QbRating" [value]="option"> {{ option }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class=" form-outline col-sm-12 col-md-6 col-lg-3 mb-3 add_label">
+        <mat-label for="form-label"class="fnt">Good Candidate</mat-label>
+        <mat-form-field class="addin-field" appearance="outline" [hideRequiredMarker]="true" [ngClass]="{'danger':submit && internalInfoForm.get('goodCandidateFor')?.invalid}">
+          <mat-select  formControlName="goodCandidateFor" multiple placeholder="Select">
+            <mat-option *ngFor="let user of goodcandidatelistdata" [value]="user.clientId">{{user.fName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- New Field Grades -->
+      <div class="col-sm-12 col-md-6 col-lg-3 mb-3" *ngFor="let grade of ['residential_Field_Grade', 'commercial_Field_Grade', 'liability_Grade', 'inspector_Grade', 'desk_Grade', 'claims_Supervisor_Grade', 'file_Review_Grade']">
+        <mat-label class="fnt">{{ formatLabel(grade) }}</mat-label>
+        <mat-form-field class="addin-field" appearance="outline">
+          <mat-select formControlName="{{ grade }}" placeholder="Select">
+            <mat-option *ngFor="let option of fieldGrades" [value]="option"> {{ option }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Detailed Overview (formerly Notes) -->
+      
+    </div>
+  </ng-container>
+  <ng-container *ngIf="selectedSection === 'onboarding'">
+    <!-- Onboarding content here (move from Onboarding tab) -->
+    <form [formGroup]="internalInfoForm">
+      <div formGroupName="onboarding">
+        <div class="row">
+          <!-- Background Check Section -->
+          <div class="col-12 mb-3 p-3" style="border:1px solid #eee; border-radius:8px;">
+            <div class="row">
+              <div class="col-12 mb-2"><b>Background Check</b></div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Background Check Status</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="backgroundCheckStatus" placeholder="Select">
+                    <mat-option *ngFor="let option of onboardingBackgroundStatuses" [value]="option">{{option}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Background Expiration</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput [matDatepicker]="backgroundExpPicker" formControlName="backgroundExpiration" placeholder="Select" (keypress)="$event.preventDefault()">
+                  <mat-datepicker-toggle matSuffix [for]="backgroundExpPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #backgroundExpPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <!-- Contract Section -->
+          <div class="col-12 mb-3 p-3" style="border:1px solid #eee; border-radius:8px;">
+            <div class="row">
+              <div class="col-12 mb-2"><b>Contract</b></div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Field Adjuster Contract</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="fieldAdjusterContract" placeholder="Select">
+                    <mat-option *ngFor="let option of onboardingContractStatuses" [value]="option">{{option}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Field Adjuster Contract Expiration</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput [matDatepicker]="fieldAdjExpPicker" formControlName="fieldAdjusterContractExpiration" placeholder="Select" (keypress)="$event.preventDefault()">
+                  <mat-datepicker-toggle matSuffix [for]="fieldAdjExpPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #fieldAdjExpPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Desk Adjuster Contract</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="deskAdjusterContract" placeholder="Select">
+                    <mat-option *ngFor="let option of onboardingContractStatuses" [value]="option">{{option}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Desk Adjuster Contract Expiration</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput [matDatepicker]="deskAdjExpPicker" formControlName="deskAdjusterContractExpiration" placeholder="Select" (keypress)="$event.preventDefault()">
+                  <mat-datepicker-toggle matSuffix [for]="deskAdjExpPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #deskAdjExpPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Supervisor Contract</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="supervisorContract" placeholder="Select">
+                    <mat-option *ngFor="let option of onboardingContractStatuses" [value]="option">{{option}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Supervisor Contract Expiration</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput [matDatepicker]="supervisorExpPicker" formControlName="supervisorContractExpiration" placeholder="Select" (keypress)="$event.preventDefault()">
+                  <mat-datepicker-toggle matSuffix [for]="supervisorExpPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #supervisorExpPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Admin Contract</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="adminContract" placeholder="Select">
+                    <mat-option *ngFor="let option of onboardingContractStatuses" [value]="option">{{option}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Admin Contract Expiration</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput [matDatepicker]="adminExpPicker" formControlName="adminContractExpiration" placeholder="Select" (keypress)="$event.preventDefault()">
+                  <mat-datepicker-toggle matSuffix [for]="adminExpPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #adminExpPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <!-- Payroll Section -->
+          <div class="col-12 mb-3 p-3" style="border:1px solid #eee; border-radius:8px;">
+            <div class="row">
+              <div class="col-12 mb-2"><b>Payroll</b></div>
+              <div class="col-md-3 mb-3">
+                <mat-label>Payroll Status</mat-label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="payrollStatus" placeholder="Select">
+                    <mat-option *ngFor="let option of onboardingPayrollStatuses" [value]="option">{{option}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+</form>
+</div>
+<ng-container *ngIf="selectedSection === 'auditTrail'">
+ <app-audit-trail-info #auditTrailInfoComponent></app-audit-trail-info>
+  </ng-container>

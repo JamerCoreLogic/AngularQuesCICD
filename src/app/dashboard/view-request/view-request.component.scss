@@ -1,0 +1,19 @@
+ .viewrequest_clse {
+     position: absolute;
+     right: 0;
+     top: 0;
+     width: 72px;
+     height: 58px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     mat-icon {
+         color: #fff;
+     }
+     mat-icon:hover {
+         color: #f39811;
+         background: #fff;
+         border-radius: 50%;
+         transition: all .22s ease-in;
+     }
+ }

@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+          <app-graph [data]="data" (legendItemNameOutput)="onLegendItemClick($event)"></app-graph>
+        </div>
+        <div class="col-sm-8">
+            <div class="brder">
+                <div class="d-flex justify-content-between align-items-center p-2">
+                    <div class="lft-txt">
+                        <h5 class="text-dark">{{legendItemName}}</h5>
+                    </div>
+                    <div class="button-rgt">
+                        <button *ngIf="status  " mat-raised-button class="bg-greendark text-light sm " (click)="markComplete()">Mark Complete</button>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <!-- table section -->
+                <table mat-table mat-sort [dataSource]="dataSource" class="mat-elevation-z8">
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="chck">
+                      <th mat-header-cell *matHeaderCellDef>
+                          <mat-checkbox *ngIf="legendItemName == 'Accepted' && status" (change)="toggleAllRows($event)" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                          </mat-checkbox>
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                          <mat-checkbox *ngIf="legendItemName == 'Accepted' && status" (click)="$event.stopPropagation()" (change)="selection.toggle(row)" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                          </mat-checkbox>
+                      </td>
+                  </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element">
+                          <a class="pe-auto" *ngIf="legendItemName=='Accepted'" (click)="viewRequest(element)">{{element.name}}</a>
+                          <span *ngIf="legendItemName != 'Accepted'">{{element.name}}</span>
+                        </td>
+                    </ng-container>
+                    <!-- phone Column -->
+                    <ng-container matColumnDef="phone">
+                        <th mat-header-cell *matHeaderCellDef> Phone</th>
+                        <td mat-cell *matCellDef="let element"> {{element.phone | phoneMask }} </td>
+                    </ng-container>
+                    <!-- Email Column -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef>Email</th>
+                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+                    <!-- Location Column -->
+                    <ng-container matColumnDef="location">
+                        <th mat-header-cell *matHeaderCellDef>Location</th>
+                        <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="date">
+                      <th mat-header-cell *matHeaderCellDef>Date</th>
+                      <td mat-cell *matCellDef="let element"> {{element.actionDate | date:'MM/dd/yyyy'}} </td>
+                  </ng-container>
+                    <!-- Distance Column -->
+                    <ng-container matColumnDef="distance">
+                        <th mat-header-cell *matHeaderCellDef>Distance</th>
+                        <td mat-cell *matCellDef="let element"> {{element.distance | number : '1.2-2'}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                    </tr>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data</td>
+                    </tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
