@@ -6,7 +6,8 @@
     "start": "ng serve --configuration=dev",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration dev",
-    "test": "ng test"
+    "test": "ng test",
+    "homepage": "AngularQuesCICD",
   },
   "private": true,
   "dependencies": {
@@ -93,3 +94,4 @@
     "typescript": "~4.9.5"
   }
 }
+
