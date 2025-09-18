@@ -1,4 +1,4 @@
-name: DeploymentAngularAppToGitHubPages
+name: DeploymentFPDAppToGitHubPages
 on:
   push:
     branches:
@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           name: github-pages
-          path: build   # adjust if build output folder is different
+          path: dist   # adjust if build output folder is different
 
   deploy:
     needs: build
@@ -60,3 +60,4 @@ jobs:
 
       - name: Show deployment URL
         run: echo "Deployed at ${{ steps.deployment.outputs.page_url }}"
+
