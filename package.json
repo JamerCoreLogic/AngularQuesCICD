@@ -7,7 +7,7 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration dev",
     "test": "ng test",
-    "homepage": "AngularQuesCICD"
+    "homepage": "/AngularQuesCICD"
   },
   "private": true,
   "dependencies": {
@@ -94,5 +94,6 @@
     "typescript": "~4.9.5"
   }
 }
+
 
 
