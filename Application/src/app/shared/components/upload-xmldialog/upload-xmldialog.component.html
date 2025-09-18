@@ -1,0 +1,37 @@
+<div class="select-quick-quote-header">
+    <h2>{{modalTitle}} Parameter</h2>
+    <span (click)="cancel()" class="close-dialog"><img src="assets/images/delete-popup.png"></span>
+</div>
+<form [formGroup]="uploadXmlForm">
+    <div class="pagemodal-content uploadXMLModal">
+        <div class="modal_select_quote">
+        </div>
+        <div class="col-md-12">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-5">
+                    <div class="form-group">
+                        <label class="textbox_borderlabel_relative">Upload File<span *ngIf="!isFileExists" class="required">*                  
+                          </span></label><br/>
+                        
+                        <input class="ng-pristine ng-valid ng-touched" type="file" (change)="uploadExcel($event)" placeholder="Upload file" />              
+                        
+                        <div class="display-error">
+                            
+                            <span *ngIf="!isvalidExtension && isFileExists">
+                                Invalid file
+                            </span>
+                            <span *ngIf="!uploadXml">
+                                {{uploadXmlMsg}}
+                            </span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="pagemodal-footer">
+    <button type="button" (click)="cancel()" class="button_white">Cancel</button>
+    <button type="submit" (click)="uploadXML()"  class="btn-theme">Upload</button>
+</div>

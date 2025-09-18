@@ -1,0 +1,331 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>{{pageTitle}}</h4>
+    </div>
+</div>
+
+<div class="transferquote-content">
+    <form [formGroup]="addagent">
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Basic Information</h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="fname.invalid &&  submitted">First Name<span
+                                        class="required">*</span></label>
+                                <input type="text" id="FirstName" [class.errorIP]="fname.invalid && submitted"
+                                    class="form-control textbox_border_input" dataTextFocus
+                                    placeholder="Add  First Name" formControlName="FirstName" maxlength="50"
+                                    (keypress)="ValidateKey.key($event)">
+                                <div class="display-error">
+                                    <div *ngIf="fname.invalid && submitted">
+                                        <span *ngIf="fname.errors.required">
+                                            <!-- First Name Required -->
+                                            {{_AddGuestScreen.FirstName.required}}
+                                        </span>
+                                        <span *ngIf="fname.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddGuestScreen.FirstName.pattern}}
+                                        </span>
+                                        <span *ngIf="fname.errors.maxlength">
+                                            <!-- Fifty Character is Allowed -->
+                                            {{_AddGuestScreen.FirstName.lenth}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Middle Name</label>
+                                <input type="text" id="Middlename" class="form-control textbox_border_input"
+                                    placeholder="Add Middle Name" formControlName="Middlename" maxlength="50"
+                                    (keypress)="ValidateKey.key($event)">
+                                <div class="display-error">
+                                    <div *ngIf="Mname.invalid && submitted">
+                                        <span *ngIf="Mname.errors.required">
+                                            <!-- Middle Name Required -->
+                                            {{_AddGuestScreen.Middlename.required}}
+                                        </span>
+                                        <span *ngIf="Mname.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddGuestScreen.Middlename.pattern}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="lname.invalid && submitted">Last Name<span
+                                        class="required">*</span></label>
+                                <input type="text" id="LastName" [class.errorIP]="lname.invalid && submitted"
+                                    class="form-control textbox_border_input" placeholder="Add Last Name" maxlength="50"
+                                    formControlName="LastName" (keypress)="ValidateKey.key($event)">
+                                <div class="display-error">
+                                    <div *ngIf="lname.invalid &&  submitted">
+                                        <span *ngIf="lname.errors.required">
+                                            <!-- Last Name Required -->
+                                            {{_AddGuestScreen.LastName.required}}
+                                        </span>
+                                        <span *ngIf="lname.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddGuestScreen.LastName.pattern}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="zip.invalid && (submitted || isZipInvalid)">Zip<span
+                                        class="required">*</span></label>
+                                <input type="text" id="Zip" (keypress)="ValidateKey.WholeNumbers($event, 5)"
+                                    class="form-control textbox_border_input" placeholder=" Add Zip"
+                                    formControlName="Zip" [class.errorIP]="zip.invalid && (submitted || isZipInvalid)">
+                                <div class="display-error">
+                                    <div *ngIf="zip.invalid && (submitted || isZipInvalid)">
+                                        <span *ngIf="zip.errors.required">
+                                            <!-- Zip Code Required -->
+                                            {{_AddGuestScreen.Zip.required}}
+                                        </span>
+                                        <span *ngIf="zip.errors.minlength">
+                                            <!-- Zip Code must be 5 characters -->
+                                            {{_AddGuestScreen.Zip.lenth}}
+                                        </span>
+                                        <span *ngIf="zip.errors.notvalid">
+                                            <!-- Zip Code must be 5 characters -->
+                                            {{zipErrorMessage}}
+                                        </span>
+                                    </div>
+
+                                    <!--  <span *ngIf="isZipInvalid">{{zipErrorMessage}}</span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">City</label>
+                                <input type="text" id="City" class="form-control textbox_border_input"
+                                    placeholder="Add City" formControlName="City">
+                                <div class="display-error">
+                                    <div *ngIf="city.invalid && submitted">
+                                        <span *ngIf="city.errors.required">
+                                            <!-- City Required -->
+                                            {{_AddGuestScreen.City.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">State</label>
+                                <input type="text" class="form-control textbox_border_input" placeholder="Add State"
+                                    formControlName="State">
+
+                                <div class="display-error">
+                                    <div *ngIf="state.invalid && submitted">
+                                        <span *ngIf="state.errors.required">
+                                            <!-- State Required -->
+                                            {{_AddGuestScreen.State.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="(addressline1.invalid && submitted) || isAddress1Valid">Street
+                                    Address<span class="required">*</span></label>
+                                <input type="text" (blur)="validateAddress()" class="form-control textbox_border_input"
+                                    placeholder="Add Address Line 1" maxlength="50" formControlName="AddressLine1"
+                                    [class.errorIP]="(addressline1.invalid && submitted)  || isAddress1Valid">
+                                <div class="display-error">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero">
+                            <div class="form-group">
+                                <!--  <label class="textbox_borderlabel">Address Line 2</label> -->
+                                <input type="text" class="form-control textbox_border_input" maxlength="50"
+                                    placeholder="Add Address Line 2" formControlName="AddressLine2">
+                                <div class="display-error">
+                                    <div *ngIf="addressline1.invalid && submitted && !isAddress1Valid">
+                                        <span *ngIf="addressline1.errors.required">
+                                            <!-- Street Address Required -->
+                                            {{_AddGuestScreen.StreetAddress.required}}
+                                        </span>
+                                    </div>
+                                    <span *ngIf="isAddress1Valid">{{address1ErrorMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="email.invalid && submitted">Email Address<span
+                                        class="required">*</span></label>
+                                <input type="text" class="form-control textbox_border_input"
+                                    placeholder="Add Email Address" formControlName="Email"
+                                    [class.errorIP]="email.invalid && submitted">
+                                <div class="display-error">
+                                    <div *ngIf="email.invalid && submitted">
+                                        <span *ngIf="email.errors.required">
+                                            <!-- Email Address Required -->
+                                            {{_AddGuestScreen.Email.required}}
+                                        </span>
+                                        <span *ngIf="email.errors.email">
+                                            <!-- Email must be a valid email address -->
+                                            {{_AddGuestScreen.Email.valid}}
+                                        </span>
+                                        <span *ngIf="email.errors?.pattern">
+                                            <!-- Invalid pattern -->
+                                            {{_AddGuestScreen.Email.pattern}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="phonecell.invalid && submitted">Cell Phone<span
+                                        class="required">*</span></label>
+                                <input type="text" placeholder="(999) 999-9999" id="tel" maxlength="14"
+                                    [phoneControl]="addagent.controls['PhoneCell']" phoneMask
+                                    [preValue]="addagent.value.PhoneCell" class="form-control textbox_border_input"
+                                    formControlName="PhoneCell" [class.errorIP]="phonecell.invalid &&  submitted">
+                                <div class="display-error">
+                                    <div *ngIf="phonecell.invalid && submitted">
+                                        <span *ngIf="phonecell.errors?.required">
+                                            <!-- Cell Phone Required -->
+                                            {{_AddGuestScreen.PhoneCell.required}}
+                                        </span>
+                                        <span *ngIf="phonecell.errors?.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_AddGuestScreen.PhoneCell.pattern}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Office Phone</label>
+                                <input type="text" class="form-control textbox_border_input"
+                                    placeholder="(999) 999-9999" id="tel" maxlength="14"
+                                    [phoneControl]="addagent.controls['PhoneOffice']" phoneMask
+                                    [preValue]="addagent.value.PhoneOffice" placeholder="(999) 999-9999"
+                                    formControlName="PhoneOffice"
+                                    [class.errorIP]="phoneoffice.invalid && phoneoffice.touched">
+                                <div class="display-error">
+                                    <div *ngIf="phoneoffice.invalid && (phoneoffice.touched || submitted)">
+                                        <span *ngIf="phoneoffice.errors?.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_AddGuestScreen.PhoneOffice.pattern}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Home Phone</label>
+                                <input type="text" class="form-control textbox_border_input"
+                                    [class.errorIP]="phone.invalid && phone.touched" placeholder="(999) 999-9999"
+                                    id="tel" maxlength="14" [phoneControl]="addagent.controls['PhoneHome']" phoneMask
+                                    [preValue]="addagent.value.PhoneHome" placeholder="(999) 999-9999"
+                                    formControlName="PhoneHome">
+                                <div class="display-error">
+                                    <div *ngIf="phone.invalid &&  (phone.touched || submitted)">
+                                        <span *ngIf="phone.errors?.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_AddGuestScreen.PhoneHome.pattern}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Fax</label>
+                                <input type="text" class="form-control textbox_border_input"
+                                    [class.errorIP]="fax.invalid && fax.touched" placeholder="(999) 999-9999" id="tel"
+                                    maxlength="14" [phoneControl]="addagent.controls['Fax']" phoneMask
+                                    [preValue]="addagent.value.Fax" placeholder="(999) 999-9999" formControlName="Fax">
+                                <div class="display-error">
+                                    <div *ngIf="fax.invalid &&  (fax.touched || submitted)">
+                                        <span *ngIf="fax.errors?.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_AddGuestScreen.Fax.pattern}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="agency.invalid &&  submitted">Agency Name<span
+                                        class="required">*</span></label>
+                                <input type="text" id="AgencyName" [class.errorIP]="agency.invalid && submitted"
+                                    class="form-control textbox_border_input" placeholder="Add  Agency Name"
+                                    formControlName="AgencyName" maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="agency.invalid && submitted">
+                                        <span *ngIf="agency.errors.required">
+                                            <!-- Agency Name Required -->
+                                            {{_AddGuestScreen.Agencyname.required}}
+                                        </span>
+                                        <span *ngIf="agency.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddGuestScreen.Agencyname.pattern}}
+                                        </span>
+                                        <span *ngIf="agency.errors.maxlength">
+                                            <!-- Fifty Character is Allowed -->
+                                            {{_AddGuestScreen.Agencyname.lenth}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="single-block">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right rm-pad-left rm-pad-right">
+                <button type="button" class="button_white" (click)="cancel()">Cancel</button>
+                <button type="submit" class="btn-theme" (click)="addAgent()">Next</button>
+            </div>
+        </div>
+    </form>
+</div>

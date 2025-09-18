@@ -1,0 +1,298 @@
+
+
+        <span class="filter-cancel-mark" (click)="cancelAdvanceFilterForm()">
+           <img src="assets/images/delete-popup.png">
+        </span>
+        <form [formGroup]="advanceFilterForm">
+            <div class="fb_header">
+                <div class="col-lg-1 col-md-2 col-sm-3 pd_zero">
+                    <div class="form-group">
+                        <label class="textbox_borderlabel">Saved Filters</label>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-3 col-lg-2 pdlZero">
+                    <div class="form-group">
+                        <select (change)="changeFilter($event.target.value)"
+                            class="form-control dropdown_border">
+                            <option value="0">Select</option>
+                            <option [selected]="parameter.advancedFilterId == SavedAdvanceFilterParameterID"
+                                *ngFor="let parameter of SavedAdvanceFilterList"
+                                [value]="parameter.advancedFilterId">{{parameter.filterName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4">
+                    <div class="form-group">
+                        <div class="styled-checkbox">
+                            <div class="checkbox">
+                                <input id="defaultfilter" (change)="DefaultChecked($event.target.checked)"
+                                [checked]="isDefaultChecked" name="defaultfilter" type="checkbox">
+                                <label for="defaultfilter">
+                                    <div class="checkercheckbox"></div>
+                                    Mark it as default filter
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb_center">
+                <div class="row pd_zero">
+                    <!-- <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Agency Name</label>
+                            <input type="text" placeholder="Add Agency Name" formControlName="Agency"
+                                class="form-control textbox_border_input">
+                                <div class="display-error"></div>
+                        </div>
+                    </div> -->
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Agent Name</label>
+                            <input type="text"  dataTextFocus placeholder="Agent Name" formControlName="AgentName"
+                                class="form-control textbox_border_input">
+                                <div class="display-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Ref #</label>
+                            <input type="text" placeholder="Ref" formControlName="Ref" class="form-control textbox_border_input">
+                            <div class="display-error"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Insured Name</label>
+                            <input type="text" placeholder="Insured Name" formControlName="InsuredName"
+                                class="form-control textbox_border_input">
+                                <div class="display-error"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pd_zero">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Line Of Business</label>
+                            <select class="form-control dropdown_border"
+                                formControlName="LOB">
+                                <option value=''>Select</option>
+                                <option *ngFor="let lobItem of LOBList" [value]="lobItem.lob">
+                                    {{lobItem.lobDescription}}</option>
+                            </select>
+                            <div class="display-error"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Transaction Type</label>
+                            <select class="form-control dropdown_border" formControlName="TransactionType">
+                                <option value=''>Select</option>
+                                <option *ngFor="let trans of transactionTypeList"
+                                    [value]="trans.parameterValue">{{trans.parameterName}}</option>
+                            </select>
+                            <div class="display-error"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Business Type</label>
+                            <select class="form-control dropdown_border" formControlName="BusinessType">
+                                <option value=''>Select</option>
+                                <option *ngFor="let business of BusinessTypeList"
+                                    [value]="business.parameterValue">{{business.parameterName}}</option>
+                            </select>
+                            <div class="display-error"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Status</label>
+                            <select class="form-control dropdown_border" formControlName="Status">
+                                <option value=''>Select</option>
+                                <option *ngFor="let stage of stageList" [value]="stage.parameterValue">
+                                    {{stage.parameterName}}</option>
+                            </select>
+                            <div class="display-error"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pd_zero">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Policy Start Date Range</label>
+                            <input type="text" placeholder="MM/dd/yyyy" formControlName="EffectiveFromDate" bsDatepicker
+                                class="form-control textbox_border_input width45" readonly>
+                            <span class="inline-span">To</span>
+                            <input type="text" placeholder="MM/dd/yyyy" formControlName="EffectiveToDate" bsDatepicker
+                                class="form-control textbox_border_input width45" readonly>
+                                <div class="display-error"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Policy Expiry Date Range</label>
+                            <input type="text" placeholder="MM/dd/yyyy" formControlName="ExpirationFromDate" bsDatepicker
+                                class="form-control textbox_border_input width45" readonly>
+                            <span class="inline-span">To</span>
+                            <input type="text" placeholder="MM/dd/yyyy" formControlName="ExpirationToDate"  bsDatepicker
+                                class="form-control textbox_border_input width45" readonly>
+                                <div class="display-error"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Premium Range</label>
+                            <input type="text" placeholder="From Range" formControlName="PremiumStart"
+                                class="form-control textbox_border_input width45">
+                            <span class="inline-span">To</span>
+                            <input type="text" placeholder="To Range" formControlName="PremiumEnd"
+                                class="form-control textbox_border_input width45">
+                                <div class="display-error"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ********      -->
+                <div class="row pd_zero">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">State</label>
+                            <select class="form-control dropdown_border" formControlName="State">
+                                <option value=''>Select</option>
+                                <option *ngFor="let state of stateList" [value]="state.parameterValue">
+                                    {{state.parameterName}}</option>
+                            </select>
+                            <div class="display-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Period</label>
+                            <select class="form-control dropdown_border" formControlName="Period">
+                                <option value=''>Select</option>
+                                <option *ngFor="let period of periodList" [value]="period.parameterId">
+                                    {{period.parameterName}}</option>
+                            </select>
+                            <div class="display-error"></div>
+                        </div>
+                    </div> -->
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Carrier</label>
+                            <select class="form-control dropdown_border" formControlName="Carrier">
+                                <option value=0>Select</option>
+                                <option *ngFor="let carrier of carrierList" [value]="carrier.parameterId">
+                                    {{carrier.parameterName}}</option>
+                            </select>
+                            <div class="display-error"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- *********  -->
+                <div class="row pd_zero">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-md-12 pd_zero pdlZero">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel_relative">Processing Type</label>
+                                <div class="styled-radio">
+                                    <ng-container *ngFor="let process of processingTypeList; let i = index">
+                                        <div class="radio">
+                                            <input type="radio" formControlName="ProcessingType"
+                                                [value]="process.parameterId" [id]="process.parameterId">
+                                            <label class="alert_check" [for]="process.parameterId">
+                                                <div class="checker"></div>
+                                                {{process.parameterName}}
+                                            </label>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pd_zero">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-md-12 pd_zero pdlZero">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel_relative">Alfred Alerts</label>
+                                <div class="styled-checkbox">
+                                    <div class="checkbox" *ngFor="let alfred of alfredList; let i = index">
+                                        <input type="checkbox" [checked]="isChecked(alfred.parameterValue)"
+                                            (click)="checkAlfredFlag($event.target.id, $event.target.checked)"
+                                            [value]="alfred.parameterName" [id]="alfred.parameterValue">
+                                        <label [for]="alfred.parameterValue">
+                                            <div class="checkercheckbox"></div>
+                                            <img [src]="alfred.iconURL">
+                                            {{alfred.parameterName}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fb_footer">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+
+                            <div class="styled-checkbox">
+                                  <div class="checkbox">
+                                      <input type="checkbox"  id="searchcriteria" (change)="checkFilterName($event.target.checked)"
+                                      [checked]="isFilterFlag" name="searchcriteria" type="checkbox" >
+                                      <label for="searchcriteria">
+                                          <div class="checkercheckbox"></div>
+                                          Save Search
+                                      </label>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <input class="form-control textbox_border_input border-ip-footer" type="text" maxlength="25"
+                                placeholder="Filter Name" formControlName="filterName" />
+
+                            <div class="display-error">
+                                <span *ngIf="isFilterNameValid==false && isSearched">Please enter filter
+                                    name</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <input class="form-control textbox_border_input border-ip-footer" type="text" maxlength="200"
+                                placeholder="Filter Description" formControlName="filterDetails" />
+
+                            <div class="display-error">
+                                <span *ngIf="isFilterDescValid==false && isSearched">Please enter filter
+                                    description</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="form-group right-buttons">
+                            <button type="button"  (click)="cancelAdvanceFilterForm()" class="button_white">Cancel</button>
+                            <button type="button" (click)="clearAdvanceFilterForm()" class="button_white">Clear All</button>
+                            <button type="submit" (click)="SearchQuoteslist()"
+                                class="btn-theme">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+
+

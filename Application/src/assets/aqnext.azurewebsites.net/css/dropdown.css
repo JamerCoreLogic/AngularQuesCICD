@@ -1,0 +1,46 @@
+@import "primary-color.css";
+.dropdown_border {
+    /* background-color: transparent;
+    height: 29px;
+    border-radius: 0px;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    color: #000;
+    padding-left: 0px;
+    border: none;
+    border-bottom: 1px solid #ced4da; */
+    background-color: var(--section-bg-color);
+    height: 42px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: Lato,sans-serif;
+    color: #000;
+    border-bottom: 1px solid var(--section-hover-color);
+    padding-left: 13px;
+    padding-top: 13px;
+    padding-right: 30px;
+}
+.dropdown_border:focus {
+    outline: none;
+    box-shadow: none;
+    color: #000;
+    background-color: var(--section-bg-color);
+    border:1px solid var(--primary-color);
+}
+.search-drop-down {
+    position: absolute;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 10;
+    background-color: #F6F6F6;
+    font-family: sans-serif;
+    opacity: 0.98;
+}
+.search-drop-down .search-results {
+    padding: 2px 5px;
+    cursor: pointer;
+}
+.search-drop-down .search-results:hover {
+    background-color: #d5d5d5;
+}

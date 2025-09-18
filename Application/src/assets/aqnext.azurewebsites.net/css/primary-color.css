@@ -1,0 +1,19 @@
+:root {
+    --application-bg-color: #f3f0f0;
+
+    --primary-color:#6bd0d2;
+    --primary-hover-color:#55A6A8;
+    --primary-text-color:#ffffff; 
+
+    --section-bg-color:#ffffff;
+    --section-hover-color:#e4e4e4;
+    
+    --footer-bg-color: #f7f7f7;
+    --footer-text-color:#8f8686;
+
+    --dashboard-header-bg:#07449d;
+    --dashboard-header-bg-hover:#1472dd;
+
+    --primary-error-color :red;
+}
+

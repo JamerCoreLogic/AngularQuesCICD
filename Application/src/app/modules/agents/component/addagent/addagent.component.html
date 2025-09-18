@@ -1,0 +1,625 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>{{pageTitle}}</h4>
+    </div>
+</div>
+
+<div class="transferquote-content">
+    <form [formGroup]="addagent">
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Basic Information</h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="fname.invalid &&  submitted">First Name<span
+                                        class="required">*</span></label>
+                                <input type="text" id="FirstName" [class.errorIP]="fname.invalid && submitted"
+                                    class="form-control textbox_border_input" dataTextFocus
+                                    placeholder="Add  First Name" formControlName="FirstName" maxlength="50"
+                                    (keypress)="ValidateKey.key($event)">
+                                <div class="display-error">
+                                    <div *ngIf="fname.invalid && submitted">
+                                        <span *ngIf="fname.errors.required">
+                                            <!-- First Name Required -->
+                                            {{_AddAgentScreen.FirstName.required}}
+                                        </span>
+                                        <span *ngIf="fname.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddAgentScreen.FirstName.pattern}}
+                                        </span>
+                                        <span *ngIf="fname.errors.maxlength">
+                                            <!-- Fifty Character is Allowed -->
+                                            {{_AddAgentScreen.FirstName.lenth}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Middle Name</label>
+                                <input type="text" id="Middlename" class="form-control textbox_border_input"
+                                    placeholder="Add Middle Name" formControlName="Middlename" maxlength="50"
+                                    (keypress)="ValidateKey.key($event)">
+                                <div class="display-error">
+                                    <div *ngIf="Mname.invalid && submitted">
+                                        <span *ngIf="Mname.errors.required">
+                                            <!-- Middle Name Required -->
+                                            {{_AddAgentScreen.Middlename.required}}
+                                        </span>
+                                        <span *ngIf="Mname.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddAgentScreen.Middlename.pattern}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="lname.invalid && submitted">Last Name<span
+                                        class="required">*</span></label>
+                                <input type="text" id="LastName" [class.errorIP]="lname.invalid && submitted"
+                                    class="form-control textbox_border_input" placeholder="Add Last Name" maxlength="50"
+                                    formControlName="LastName" (keypress)="ValidateKey.key($event)">
+                                <div class="display-error">
+                                    <div *ngIf="lname.invalid &&  submitted">
+                                        <span *ngIf="lname.errors.required">
+                                            <!-- Last Name Required -->
+                                            {{_AddAgentScreen.LastName.required}}
+                                        </span>
+                                        <span *ngIf="lname.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddAgentScreen.LastName.pattern}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="zip.invalid && (submitted || isZipInvalid)">Zip<span
+                                        class="required">*</span></label>
+                                <input type="text" id="Zip" (keypress)="ValidateKey.WholeNumbers($event, 5)"
+                                    class="form-control textbox_border_input" placeholder=" Add Zip"
+                                    formControlName="Zip" [class.errorIP]="zip.invalid && (submitted || isZipInvalid)">
+                                <div class="display-error">
+                                    <div *ngIf="zip.invalid && (submitted || isZipInvalid)">
+                                        <span *ngIf="zip.errors.required">
+                                            <!-- Zip Code Required -->
+                                            {{_AddAgentScreen.Zip.required}}
+                                        </span>
+                                        <span *ngIf="zip.errors.minlength">
+                                            <!-- Zip Code must be 5 characters -->
+                                            {{_AddAgentScreen.Zip.lenth}}
+                                        </span>
+                                        <span *ngIf="zip.errors.notvalid">
+                                            <!-- Zip Code must be 5 characters -->
+                                            {{zipErrorMessage}}
+                                        </span>
+                                    </div>
+
+                                    <!--  <span *ngIf="isZipInvalid">{{zipErrorMessage}}</span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">City</label>
+                                <input type="text" id="City" class="form-control textbox_border_input"
+                                    placeholder="Add City" formControlName="City">
+                                <div class="display-error">
+                                    <div *ngIf="city.invalid && submitted">
+                                        <span *ngIf="city.errors.required">
+                                            <!-- City Required -->
+                                            {{_AddAgentScreen.City.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">State</label>
+                                <input type="text" class="form-control textbox_border_input" placeholder="Add State"
+                                    formControlName="State">
+
+                                <div class="display-error">
+                                    <div *ngIf="state.invalid && submitted">
+                                        <span *ngIf="state.errors.required">
+                                            <!-- State Required -->
+                                            {{_AddAgentScreen.State.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="(addressline1.invalid && submitted) || isAddress1Valid">Street
+                                    Address<span class="required">*</span></label>
+                                <input type="text" (blur)="validateAddress()" class="form-control textbox_border_input"
+                                    placeholder="Add Address Line 1" maxlength="50" formControlName="AddressLine1"
+                                    [class.errorIP]="(addressline1.invalid && submitted)  || isAddress1Valid">
+                                <div class="display-error">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero">
+                            <div class="form-group">
+                                <!--  <label class="textbox_borderlabel">Address Line 2</label> -->
+                                <input type="text" class="form-control textbox_border_input" maxlength="50"
+                                    placeholder="Add Address Line 2" formControlName="AddressLine2">
+                                <div class="display-error">
+                                    <div *ngIf="addressline1.invalid && submitted && !isAddress1Valid">
+                                        <span *ngIf="addressline1.errors.required">
+                                            <!-- Street Address Required -->
+                                            {{_AddAgentScreen.StreetAddress.required}}
+                                        </span>
+                                    </div>
+                                    <span *ngIf="isAddress1Valid">{{address1ErrorMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="email.invalid && submitted">Email Address<span
+                                        class="required">*</span></label>
+                                <input type="text" class="form-control textbox_border_input"
+                                    placeholder="Add Email Address" formControlName="Email"
+                                    [class.errorIP]="email.invalid && submitted">
+
+
+                                <div class="display-error">
+                                    <div *ngIf="email.invalid && submitted">
+                                        <span *ngIf="email.errors.required">
+                                            <!-- Email Address Required -->
+                                            {{_AddAgentScreen.Email.required}}
+                                        </span>
+                                        <span *ngIf="email.errors.email">
+                                            <!-- Email must be a valid email address -->
+                                            {{_AddAgentScreen.Email.valid}}
+                                        </span>
+                                        <span [hidden]="!email.errors?.pattern">
+                                            <!-- Invalid pattern -->
+                                            {{_AddAgentScreen.Email.pattern}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="phonecell.invalid && submitted">Cell Phone<span
+                                        class="required">*</span></label>
+                                <input type="text" placeholder="(999) 999-9999" id="tel" maxlength="14"
+                                    [phoneControl]="addagent.controls['PhoneCell']" phoneMask
+                                    [preValue]="addagent.value.PhoneCell" placeholder="(999) 999-9999"
+                                    class="form-control textbox_border_input" formControlName="PhoneCell"
+                                    [class.errorIP]="phonecell.invalid &&  submitted">
+                                <div class="display-error">
+                                    <div *ngIf="phonecell.invalid && submitted">
+                                        <span *ngIf="phonecell.errors?.required">
+                                            <!-- Cell Phone Required -->
+                                            {{_AddAgentScreen.PhoneCell.required}}
+                                        </span>
+                                        <span *ngIf="phonecell.errors?.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_AddAgentScreen.PhoneCell.pattern}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Office Phone</label>
+                                <input type="text" class="form-control textbox_border_input"
+                                    placeholder="(999) 999-9999" id="tel" maxlength="14"
+                                    [phoneControl]="addagent.controls['PhoneOffice']" phoneMask
+                                    [preValue]="addagent.value.PhoneOffice" placeholder="(999) 999-9999"
+                                    formControlName="PhoneOffice"
+                                    [class.errorIP]="phoneoffice.invalid && phoneoffice.touched">
+                                <div class="display-error">
+                                    <div *ngIf="phoneoffice.invalid && (phoneoffice.touched || submitted)">
+                                        <span *ngIf="phoneoffice.errors?.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_AddAgentScreen.PhoneOffice.pattern}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Home Phone</label>
+                                <input type="text" class="form-control textbox_border_input"
+                                    [class.errorIP]="phone.invalid && phone.touched" placeholder="(999) 999-9999"
+                                    id="tel" maxlength="14" [phoneControl]="addagent.controls['PhoneHome']" phoneMask
+                                    [preValue]="addagent.value.PhoneHome" placeholder="(999) 999-9999"
+                                    formControlName="PhoneHome">
+                                <div class="display-error">
+                                    <div *ngIf="phone.invalid &&  (phone.touched || submitted)">
+                                        <span *ngIf="phone.errors?.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_AddAgentScreen.PhoneHome.pattern}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Fax</label>
+                                <input type="text" class="form-control textbox_border_input"
+                                    [class.errorIP]="fax.invalid && fax.touched" placeholder="(999) 999-9999" id="tel"
+                                    maxlength="14" [phoneControl]="addagent.controls['Fax']" phoneMask
+                                    [preValue]="addagent.value.Fax" placeholder="(999) 999-9999" formControlName="Fax">
+                                <div class="display-error">
+                                    <div *ngIf="fax.invalid &&  (fax.touched || submitted)">
+                                        <span *ngIf="fax.errors?.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_AddAgentScreen.Fax.pattern}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero" *ngIf="mgaConfiguration && mgaConfiguration.name.toLowerCase()==='convelo'"> -->
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="selectedItem && selectedItem.length==0 && submitted">Line Of
+                                    Business<span class="required">*</span></label>
+                                <lib-aq-multiselect [DropdownName]="'Lob'" [CheckBoxName]="'lobCode'"
+                                    [CheckBoxValue]="'lobId'" (SelectedListOutput)="getSelectedItem($event)"
+                                    [IsEditable]="true" [OptionList]="optionList"></lib-aq-multiselect>
+
+
+                            </div>
+                            <div class="display-error">
+                                <div *ngIf="submitted">
+                                    <span *ngIf="selectedItem && selectedItem.length==0">
+                                        <!-- Email Address Required -->
+                                        {{_AddAgentScreen.Lob.required}}
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+
+                        <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
+                            <div class="form-group fg_half">
+                                <label class="textbox_borderlabel_relative">Status</label>
+                                <label class="switch">
+                                    <input type="checkbox" formControlName="isActive" />
+                                    <div></div>
+                                </label>
+                                <div class="display-error">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
+                            <div class="form-group fg_half">
+                                <label class="textbox_borderlabel_relative">Locked</label>
+                                <label class="switch">
+                                    <input type="checkbox" formControlName="isLocked" />
+                                    <div></div>
+                                </label>
+                                <div class="display-error">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4 [class.errorIPLabel]="roleControl.invalid &&  submitted">Roles<span class="required">*</span></h4>
+            </div>
+            <div class="pcr-block">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <div class="styled-checkbox">
+                                <div *ngFor="let role of roles" class="checkbox">
+                                    <input type="checkbox" [id]="role.roleID" [checked]="isChecked(role.roleID)"
+                                        (click)="updateRoles(role.roleID, role.roleCode, $event.target.checked)">
+                                    <label [for]="role.roleID">
+                                        <div class="checkercheckbox"></div>
+                                        {{role.roleName}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="display-error">
+                                <div *ngIf="roleControl.invalid && submitted">
+                                    <span *ngIf="roleControl.errors.required">
+                                        <!-- Role Required -->
+                                        {{_AddAgentScreen.Role.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-md-3 col-lg-3">
+                        <div class="form-group" *ngIf="isVisible('agencyNameList')">
+                            <label class="textbox_borderlabel"
+                                [class.errorIPLabel]="agencyIdControl.invalid && submitted">Agency Name</label>
+                            <select class="form-control dropdown_border"
+                                [class.errorIP]="agencyIdControl.invalid && submitted" formControlName="AgencyId">
+                                <option value='null'>Select</option>
+                                <option *ngFor="let agency of agencyList" [value]="agency.agencyId">
+                                    {{agency.agencyName}}</option>
+                            </select>
+                            <div class="display-error">
+                                <div *ngIf="agencyIdControl.invalid && submitted">
+                                    <span *ngIf="agencyIdControl.errors.required">
+                                        <!-- Agency Name Required -->
+                                        {{_AddAgentScreen.Agencyname.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- *ngIf="!isUserMGAAdmin" -->
+        <!-- <div *ngIf="!isUserMGAAdmin" class="single-block"> -->
+        <div *ngIf="isVisible('manager') || isVisible('supervisor')" class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Hierarchy</h4>
+            </div>
+            <div class="pcr-block">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2" *ngIf="isVisible('supervisor')">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="supervisorIdControl.invalid && submitted">Supervisor</label>
+                                <select formControlName="supervisorId"
+                                    [class.errorIP]="supervisorIdControl.invalid && submitted"
+                                    class="form-control dropdown_border">
+                                    <option value='0'>Select</option>
+                                    <option *ngFor="let supervisor of supervisorList" [value]="supervisor.supervisorId">
+                                        {{supervisor.supervisorName}}</option>
+                                </select>
+                                <div class="display-error">
+                                    <div *ngIf="supervisorIdControl.invalid && submitted">
+                                        <span *ngIf="supervisorIdControl.errors.required">
+                                            <!-- Supervisor Required -->
+                                            {{_AddAgentScreen.Supervisor.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2" *ngIf="isVisible('manager')">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="managerIdControl.invalid && submitted">Manager</label>
+                                <select formControlName="managerId"
+                                    [class.errorIP]="managerIdControl.invalid && submitted"
+                                    class="form-control dropdown_border">
+                                    <option value='0'>Select</option>
+                                    <option *ngFor="let manager of mangerList" [value]="manager.managerId">
+                                        {{manager.managerName}}</option>
+                                </select>
+                                <div class="display-error">
+                                    <div *ngIf="managerIdControl.invalid && submitted">
+                                        <span *ngIf="managerIdControl.errors.required">
+                                            <!-- Manager Required -->
+                                            {{_AddAgentScreen.Manager.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Underwriter Settings-->
+        <div *ngIf="isVisible('UWSupervisor') || isVisible('UWManager')">
+            <div class="single-block">
+                <div class="pcr-heading wid100 pgblock-heading">
+                    <h4>Hierarchy</h4>
+                </div>
+                <div class="pcr-block">
+                    <div class="pcr_b_inner">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                            <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2" *ngIf="isVisible('UWSupervisor')">
+                                <div class="form-group">
+                                    <label class="textbox_borderlabel"
+                                        [class.errorIPLabel]="supervisorIdControl.invalid && submitted">Supervisor</label>
+                                    <select formControlName="supervisorId"
+                                        [class.errorIP]="supervisorIdControl.invalid && submitted"
+                                        class="form-control dropdown_border">
+                                        <option value='0'>Select</option>
+                                        <option *ngFor="let supervisor of UWSupervisorList"
+                                            [value]="supervisor.UWSupervisorId">
+                                            {{supervisor.UWSupervisorName}}</option>
+                                    </select>
+                                    <div class="display-error">
+                                        <div *ngIf="supervisorIdControl.invalid && submitted">
+                                            <span *ngIf="supervisorIdControl.errors.required">
+                                                <!-- UW Supervisor Required -->
+                                                {{_AddAgentScreen.Supervisor.required}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2" *ngIf="isVisible('UWManager')">
+                                <div class="form-group">
+                                    <label class="textbox_borderlabel"
+                                        [class.errorIPLabel]="managerIdControl.invalid && submitted">Manager</label>
+                                    <select formControlName="managerId"
+                                        [class.errorIP]="managerIdControl.invalid && submitted"
+                                        class="form-control dropdown_border">
+                                        <option value='0'>Select</option>
+                                        <option *ngFor="let manager of UWMangerList" [value]="manager.UWManagerId">
+                                            {{manager.UWManagerName}}</option>
+                                    </select>
+                                    <div class="display-error">
+                                        <div *ngIf="managerIdControl.invalid && submitted">
+                                            <span *ngIf="managerIdControl.errors.required">
+                                                <!-- Manager Required -->
+                                                {{_AddAgentScreen.Manager.required}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="single-block" *ngIf="isVisible('UWAssistant') || isVisible('lob') || isVisible('state')">
+                <div class="pcr-heading wid100 pgblock-heading">
+                    <h4>Underwriter Setting</h4>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero" *ngIf="isVisible('UWAssistant')">
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel_relative">Underwriter Assistant</label>
+                            <lib-aq-multiselect [OptionList]="AssistantList" [CheckBoxName]="UWAssistantName"
+                                [CheckBoxValue]="uwAssistantCheckBoxValue" [DropdownName]="UWassistantDropdown"
+                                [IsEditable]="true" (SelectedListOutput)="SelectedUWAssistantList($event)">
+                            </lib-aq-multiselect>
+                            <div class="display-error">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero" *ngIf="isVisible('lob')">
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel_relative">Line of Business</label>
+                            <lib-aq-multiselect [OptionList]="lobList" [CheckBoxName]="lobCheckBoxName"
+                                [CheckBoxValue]="lobCheckBoxValue" [DropdownName]="lobDropDown" [IsEditable]="true"
+                                (SelectedListOutput)="SelectedLobList($event)">
+                            </lib-aq-multiselect>
+                            <div class="display-error">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero" *ngIf="isVisible('state')">
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel_relative">States</label>
+                            <lib-aq-multiselect [CheckBoxName]="stateCheckBoxName" [CheckBoxValue]="stateCheckBoxValue"
+                                [OptionList]="stateList" [DropdownName]="stateDropDown" [IsEditable]="true"
+                                (SelectedListOutput)="SelectedStateList($event)">
+                            </lib-aq-multiselect>
+                            <div class="display-error">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="pcr-block">
+                    <div class="pcr_b_inner">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+
+                            <!-- <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2" *ngIf="isVisible('lob')">
+                                    <div class="form-group">
+                                        <label class="textbox_borderlabel" [class.errorIPLabel]="supervisorIdControl.invalid && submitted">Lob</label>
+                                        <select formControlName="LobId" [class.errorIP]="supervisorIdControl.invalid && submitted" class="form-control dropdown_border">
+                                            <option value='0'>Select</option>
+                                            <option *ngFor="let lob of lobList" [value]="lob.lobId">
+                                                {{lob.lobCodeDescription}}</option>
+                                        </select>
+                                        <div class="display-error">
+                                            <div *ngIf="supervisorIdControl.invalid && submitted">
+                                                <span *ngIf="supervisorIdControl.errors.required"> -->
+                            <!-- Lob Required -->
+                            <!-- {{_AddAgentScreen.Supervisor.required}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                            <!-- <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2" *ngIf="isVisible('state')">
+                                    <div class="form-group">
+                                        <label class="textbox_borderlabel" [class.errorIPLabel]="managerIdControl.invalid && submitted">State</label>
+                                        <select formControlName="StateId" [class.errorIP]="managerIdControl.invalid && submitted" class="form-control dropdown_border">
+                                            <option value='0'>Select</option>
+                                            <option *ngFor="let state of stateList" [value]="state.stateId">
+                                                {{state.stateDescription}}</option>
+                                        </select>
+                                        <div class="display-error">
+                                            <div *ngIf="managerIdControl.invalid && submitted">
+                                                <span *ngIf="managerIdControl.errors.required"> -->
+                            <!-- Manager Required -->
+                            <!-- {{_AddAgentScreen.Manager.required}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end Underwriter Settings-->
+
+        <div class="single-block">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right rm-pad-left rm-pad-right">
+                <button type="button" class="button_white" (click)="cancel()">Cancel</button>
+                <button type="submit" class="btn-theme" (click)="SaveAccountWithOserverPattern()">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

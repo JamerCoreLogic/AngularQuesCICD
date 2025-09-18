@@ -1,5 +1,0 @@
-<div class="input-group search_add item">
-    <input type="search" class="form-control rounded inp" [(ngModel)]="searchText" placeholder="Search by Location or Zip Code" aria-label="Search" aria-describedby="search-addon" (input)="emitSearchText()" (keydown.enter)="searchLocation()" />
-    <!-- <button mat-raised-button class="btn btn-fnl brd" (click)="searchLocation()">search</button> -->
-    <button mat-raised-button class="" (click)="searchLocation()" #tooltip="matTooltip" matTooltipClass="bg-light text-dark border border-info" matTooltip="Search" matTooltipPosition="above">Search</button>
-</div>

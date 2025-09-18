@@ -1,0 +1,36 @@
+@import "primary-color.css";
+.hiperLink {
+    cursor: pointer;
+    color: #0078ff;
+}
+.randomcolor-rows tbody tr:nth-child(even){
+    background-color: #f7f7f7;
+}
+.randomcolor-rows tr th:nth-last-child(1) {
+    width: 100px;
+}
+.wid100 {
+    width: 100%;
+}
+.pgblock-heading {
+    width: 100%;
+    height: 34px;
+    border-bottom: 1px solid var(--section-hover-color);
+    margin-bottom: 8px;
+}
+.branchtable {
+    width: 100%;
+}
+.branchtable thead th, .branchtable tbody td {
+    text-align: left;
+    padding: 8px 6px;
+    font-size: 14px;
+}
+.branchtable tbody tr:nth-child(odd){
+    background-color: #f7f7f7;
+}
+.absolute-btn {
+    position: absolute;
+    margin-top: -19px;
+    right: 26px;
+}

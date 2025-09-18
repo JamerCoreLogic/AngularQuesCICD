@@ -1,0 +1,70 @@
+<ng-container *ngIf="AlfredAlerts.length">
+    <lib-alfred-alrets [DataSource]="AlfredAlerts" [PageSize]="pageSize" (ViewAlerts)="viewAlerts($event)"
+        [ViewMode]="alfredAlertsViewMode" (ToggleViewMode)="toggleMode($event)" (ToggleExpand)="toggleExpand($event)">
+
+        <ng-template *ngIf="alfredAlertsViewMode == 'grid'" #alfredAlertsItem let-alfredAlertsItem="alfredAlertsItem">
+            <h4 class="alfredAlertsFirstRow">
+
+                <span *ngIf="alfredAlertsItem.transactionCode" class="todoList-icon bgorange pull-right"
+                    [title]="transactionCodeMaster.getTransactionName(alfredAlertsItem.transactionCode)">
+                    <strong class="transactionCode"
+                        [ngStyle]="{'background-color':transactionCodeMaster.getTransactionColor(alfredAlertsItem.transactionCode)}">
+                        {{alfredAlertsItem.transactionCode}}
+                    </strong>
+                </span>
+                <span>{{alfredAlertsItem.lob}}</span>
+                <span>{{alfredAlertsItem.state}}</span>
+            </h4>
+            <h4 class="alfredAlertsSecondRow">
+                <span><strong>{{alfredAlertsItem.ref}}</strong></span>
+                <span class="todolist_status">{{alfredAlertsItem.currentStatus}}</span>
+            </h4>
+            <h4 class="alfredAlertsThirsRow">{{alfredAlertsItem.insuredName}}</h4>
+            <ul class="alfredAlertsRowListings">
+                <li *ngFor="let alert of alfredAlertsItem.alerts">
+                    <img [src]="alert.iconURL" />
+                    <span class="flood"><strong>{{alert.description}}</strong></span>
+                </li>
+            </ul>
+            <!-- <p style="font-size: 11px;margin-bottom: 5px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been</p> -->
+            <p class="alfredAlertsFirstPara"><span>{{alfredAlertsItem.note}}</span></p>
+            <p class="alfredAlertsSecondPara">
+                <span>{{alfredAlertsItem.agentName}}</span><span>{{alfredAlertsItem.createdOn | date:'MM/dd/yyyy'}}</span>
+            </p>
+
+        </ng-template>
+
+        <ng-template *ngIf="alfredAlertsViewMode == 'list'" #alfredAlertsItem let-alfredAlertsItem="alfredAlertsItem">
+            <div>
+                <h4 class="alfredAlertsFirstRow">
+                    <span class="todoList-icon bgorange pull-right"><strong>E</strong></span>
+                    <span>WCP</span>
+                    <span>New York</span>
+                </h4>
+                <h4 class="alfredAlertsSecondRow">
+                    <span>{{alfredAlertsItem.ref}}</span>
+                    <span class="todolist_status"><strong>Awaiting Bind</strong></span>
+                </h4>
+                <h4 class="alfredAlertsThirsRow">{{alfredAlertsItem.insuredName}}</h4>
+                <p class="alfredAlertsFirstPara">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been</p>
+                <h6>
+                    <span>Agent Name <strong>{{alfredAlertsItem.agentName}}</strong></span>
+                    <span>Effective Date <strong>{{alfredAlertsItem.effectiveDate | date:'MM/dd/yyyy'}}</strong></span>
+                    <span>Expiration Date <strong>{{alfredAlertsItem.expiryDate | date:'MM/dd/yyyy'}}</strong></span>
+                    <span>Status <strong>{{alfredAlertsItem.isActive ? 'Active' : 'DeActive' }}</strong></span>
+                </h6>
+
+            </div>
+            <div>
+                <ul class="alfredAlertsRowListings">
+                    <li *ngFor="let alert of alfredAlertsItem.alerts">
+                        <img [src]="alert.iconURL" />
+                        <span class="flood">{{alert.description}}</span>
+                    </li>
+                </ul>
+            </div>
+
+        </ng-template>
+    </lib-alfred-alrets>
+</ng-container>

@@ -1,0 +1,78 @@
+<div class="login-container">
+    <div class="login-page">
+        <div class="half-page login-page-form"
+            [ngStyle]="{'height': ((identifier.indexOf(environment.ClientName)>-1))?'530px':'490px'}">
+            <div class="login-page-logo">
+                <img [src]="mgaLogo">
+            </div>
+            <form [formGroup]="loginForm">
+                <div class="login-page-form-fields">
+                    <h4>Sign In to your account</h4>
+                    <p>Enter your details below</p>
+                    <div class="form-group">
+                        <label class="textbox-underlinelabel">Username</label>
+                        <input type="text" dataTextFocus formControlName="userName"
+                            class="form-control textbox-underline">
+                        <div class="display-error">
+                            <span
+                                *ngIf="(username.invalid && (username.dirty || username.touched) && !submitted) || (username.errors && forgot)">
+                                <!--     Username Required -->
+                                {{_LoginScreen.username.required}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="textbox-underlinelabel">Password</label>
+                        <input type="password" formControlName="password" class="form-control textbox-underline">
+                        <div class="display-error">
+                            <span *ngIf="password.invalid && (password.dirty || password.touched) && !submitted">
+                                {{_LoginScreen.password.required}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="styled-checkbox">
+                            <div class="checkboxgrid rm-me">
+                                <input type="checkbox" formControlName="rememberMe" id="rememberme" name="rememberme">
+                                <label for="rememberme">
+                                    <div class="checkercheckboxgrid"></div>
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-theme-radius" value="Login" (click)="onSubmit()" />
+                    </div>
+                    <div class="form-group forgot-password-group">
+                        <!-- <ng-container
+                            *ngIf="identifier.includes('acme') || identifier.includes('united')  || identifier.includes('federal')"> -->
+
+                        <a class="forgotpwd-link" (click)="forgotPassword()">Forgot Password?</a><br>
+                        <a class="forgotpwd-link" (click)="getGuestUser()">Not Registered?</a>&nbsp;
+                        <a class="forgotpwd-link" (click)="getGuestUser()">Click here for Quotes</a><br>
+                        <!-- </ng-container> -->
+                        <ng-container *ngIf="(identifier.indexOf(environment.ClientName)>-1)">
+                            <a class="forgotpwd-link" (click)="getAppointed()">Agent – Get appointed</a><br>
+                            <a class="forgotpwd-link" (click)="getSubmitBusiness()">Business – Submit Business</a>
+                        </ng-container>
+
+
+                    </div>
+
+                    <div class="form-group logversion">
+
+                        <img [src]="aqLogo">
+                        <p>Version</p>
+                        <span class="application-version">{{appVersion}}</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="half-page login-page-right-img">
+            <img [src]="bannerUrl">
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

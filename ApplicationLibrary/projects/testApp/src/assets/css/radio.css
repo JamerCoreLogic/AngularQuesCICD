@@ -1,0 +1,41 @@
+.styled-radio {
+    width: 100%;
+    float: left;
+}
+.styled-radio .radio {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px 10px 0;
+}
+.radio input {
+    position: absolute;
+    pointer-events: none;
+    visibility: hidden;
+}
+.radio label {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    padding: 0 8px 0 6px;
+    cursor: pointer;
+    transition: background-color .3s ease;
+    background: transparent;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+.radio input:checked + label .checker { 
+    box-shadow: inset 0 0 0 6px #5d3b2f;
+}
+.radio input:checked + label {
+    background-color: #f1782f;
+    border: 1px solid #5d3b2f;    
+    color: #fff;
+}
+.checker {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: inset 0 0 0 2px #ccc;
+    transition: box-shadow .3s ease;
+}

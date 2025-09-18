@@ -1,0 +1,183 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>List of Users</h4>
+    </div>
+    <div class="ql-header-right">
+        <button class="btn-theme" (click)="Onclick()" >
+            + User
+        </button>
+        <button class="btn-theme" *ngIf="upload">
+            <img class="upload_image" src="assets/images/upload.png"> Upload
+        </button>
+    </div>
+</div>
+
+<div class="quotelist-content">
+    <lib-data-view [DataSource]="dataSource" [SortingColumn]="sortedColumnName" [AdvanceFilterEnabled]='true' [HideAdvanceFilterOption]="HideAdvFilterOption"
+        [NoRecordsMessage]="NoRecordsMessage" [Pagination]='true' [ColumnList]="columns"
+        (OutputAdvanceFilter)="getAdvanceFilter($event)" 
+        (OutputClearAllFilter)="clearAllFilter()" #dataview>
+        <ng-template #AdvanceFilter let-data="data">
+            <div class="filter-block" *ngIf="FilterOpen">
+                    <span class="filter-cancel-mark" (click)="cancelAdvanceFilter()">
+                            <img src="assets/images/delete-popup.png">
+                         </span>
+                <form [formGroup]="advanceFilterAgent">
+                    <div class="fb_center " style="height:170px;">
+                       <!--  <div class="row pd_zero">
+                            <div class="col-lg-1 col-md-2 col-sm-3">
+                                <div class="form-group">
+                                    <label class="textbox_borderlabel">Saved Filters</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-lg-2">
+                                <div class="form-group">
+                                    <select class="form-control dropdown_border" (change)="filterSelect($event.target.value)">
+                                        <option [value]="'0'">Select</option>
+                                        <option  *ngFor="let filter of SavedAdvanceFilterList" [selected]="filter.isActive"
+                                            [value]="filter.advancedFilterId">{{filter.filterName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-4">
+                                <div class="form-group">
+                                    <input id="defaultfilter" name="defaultfilter" type="checkbox"
+                                        formControlName="isDefault">
+                                    <label for="defaultfilter">Mark it as default filter</label>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="fb_center">
+                        <div class="row pd_zero">
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                    <!--<label class="textbox_borderlabel">Agency Names</label>
+                                    <select class="form-control dropdown_border" formControlName="AgencyId">
+                                        <option [value]="'0'">Select</option>
+                                        <option *ngFor="let agency of agencyNameList" [value]="agency.agencyId">
+                                            {{agency.agencyName}}</option>
+                                    </select>-->
+                                    <label class="textbox_borderlabel">Agency Name</label>
+                                    <input type="text"  formControlName="AgencyName" placeholder="Agency Name" dataTextFocus  class="form-control textbox_border_input">
+                                    <div class="display-error">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <!--<div class="col-sm-1 col-md-1 col-lg-1">
+                                <div class="form-group fg_half">
+                                    <label class="textbox_borderlabel">Status</label>
+                                    <label class="switch">
+                                        <input type="checkbox" checked formControlName="isActive" />
+                                        <div></div>
+                                    </label>
+                                </div>
+                            </div>-->
+
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                        <label class="textbox_borderlabel">Manager</label>
+                                        <input type="text"  formControlName="ManagerName" placeholder="Manager"   class="form-control textbox_border_input">
+                                        <div class="display-error">
+                                            
+                                        </div>
+                                    <!--<label class="textbox_borderlabel">Manager</label>
+                                    <select class="form-control dropdown_border" formControlName="ManagerId">
+                                        <option [value]="'0'">Select</option>
+                                        <option *ngFor="let manager of managerList" [value]="manager.managerId">
+                                            {{manager.managerName}}</option>
+                                    </select>-->
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                        <label class="textbox_borderlabel">Supervisor</label>
+                                        <input type="text"  formControlName="SupervisorName" placeholder="Supervisor"  class="form-control textbox_border_input">
+                                        <div class="display-error">
+                                            
+                                        </div>
+                                    <!--<label class="textbox_borderlabel">Supervisor</label>
+                                    <select class="form-control dropdown_border" formControlName="SupervisorId">
+                                        <option [value]='0'>Select</option>
+                                        <option *ngFor="let supervisor of supervisorList"
+                                            [value]="supervisor.supervisorId">{{supervisor.supervisorName}}
+                                        </option>
+                                    </select>-->
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="fb_footer">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                            <div class="col-lg-2 col-md-3 col-sm-4 pd_zero">
+                                <!-- <div class="form-group">
+                                    <input id="searchcriteria" name="searchcriteria" type="checkbox"
+                                        formControlName="isSave">
+                                    <label for="searchcriteria">Save search criteria as</label>
+                                </div> -->
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-2">
+                                <!-- <div class="form-group">
+                                    <input class="form-control textbox_border_input" type="text"
+                                        formControlName="filterName" />
+                                    <div class="display-error">
+                                        <div *ngIf="filterName.invalid">
+                                            <span *ngIf="filterName.errors.required">Filter Name Required</span>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="col-lg-6 col-md-5 col-sm-5 float-right">
+                                <div class="form-group right-buttons">
+                                    <button type= "button" class="button_white" (click)="cancelAdvanceFilter()">Cancel</button>
+                                    <button type= "button" class="button_white" (click)="clearAll()">Clear All</button>
+                                    <button type= "submit" class="btn-theme"
+                                        (click)="FilterAgentList()">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+
+        <ng-template #DataViewHeading>
+            <th style="width: 12%;" (click)="sortAgents('firstName', 'asc')">Name <img src="assets/images/sort.png"></th>
+            <th style="width: 12%;">Phone</th>
+            <th style="width: 12%;">Email Address</th>
+            <th style="width: 18%;">Agency Name</th>
+           <!--  <th style="width: 12%;" *ngIf="!isUserMGAAdmin">Manager</th>
+            <th style="width: 12%;" *ngIf="!isUserMGAAdmin">Supervisor</th> -->
+            <th style="width: 12%;">Manager</th>
+            <th style="width: 12%;">Supervisor</th>
+            <th style="width: 12%;">Status</th>
+            <th style="width: 10%;">Action</th>
+        </ng-template>
+
+        <ng-template #DataViewContent let-data="data">
+            <td><span>{{data.firstName}} {{data.middleName}} {{data.lastName}}</span></td>
+            <td><span>{{data.phoneCell | PhoneMask}}</span></td>
+            <td><span>{{data.email}}</span></td>
+            <td><span>{{data.agencyName}}</span></td>
+          <!--   <td *ngIf="!isUserMGAAdmin"><span>{{data.managerName}}</span></td>
+            <td *ngIf="!isUserMGAAdmin"><span>{{data.supervisorname}}</span></td> -->
+            <td><span>{{data.managerName}}</span></td>
+            <td><span>{{data.supervisorname}}</span></td>
+            <td><span> <img *ngIf="data.isActive== true" src="../../../../../assets/images/active.png"> <img
+                        *ngIf="data.isActive == false" src="../../../../../assets/images/inactive.png">
+                    &nbsp;{{data.isActive == true ? 'Active'  : (data.isActive == false ? 'Inactive' : '')}} </span>
+            </td>
+            <td>
+                <span (click)="EditAgent(data.agentId)" class="hiperLink">Edit</span>
+                <!-- <span (click)="DeleteAgent(data.agentId)" class="hiperLink">Delete</span> -->
+               
+            </td>
+
+        </ng-template>
+
+    </lib-data-view>
+
+</div>

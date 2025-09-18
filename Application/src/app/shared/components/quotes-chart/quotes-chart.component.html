@@ -1,0 +1,36 @@
+<div class="page-content-right">
+    <div class="charts-header">
+        <div class="charts-heading">
+            <h4>Charts <span class="alfred_icon"><img src="assets/images/charticon.png"></span></h4>
+        </div>
+        <div class="charts-header-right">           
+            <span (click)="ChartsToggle()">
+                <img *ngIf="!ChartsStatus" src="assets/images/chartsblockclosed.png">
+                <img *ngIf="ChartsStatus" src="assets/images/chartblockopen.png">
+            </span>
+        </div>
+    </div>
+    <div [ngStyle]="{'display':ChartsStatus === true ? 'block' : 'none' }" class="pcr-block">
+        <div id="Chartspanel">
+          <!--   <div *ngFor="let char of ChartsData; let i=index" class="chartsingle">
+                <div class="bind-chart">
+                    <div [id]="i"></div>
+                </div>
+            </div> -->
+            <div class="chartsingle">
+                <div class="bind-chart">
+                    <div #ChartContainer1></div>
+                </div>
+            </div>
+            <div class="chartsingle">
+                <div class="bind-chart">
+                    <div #ChartContainer2></div>
+                </div>
+            </div>
+            <div class="chartsingle">
+                <div class="bind-chart">
+                    <div #ChartContainer3></div>
+                </div>
+            </div>
+        </div>
+    </div>

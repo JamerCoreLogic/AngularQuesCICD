@@ -1,0 +1,36 @@
+<div class="chart">
+  <div
+    class="bar-container"
+    *ngFor="let item of data; let i = index"
+    (mousemove)="showTooltip($event, item)"
+    (mouseleave)="hideTooltip()"
+  >
+    <div class="bar">
+      <!-- Purple -->
+      <div
+        class="segment purple"
+        [style.height]="item.purple + '%'"
+        [style.animation-delay]="(i+1) * 0.1 + 's'">
+      </div>
+
+      <!-- Cyan -->
+      <div
+        class="segment cyan"
+        [style.height]="item.cyan + '%'"
+        [style.animation-delay]="(i+1) * 0.1 + 's'">
+      </div>
+    </div>
+    <div class="label">{{ item.label }}</div>
+  </div>
+
+  <!-- Tooltip -->
+  <div
+    class="tooltip"
+    *ngIf="tooltipVisible"
+    [style.left.px]="tooltipX"
+    [style.top.px]="tooltipY">
+    <strong>{{ tooltipData.label }}</strong><br>
+    Cyan: {{ tooltipData.cyan }}%<br>
+    Purple: {{ tooltipData.purple }}%
+  </div>
+</div>

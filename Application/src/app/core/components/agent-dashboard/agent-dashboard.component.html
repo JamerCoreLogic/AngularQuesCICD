@@ -1,0 +1,37 @@
+<div class="header-fixed" *ngIf="(identifier.indexOf(environment.ClientName)==-1)">
+    <div class="row">
+        <div class="col-12 col-md-4 col-lg-3 rm-pad-right">
+            <app-aquotient></app-aquotient>
+        </div>
+        <div class="col-12 col-md-8 col-lg-9 rm-pad-left">
+            <app-headerbar></app-headerbar>
+        </div>
+    </div>
+</div>
+<div class="page-content"
+    [ngStyle]="{'margin-top': (identifier.indexOf(environment.ClientName)==-1) ? '188px' : '88px' }">
+    <div class="row">
+        <!-- <ng-container  *ngIf="(identifier.indexOf('convelo')==-1 && identifier.indexOf('lambis')==-1)"> -->
+        <div *ngIf="!isAlfredAlertsExpanded" [ngClass]="evt? 'col-12' : 'col-12 col-md-4 col-lg-3 rm-pad-right'">
+            <app-todolist (toggleTodoExpand)="toggleTodoExpand($event)"></app-todolist>
+        </div>
+        <!-- </ng-container> -->
+
+        <div [ngClass]="isAlfredAlertsExpanded?'col-12':'col-12 col-md-8 col-lg-9 rm-pad-left'" *ngIf="!evt">
+            <ng-container *ngIf="(identifier.indexOf(environment.ClientName)==-1)">
+                <section *ngIf="!isAlfredAlertsExpanded">
+                    <app-workboard></app-workboard>
+                </section>
+            </ng-container>
+            <!-- <section *ngIf="!isAlfredAlertsExpanded">
+                <app-quotes-chart></app-quotes-chart>
+            </section> -->
+            <section>
+                <app-workbooklist></app-workbooklist>
+            </section>
+            <ng-container *ngIf="(identifier.indexOf(environment.ClientName)==-1)">
+                <app-alfred-alerts (ToggleExpand)="toggleAlfredExpand($event)"></app-alfred-alerts>
+            </ng-container>
+        </div>
+    </div>
+</div>

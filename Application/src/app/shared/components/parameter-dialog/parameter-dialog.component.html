@@ -1,0 +1,116 @@
+<div class="select-quick-quote-header">
+    <h2>{{modalTitle}} Value</h2>
+    <span (click)="cancel()" class="close-dialog"><img src="assets/images/delete-popup.png"></span>
+</div>
+<form [formGroup]="ParameterForm">
+    <div class="pagemodal-content addParemeterModal">
+        <div class="modal_select_quote">
+        </div>
+        <div class="col-md-12">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="textbox_borderlabel" [class.errorIPLabel]="FullName.invalid && submitted" >Full Name<span class="required" >*</span></label>
+                    <input formControlName="FullName" type="text"  maxlength="100"
+                        class="form-control textbox_border_input" dataTextFocus placeholder="Add Full Name" [class.errorIP]="FullName.invalid && submitted" id="ParameterFullName">
+                        <!--(keypress)="ValidateKey.key($event)">-->
+                    <div class="display-error">
+                        <div *ngIf="FullName.invalid && submitted">
+                            <span *ngIf="FullName.errors.required">
+                                <!-- Full Name Required -->
+                                {{_DialogParameterScreen.FullName.required}}
+                            </span>
+                            <span *ngIf="FullName.errors.whitespace"> 
+                                <!-- Full Name Required -->
+                               <!--  {{_NewAgencyScreen.AgencyName.whitespace}} -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="textbox_borderlabel" [class.errorIPLabel]="ShortName.invalid && submitted" >Short Name<span class="required" >*</span></label>
+                    <input formControlName="ShortName" type="text"  maxlength="100"
+                        class="form-control textbox_border_input" dataTextFocus placeholder="Add Short Name" [class.errorIP]="ShortName.invalid && submitted">
+                        <!--(keypress)="ValidateKey.key($event)">-->
+                    <div class="display-error">
+                        <div *ngIf="ShortName.invalid && submitted">
+                            <span *ngIf="ShortName.errors.required">
+                                <!-- Short Name Required -->
+                                {{_DialogParameterScreen.ShortName.required}}
+                            </span>
+                            <span *ngIf="ShortName.errors.whitespace"> 
+                                <!-- Full Name Required -->
+                               <!--  {{_NewAgencyScreen.AgencyName.whitespace}} -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="textbox_borderlabel">Value</label>
+                    <input formControlName="Value" type="text"  maxlength="100"
+                        class="form-control textbox_border_input" dataTextFocus placeholder="Add Value">
+                        <!--(keypress)="ValidateKey.key($event)">-->
+                        <div class="display-error">
+                            
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="textbox_borderlabel">Effective Date
+                        <!-- <spanclass="required">*</span> -->
+                        </label>
+
+                    <div class="input-group">
+                        <input formControlName="EffectiveFrom" type="text" placeholder="MM/dd/yyyy"
+                            class="form-control textbox_border_input" bsDatepicker [bsConfig]="{ showWeekNumbers:false }" readonly >
+                    </div>
+                    <div class="display-error">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="textbox_borderlabel" [class.errorIPLabel]="EffectiveTo.invalid && submitted">Expiration Date
+                        <span class="required"></span>
+                    </label>
+
+                    <div class="input-group">
+                        <input  formControlName="EffectiveTo" [class.errorIPLabel]="EffectiveTo.invalid && submitted" type="text" placeholder="MM/dd/yyyy" [minDate]="minDate"
+                        placement="right" class="form-control textbox_border_input" bsDatepicker [bsConfig]="{ showWeekNumbers:false }"  readonly>
+                    </div>
+                    <div class="display-error">
+                        <div *ngIf="EffectiveTo.invalid && submitted">
+                            <span *ngIf="EffectiveTo.errors.required">
+                                {{_DialogParameterScreen.EffectiveTo.required}}
+                            </span>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                    <div class="form-group fg_half">
+                        <label class="textbox_borderlabel_relative">Status</label>
+                        <label class="switch">
+                            <input type="checkbox" formControlName="Status" />
+                            <div></div>
+                        </label>
+                        <div class="display-error">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="pagemodal-footer">
+    <button type="button" (click)="cancel()" class="button_white">Cancel</button>
+    <button type="submit" (click)="saveData('close')"  class="btn-theme" [disabled]="parameterData.isNotEditable">Save</button>
+    <button type="submit" (click)="saveData('open')"  class="btn-theme" [disabled]="parameterData.isNotEditable">Save & Add new value</button>
+</div>

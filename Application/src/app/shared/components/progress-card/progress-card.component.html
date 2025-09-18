@@ -1,0 +1,55 @@
+ <div class="progress-card">
+      <div class="progress-header">
+        <h3 class="title">{{ title }}</h3>
+        <div class="percentage-change">
+          <span class="arrow">↑</span>
+          <span class="percentage">{{ percentageChange }}%</span>
+        </div>
+      </div>
+
+       <!-- <p *ngIf="data.growth != 'NA'" class="hfrp-percent">
+                <span [class.downMove]="data.growthFlag=='RD'">
+                    <span *ngIf="data.growthFlag=='RD'">
+                        <img src="assets/images/downs.png">
+                    </span>
+                    <span *ngIf="data.growthFlag=='GU'">
+                        <img src="assets/images/ups.png">
+                    </span>
+                    {{data.growth}}
+                </span>
+            </p> -->
+
+      <div class="progress-container">
+        <div class="circular-progress">
+          <svg class="progress-ring" [attr.viewBox]="'0 0 ' + svgSize + ' ' + svgSize">
+            <circle
+              class="progress-ring-background"
+              [attr.stroke]="progressColor"
+              [attr.stroke-width]="strokeWidth"
+              fill="transparent"
+              [attr.r]="radius"
+              [attr.cx]="center"
+              [attr.cy]="center"/>
+            <circle
+              class="progress-ring-progress"
+              [attr.stroke]="progressColor"
+              [attr.stroke-width]="strokeWidth"
+              fill="transparent"
+              [attr.r]="radius"
+              [attr.cx]="center"
+              [attr.cy]="center"
+              [style.stroke-dasharray]="circumference + ' ' + circumference"
+              [style.stroke-dashoffset]="animatedOffset"
+              stroke-linecap="round"/>
+          </svg>
+          <div class="progress-text">
+            <span class="progress-percentage">{{ value }}%</span>
+          </div>
+        </div>
+
+        <div class="progress-info">
+          <div class="main-number">{{ formatNumber(mainNumber) }}</div>
+          <div class="total">of {{ formatNumber(total) }}</div>
+        </div>
+      </div>
+    </div>

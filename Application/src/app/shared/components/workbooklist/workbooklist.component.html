@@ -1,0 +1,93 @@
+<ng-container>
+    <!--  *ngIf="Isvisible" -->
+    <div class="page-content-right dashboard_wb">
+        <div class="charts-header">
+            <div class="charts-heading">
+                <h4>Workbook</h4>
+                <button *ngIf="IsQuotevisible" (click)="quikquotes()" class="btn-theme"
+                    [disabled]="!programData || programData.length === 0">+ Quote</button>
+
+
+                <!-- <button routerLink="/agenciiq/workbook" class="btn-theme">Full Workbook</button> -->
+                <button (click)="navigateTo()" class="btn-theme">Full Workbook</button>
+            </div>
+        </div>
+
+        <lib-quote-view [DataSource]="dataSource" [ColumnList]="QuotesColumnList" [Pagination]="true"
+            [TotalItems]="totalItem" [NoRecordsMessage]="NoRecordsMessage" (NewPage)="NewPage($event)"
+            (SearchQuote)="SearchQuote($event)" (ChangePageSize)="ChangePageSize($event)">
+            <ng-template #DataViewHeading>
+                <th (click)="sortQuotes('ref')" style="width: 10%;">Ref <img src="assets/images/sort.png"></th>
+                <th style="width: 12%;">Insured Name</th>
+                <th style="width: 12%;">Agent Name</th>
+                <th style="width: 12%;">Agency Name</th>
+                <th style="width: 8%;">Underwriter</th>
+                <th style="width: 12%;">UW Assistant</th>
+                <th style="width: 7%;">LOB</th>
+                <th style="width: 14%;">Effective Date</th>
+                <th style="width: 14%;">Alfred Alerts</th>
+            </ng-template>
+
+            <ng-template #DataViewContent let-data="data">
+                <td><span>{{data.ref}}</span></td>
+                <td (click)="getInsuredDetail(data,'dashboard')"><span class="insuredname">{{data.insuredName}}</span>
+                </td>
+                <td><span>{{data.agentName}}</span></td>
+                <td><span>{{data.agencyName}}</span></td>
+                <td><span>{{data.underwriter}}</span></td>
+                <td><span>{{data.underwriterAssistant}}</span></td>
+                <td><span>{{data.lob}}</span></td>
+                <td><span>{{data.effective_Date | date:'MM/dd/yyyy'}}</span></td>
+
+                <td>
+                    <div class="table-alfred-icons">
+                        <div class="tooltip" *ngFor="let alert of data.alerts">
+                            <img [src]="alert.iconURL" />
+                            <span class="tooltiptext">{{alert.description}}</span>
+                        </div>
+                    </div>
+                </td>
+            </ng-template>
+
+            <ng-template #DataViewInnerHeading>
+                <th style="width: 35%;">Status</th>
+                <th style="width: 35%;">Date</th>
+                <th style="width: 10%;">Premium</th>
+            </ng-template>
+
+
+            <ng-template #DataViewInnerLink let-innerdata="innerdata" let-item="item">
+                <td>
+                    <app-quote-list-link [inneritem]="innerdata" [item]="item"
+                        (TransferViewPolicyParam)="setViewPolicyData($event)"></app-quote-list-link>
+                </td>
+            </ng-template>
+
+            <ng-template #DataViewInnerContent let-innerdata="innerdata">
+                <td>
+                    <div class="tooltip">
+                        <span *ngIf="innerdata.transactionCode"
+                            [title]="transactionCodeMaster.getTransactionName(innerdata.transactionCode)"><strong
+                                class="transactionCode"
+                                [ngStyle]="{'background-color':transactionCodeMaster.getTransactionColor(innerdata.transactionCode)}">{{innerdata.transactionCode}}</strong></span>
+                        {{innerdata.status}}
+                    </div>
+                </td>
+                <td><span *ngIf="innerdata.renewal_Date">Renewal Date
+                        {{innerdata.renewal_Date | date:'MM/dd/yyyy'}}</span>
+                    <span *ngIf="innerdata.endorsement_Date">Endorsement Date
+                        {{innerdata.endorsement_Date | date:'MM/dd/yyyy'}}</span>
+                    <span *ngIf="innerdata.cancel_Date">Cancel Date
+                        {{innerdata.cancel_Date | date:'MM/dd/yyyy'}}</span>
+                    <span *ngIf="!innerdata.cancel_Date && !innerdata.renewal_Date && !innerdata.endorsement_Date">
+                        Request Date {{innerdata.created_Date | date:'MM/dd/yyyy'}}</span>
+                </td>
+                <td><span *ngIf="innerdata.premium > 0">{{innerdata.premium | currency}}</span>
+                    <span class="text-danger" *ngIf="innerdata.refundPremium > 0">-{{innerdata.refundPremium |
+                        currency}}</span>
+                </td>
+            </ng-template>
+        </lib-quote-view>
+    </div>
+
+</ng-container>

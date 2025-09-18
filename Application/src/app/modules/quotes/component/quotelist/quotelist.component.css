@@ -1,0 +1,36 @@
+.data-grid-list-view {
+    position: relative;
+    top: 127px;
+    padding-bottom: 100px;
+}
+
+.Heading {
+    display: table-row;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Cell {
+    display: table-cell;
+    border: solid;
+    border-width: thin;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.Cell p {
+    text-align: left;
+}
+
+.Row {
+    display: table-row;
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 0.5px solid rgba(0, 0, 0, 0.8);
+    padding: 5px 10px;
+    margin: 10px;
+    text-align: left;
+    font-size: 12px;
+}

@@ -1,0 +1,372 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>{{pageTitle}}</h4>
+    </div>
+</div>
+<div class="transferquote-content">
+    <form [formGroup]='quoteviewform' (ngSubmit)="saveData(quoteviewform)">
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Policy/Quote Header Information </h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Ref Number </label>
+                                <input type="text" id="RefNumber" readOnly class="form-control textbox_border_input"
+                                    placeholder="Ref Number " formControlName="RefNumber" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Type</label>
+                                <input type="text" id="Type" readOnly class="form-control textbox_border_input"
+                                    placeholder="Type" formControlName="Type" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Stage</label>
+                                <input type="text" id="stage" readOnly class="form-control textbox_border_input"
+                                    placeholder="Stage" maxlength="50" formControlName="stage">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero" style=" padding-top: 20px;">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Effective Date </label>
+                                <input type="text" readonly id="EffectiveDate" class="form-control textbox_border_input"
+                                    placeholder="Effective Date " formControlName="EffectiveDate" maxlength="50">
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Expiry Date</label>
+                                <input type="text" readonly id="Type" class="form-control textbox_border_input"
+                                    placeholder="Expiry Date" formControlName="ExpiryDate" maxlength="50">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Insured Details
+                </h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Company Name </label>
+                                <input type="text" id="CompanyName" readonly class="form-control textbox_border_input"
+                                    placeholder="Add  Company Name " formControlName="CompanyName" maxlength="50">
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Primary State</label>
+                                <input type="text" id="PrimaryState" readonly class="form-control textbox_border_input"
+                                    placeholder="Add Primary State" formControlName="PrimaryState" maxlength="50">
+
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Website</label>
+                                <input type="text" id="Website" readonly class="form-control textbox_border_input"
+                                    placeholder="Add Website" maxlength="50" formControlName="Website">
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Agent Details
+                </h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Name</label>
+                                <input type="text" id="AgentName" readonly class="form-control textbox_border_input"
+                                    dataTextFocus placeholder="Add Agent Name " formControlName="AgentName"
+                                    maxlength="50">
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Agency</label>
+                                <input type="text" readonly id="AgentAgency" class="form-control textbox_border_input"
+                                    placeholder="Add Agency" formControlName="AgentAgency" maxlength="50">
+
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Email</label>
+                                <input type="text" id="AgentEmail" readonly class="form-control textbox_border_input"
+                                    placeholder="Add Email" maxlength="50" formControlName="AgentEmail">
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero" style=" padding-top: 20px;">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Phone </label>
+                                <input type="text" id="AgentPhone" readonly class="form-control textbox_border_input"
+                                    [phoneControl]="quoteviewform.controls['AgentPhone']" phoneMask
+                                    formControlName="AgentPhone" maxlength="50">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Underwriter Details
+                </h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Underwriter Name </label>
+                                <input type="text" id="UwName" readonly class="form-control textbox_border_input"
+                                    formControlName="UwName" placeholder="Underwriter Name " maxlength="50">
+                                <input type="hidden" id="UwID" class="form-control textbox_border_input"
+                                    formControlName="UwID" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">UW Assistant Name</label>
+                                <input type="text" id="UwaName" readonly class="form-control textbox_border_input"
+                                    formControlName="UwaName" maxlength="50">
+                                <input type="hidden" id="UwaID" class="form-control textbox_border_input"
+                                    formControlName="UwaID" maxlength="50">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="single-block">
+
+            <div class="pcr-block">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <div class="styled-checkbox">
+                                <div class="checkbox">
+                                    <button type="button" class="button_white" (click)="openLinckAcordform()">Acord
+                                        Form</button>
+
+                                </div>
+                                <div class="checkbox">
+
+                                    <button type="button" class="button_white" (click)="ReviewSubmission()">Review
+                                        Submission</button>
+
+                                </div>
+                                <div class="checkbox">
+
+                                    <button type="button" class="button_white" (click)="riskAnalysis()">Risk
+                                        Analysis</button>
+
+                                </div>
+                                <!--div  class="checkbox">
+                                        <input type="checkbox" [id]="Disposition" [checked]="isChecked('Disposition')"
+                                        (click)="CheckDisposition('', $event.target.checked)"
+                                        >
+                                           
+                                        <label >
+                                            <div class="checkercheckbox"></div>
+                                            Disposition 
+                                        </label>
+                                    </div-->
+                            </div>
+
+                            <!--div class="display-error">
+                                    <div *ngIf="roleControl.invalid && submitted">
+                                        <span *ngIf="roleControl.errors.required">
+                                           
+                                            {{_AddAgentScreen.Role.required}}
+                                        </span>
+                                    </div>
+                                </div-->
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Disposition
+                </h4>
+            </div>
+            <div class="pcr-block">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <!-- <div class="form-group">
+                                    <label class="textbox_borderlabel_relative">Decline</label>
+                                    <label class="switch">
+                                        <input type="radio"  (click)="Decline()" formControlName="DispositionDecline" />
+                                        <div></div>
+                                    </label>
+                                    <div class="display-error">
+    
+                                    </div>
+                                </div>
+                                </div> -->
+                            <div class="form-group">
+
+                                <div class="styled-radio">
+                                    <div class="radio">
+                                        <input type="radio" value="PQ" checked (click)="Pending()"
+                                            formControlName="DispositionPending" id="Pending">
+                                        <label for="Pending" class="alert_check" id="keepOpenredio">
+                                            <div class="checker"></div>
+                                            Keep Open
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <input type="radio" id="SQ_Quick" (click)="Decline()"
+                                            formControlName="DispositionDecline" value="QQ">
+                                        <label for="SQ_Quick" class="alert_check">
+                                            <div class="checker"></div>
+                                            Decline
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <input type="radio" value="FQ" (click)="Accept()"
+                                            formControlName="DispositionAccept" id="SQ_Full">
+                                        <label for="SQ_Full" class="alert_check">
+                                            <div class="checker"></div>
+                                            Accept
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label class="textbox_borderlabel_relative">Accept </label>
+                                    <label class="switch">
+                                        <input type="radio"  (click)="Accept()" formControlName="DispositionAccept" />
+                                        <div></div>
+                                    </label>
+                                    <div class="display-error">
+    
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero" style=" padding-top: 20px;">
+                        <div class="pcr-heading wid100 pgblock-heading" disabled>
+                            <h4>Referred to: </h4>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Underwriter</label>
+                                <select [disabled]="butDisabled" #Underwriter formControlName="SelectUnderwriter"
+                                    (change)="UWSelect()" class="form-control dropdown_border">
+                                    <option value="null">Select</option>
+                                    <option *ngFor="let underwriter of underwriterlist" [value]="underwriter.id">
+                                        {{underwriter.name}}</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">UW Assistant</label>
+                                <select [disabled]="butDisabled" formControlName="UwAssistent" (change)="UWASelect()"
+                                    class="form-control dropdown_border">
+                                    <option value="null" selected>Select</option>
+                                    <option *ngFor="let underwriterAssist of underwriterAssistentlist"
+                                        [value]="underwriterAssist.underwriterAssistantID">
+                                        {{underwriterAssist.underwriterAssistant}}</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="single-block">
+
+            <div class="pcr-block">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel">Comments<span [style.display]="flag ? dispA : dispB "
+                                    class='required'>*</span></label>
+
+                            <textarea (keypress)="validateComm()" formControlName="comments"
+                                [style.border-color]="flag ? colorA : colorB" class="form-control dropdown_border"
+                                rows="4" cols="45">
+
+                                    </textarea>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="single-block">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right rm-pad-left rm-pad-right">
+                <button type="button" class="button_white" (click)="cancel()">Cancel</button>
+                <button type="submit" class="btn-theme">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,79 @@
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxQYXJhbWV0ZXJzPg0KICA8S2V5DQogICAgTmFtZT0iQ0FOQ0VMTEFUSU9OQlkiDQogICAgQWxpYXNOYW1lPSJDYW5jZWxsYXRpb24gQnkiPg0KICAgIDxQYXJhbWV0ZXJEZXRhaWxzPg0KICAgICAgPFBhcmFtZXRlck5hbWU+SW5zdXJlZDwvUGFyYW1ldGVyTmFtZT4NCiAgICAgIDxWYWx1ZT5JbnN1cmVkPC9WYWx1ZT4NCiAgICAgIDxFZmZlY3RpdmVEYXRlPjwvRWZmZWN0aXZlRGF0ZT4NCiAgICAgIDxFeHBpcnlEYXRlPjwvRXhwaXJ5RGF0ZT4NCiAgICAgIDxJbmFjdGl2ZT50cnVlPC9JbmFjdGl2ZT4NCiAgICAgIDxJc05vdEVkaXRhYmxlPmZhbHNlPC9Jc05vdEVkaXRhYmxlPg0KICAgICAgPElzTm90VmlzaWJsZT5mYWxzZTwvSXNOb3RWaXNpYmxlPg0KICAgICAgPElzUGFyYW1ldGVyQWRkRGlzYWJsZWQ+ZmFsc2U8L0lzUGFyYW1ldGVyQWRkRGlzYWJsZWQ+DQogICAgICA8VXNhZ2UgLz4NCiAgICAgIDxTdGF0ZSAvPg0KICAgIDwvUGFyYW1ldGVyRGV0YWlscz4NCiAgICA8UGFyYW1ldGVyRGV0YWlscz4NCiAgICAgIDxQYXJhbWV0ZXJOYW1lPkluc3VyZXI8L1BhcmFtZXRlck5hbWU+DQogICAgICA8VmFsdWU+SW5zdXJlcjwvVmFsdWU+DQogICAgICA8RWZmZWN0aXZlRGF0ZT48L0VmZmVjdGl2ZURhdGU+DQogICAgICA8RXhwaXJ5RGF0ZT48L0V4cGlyeURhdGU+DQogICAgICA8SW5hY3RpdmU+dHJ1ZTwvSW5hY3RpdmU+DQogICAgICA8SXNOb3RFZGl0YWJsZT5mYWxzZTwvSXNOb3RFZGl0YWJsZT4NCiAgICAgIDxJc05vdFZpc2libGU+ZmFsc2U8L0lzTm90VmlzaWJsZT4NCiAgICAgIDxJc1BhcmFtZXRlckFkZERpc2FibGVkPmZhbHNlPC9Jc1BhcmFtZXRlckFkZERpc2FibGVkPg0KICAgICAgPFVzYWdlIC8+DQogICAgICA8U3RhdGUgLz4NCiAgICA8L1BhcmFtZXRlckRldGFpbHM+DQogIDwvS2V5Pg0KPC9QYXJhbWV0ZXJzPg==
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4> List of Parameters</h4>
+    </div>
+</div>
+<div class="transferquote-content">
+    <div class="single-block listparameterLeft">
+        <div class="pcr-heading pgblock-heading">
+            <h4>Parameters
+                <button class="button_white" style="float: right;" (click)="parameterKeyDialog()">+ Add
+                    Parameter</button>
+
+            </h4>
+
+        </div>
+        <!-- <div class="todo-search mb-3">
+            <input type="text" class="greybg-input" placeholder="Search" (keyup)="filter($event.target.value)">
+        </div> -->
+        <div class="qth-left">
+            <input type="text" class="greybg-input" placeholder="Search"
+                (keyup)="filterParameter($event.target.value)" />
+        </div>
+
+        <ul class="list-group list-group-flush parameterList" id="paramKey">
+
+            <input type="text" readonly class="list-group-item border-0 parameterListIp"
+                *ngFor="let option of parameterOptions; let i = index; trackBy: trackByAlias"
+                [ngClass]="{'active': selectedKeys.parameterAlias == option.parameterAlias}" [value]="getValue(option)"
+                (keydown)="keyDown($event,option,i)" (click)="OnParameterOptionChange(option)">
+            <!-- <li class="list-group-item border-0"   *ngFor="let option of parameterOptions; let i = index" [ngClass]="{'active': selectedKeys == option}" [value]="option" (click)="OnParameterOptionChange(option)">
+                    {{option}}
+                </li> -->
+        </ul>
+    </div>
+    <div class="single-block tableMarginZero listparameterRight">
+        <div class="pcr-heading pgblock-heading">
+            <h4>{{selectedKeys?.parameterAlias}} ({{selectedKeys?.parameterKey}})
+                <span *ngIf="!isParameterAddDisabled"> <button class="button_white" style="float: right;"
+                        (click)="addEditParamDialog('add',null)">+ Add new value</button></span>
+                <button (click)="Download()" class="button_white" style="float: right;">Export to XML <i
+                        class="fa fa-download" aria-hidden="true"></i></button>
+                <button (click)="openUploadDialog()" class="button_white" style="float: right;">Upload XML <i
+                        class="fa fa-upload" aria-hidden="true"></i></button>
+
+            </h4>
+        </div>
+        <div class="single-block tableMarginZero paremetertableGrid">
+            <lib-data-view [DataSource]="dataSource" [SortingColumn]="sortedColumnName"
+                [NoRecordsMessage]="NoRecordsMessage" [Pagination]="true" [ColumnList]="ColumnList">
+                <ng-template #DataViewHeading>
+                    <th (click)="sortQuotes('parameterName')" style="width:20%">Full Name <img
+                            src="assets/images/sort.png"></th>
+                    <th style="width:15%">Short Name</th>
+                    <th style="width:10%">Value</th>
+                    <th> Effective Date</th>
+                    <th> Expiration Date</th>
+                    <th> Status</th>
+                    <th>Action</th>
+                </ng-template>
+                <ng-template #DataViewContent let-data="data">
+                    <ng-container *ngIf="data.parameterName != null">
+                        <td>{{data.parameterName}}</td>
+                        <td>{{data.shortName}}</td>
+                        <td>{{data.value}}</td>
+                        <td><span>{{data.effectiveFrom | date:'MM/dd/yyyy'}}</span></td>
+                        <td><span>{{data.effectiveTo | date:'MM/dd/yyyy'}}</span></td>
+                        <td><span> <img *ngIf="data.isActive== true" src="assets/images/active.png"> <img
+                                    *ngIf="data.isActive == false" src="assets/images/inactive.png">
+                                &nbsp;{{data.isActive == true ? 'Active' : (data.isActive == false ? 'Inactive' : '')}}
+                            </span>
+                        </td>
+                        <td><span class="hiperLink" (click)="addEditParamDialog('edit',data)">Edit</span></td>
+                    </ng-container>
+                </ng-template>
+            </lib-data-view>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<lib-aqtodo-list [TodoList]="todoLists" [ColumnList]="columnList" [TodoSummary]="todoSummary"
+  [IsNoRecordFound]="IsNoRecordFound" (TodoView)="todoView($event)" (onResize)="onResize($event)">
+  <ng-template #transactionCode let-data="data">
+    <!--   <span class="todoList-icon bgorange" style="float: right;" [ngStyle]=""><strong>{{data.transactionCode}}</strong></span> -->
+    <span class="todoList-icon" style="float: right;"
+      [title]="transactionCodeMaster.getTransactionName(data.transactionCode)">
+      <strong class="transactionCode"
+        [ngStyle]="{'background-color':transactionCodeMaster.getTransactionColor(data.transactionCode)}">
+        {{data.transactionCode}}
+      </strong>
+    </span>
+  </ng-template>
+</lib-aqtodo-list>

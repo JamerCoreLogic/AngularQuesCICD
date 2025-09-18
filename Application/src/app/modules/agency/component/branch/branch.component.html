@@ -1,0 +1,137 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>{{pageTitle}}</h4>
+    </div>
+</div>
+<div class="transferquote-content">
+    <form [formGroup]="branchForm">
+    <div class="single-block">
+        <div class="pcr-heading wid100 pgblock-heading">
+            <h4>Basic Information</h4>
+        </div>
+        <div class="pcr-block mt-0">
+            <div class="pcr_b_inner">
+                
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel" [class.errorIPLabel]="branchName.invalid && submitted">Branch Name<span class="required">*</span></label>
+                                <input dataTextFocus formControlName="branchName" type="text" placeholder="Add Branch Name"
+                                    class="form-control textbox_border_input" [class.errorIP]="(branchName.invalid && submitted)">
+                                    <!-- (keypress)="ValidateKey.key($event)">-->
+                                <div class="display-error">
+                                    <div *ngIf="branchName.invalid && submitted">
+                                        <span *ngIf="branchName.errors.required">
+                                            <!-- Branch Name Required -->
+                                            {{_BranchScreen.BranchName.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel" [class.errorIPLabel]="zip.invalid && (submitted || isZipInvalid)">Zip<span class="required">*</span></label>
+                                <input formControlName="zip" (keypress)="ValidateKey.WholeNumbers($event, 5)"
+                                    type="text" placeholder="Add Zip" class="form-control textbox_border_input" [class.errorIP]="zip.invalid && (submitted || isZipInvalid)">
+                                <div class="display-error">
+                                    <div *ngIf="zip.invalid  && (submitted || isZipInvalid)">
+                                        <span *ngIf="zip.errors.required">
+                                            <!-- Zip Code Required -->
+                                            {{_BranchScreen.Zip.required}}
+                                        </span>
+                                        <span *ngIf="zip.errors.minlength">
+                                            <!-- Zip Code must be 5 characters -->
+                                            {{_BranchScreen.Zip.lenth}}
+                                        </span>
+                                        <span *ngIf="zip.errors.notvalid">
+                                            <!-- Zip Code must be 5 characters -->
+                                            {{zipErrorMessage}}
+                                        </span>
+                                    </div>
+                                    <!-- <span *ngIf="isZipInvalid">{{zipErrorMessage}}</span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">City</label>
+                                <input type="text" formControlName="city" class="form-control textbox_border_input"
+                                    placeholder="Add City">
+                                <div class="display-error">
+                                    <div *ngIf="city.invalid && submitted">
+                                        <span *ngIf="city.errors.required">
+                                            <!-- City Required -->
+                                            {{_BranchScreen.City.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">State</label>
+                                <input formControlName="state" type="text" maxlength="2" placeholder="Add State"
+                                    class="form-control textbox_border_input">
+                                <div class="display-error">
+                                    <div *ngIf="state.invalid && submitted">
+                                        <span *ngIf="state.errors.required">
+                                            <!-- State Required -->
+                                            {{_BranchScreen.State.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <div class="form-group mt-33">
+                                    <input type="checkbox" class="lines_checkbox" id="po-box" name="Standard">
+                                    <label for="po-box">PO Box</label>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel" [class.errorIPLabel]="(streetAddress1.invalid && submitted)  || isAddress1Valid">Street Address<span class="required">*</span></label>
+                                <input formControlName="streetAddress1" (blur)="validateAddress()" type="text" placeholder="Add Address Line 1"
+                                    class="form-control textbox_border_input" maxlength="50" [class.errorIP]="(streetAddress1.invalid && submitted)  || isAddress1Valid">
+                                <div class="display-error">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero">
+                            <div class="form-group">
+                                <!-- <label class="textbox_borderlabel">Address Line 2</label> -->
+                                <input formControlName="streetAddress2" type="text" placeholder="Add Address Line 2"
+                                    class="form-control textbox_border_input" maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="(streetAddress1.invalid && submitted) && !isAddress1Valid">
+                                        <span *ngIf="streetAddress1.errors.required">
+                                            <!-- Street Address Required -->
+                                            {{_BranchScreen.StreetAddress.required}}
+                                        </span>
+                                    </div>
+                                    <span *ngIf="isAddress1Valid">{{address1ErrorMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+               
+            </div>
+        </div>
+    </div>
+    <div class="single-block">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right rm-pad-left rm-pad-right">
+            <button type="button" (click)="goBack()" class="button_white">Cancel</button>
+            <button type="submit" (click)="SaveAccountWithOserverPattern()" class="btn-theme">Save</button>
+        </div>
+    </div> 
+</form>
+</div>

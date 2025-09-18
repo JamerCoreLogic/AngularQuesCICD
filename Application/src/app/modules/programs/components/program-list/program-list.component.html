@@ -1,0 +1,34 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>Manage Programs</h4>
+    </div>
+    <div class="ql-header-right">
+        <button  class="btn-theme" (click)="addAqProgramForm('add',null)" >
+            + Add
+        </button>
+       </div>
+</div>
+    <div class="quotelist-content">
+     <lib-data-view [DataSource]="dataSource" [SortingColumn]="sortedColumnName"  [NoRecordsMessage]="NoRecordsMessage" [Pagination]="true"
+        [ColumnList]="ColumnList">
+        <ng-template #DataViewHeading>
+            <th (click)="sortPrograms('programName')" style="width: 25%;">Program  Name <img src="assets/images/sort.png"></th>
+            <th style="width: 25%;">Description</th>
+            <th style="width: 20%;">Effective Date</th>
+            <th style="width: 20%;">Expiration Date</th>
+            <!-- <th style="width: 10%;">Status</th> -->
+            <th style="width: 10%;">Action</th> 
+        </ng-template>
+        <ng-template #DataViewContent let-data="data">
+            <td><span>{{data.programName}}</span></td>
+            <td>{{data.description}}</td>
+            <td><span *ngIf="data.effectiveDate != '0001-01-01T00:00:00'">{{data.effectiveDate | date:'MM/dd/yyyy'}}</span></td>
+            <td><span *ngIf="data.expirationDate != '0001-01-01T00:00:00'">{{data.expirationDate | date:'MM/dd/yyyy'}}</span></td>
+          
+            <td>
+               
+                <span  class="hiperLink" (click)="addAqProgramForm('edit',data)">Edit</span>
+            </td>
+           </ng-template>
+    </lib-data-view> 
+</div>

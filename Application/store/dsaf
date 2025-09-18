@@ -1,0 +1,11 @@
+export interface Agency {
+  agencyName: string;
+  registered: 'Yes' | 'No';
+  [key: string]: any;
+}
+
+export interface AgencyState {
+  agencies: Agency[];
+  registerType: 'Yes' | 'No' | null;
+  error: any;
+}

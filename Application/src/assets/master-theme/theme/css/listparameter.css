@@ -1,0 +1,113 @@
+@import "primary-color.css";
+.listparameterLeft {
+    width: 30% !important;
+    /*  height: calc(83vh - 2px); */
+    overflow: hidden; 
+    margin-bottom: 0px !important;
+
+    /* position: absolute; */
+    position: fixed;
+    top: 129px;
+    bottom: 46px;
+    
+}
+.listparameterRight {
+    width: calc(70% - 10px) !important;
+    margin-left: 31%;
+}
+.listparameterRight .single-block {
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 0px;
+}
+.listparameterRight .single-block table th {
+    text-align: left;
+}
+.addParemeterModal {
+    /* height: 225px !important; */
+    height: 300px !important;
+}
+.uploadXMLModal {
+    height: 120px !important;
+}
+.addParemeterModal .modal_select_quote, .uploadXMLModal .modal_select_quote {
+    padding-top: 0px !important;
+}
+.listparameterRight .pcr-heading {
+    margin-bottom: 0px !important;
+}
+.parameterList {
+    margin: 0;
+    list-style: none;
+    padding: 10px 0px 10px 0px;
+    height: 88%;
+    overflow-y: auto;
+    margin-right: -12px;
+}
+
+.parameterList li {
+    font-size: 14px;
+    padding: 7px 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.parameterList li.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.parameterListIp {
+    cursor: pointer !important;
+    color: transparent !important;
+    text-shadow: 0 0 0 #000 !important;
+    height: auto;
+    font-size: 14px;
+    padding: 7px 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.parameterListIp.active {
+    background-color: var(--primary-color);
+    color: #fff !important;
+    /* text-shadow: 0 0 0 #fff !important; */
+    padding-left: 10px;
+    height: auto;
+    font-size: 14px;
+    padding: 7px 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.list-group-item+.list-group-item.active {
+   margin-top : 0px !important;
+} 
+
+.parameterGridNewDesign {
+    width: 100%;
+}
+
+.parameterGridNewDesign th, .parameterGridNewDesign td {
+    padding: 8px 6px;
+    font-size: 14px;
+    border-bottom: 1px solid #e6e6e7;
+}
+
+.listBadge {
+    text-align: center;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    font-size: 11px;
+}
+.purple {
+    background-color: blueviolet;
+}
+.pink {
+    background-color: hotpink;
+}
+.blue {
+    background-color: mediumslateblue;
+}
+.green {
+    background-color: palegreen;
+}

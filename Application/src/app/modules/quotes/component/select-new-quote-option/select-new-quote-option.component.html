@@ -1,0 +1,74 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>New Quote</h4>
+    </div>
+</div>
+
+<form [formGroup]="newQuoteOptionForm">
+    <div class="transferquote-content">
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Select New Quote Options</h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Quote Type<span class="required">*</span></label>
+                                <div class="styled-radio">
+                                    <div class="radio">
+                                        <input type="radio" id="SQ_Quick" formControlName="QuoteType" value="QQ">
+                                        <label for="SQ_Quick" class="alert_check">
+                                            <div class="checker"></div>
+                                            Quick Quote
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <input type="radio" value="FQ" formControlName="QuoteType" id="SQ_Full">
+                                        <label for="SQ_Full" class="alert_check">
+                                            <div class="checker"></div>
+                                            Full Quote
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Line of Business<span
+                                        class="required">*</span></label>
+                                <select class="form-control dropdown_border" formControlName="LOB">
+                                    <option value=''>Select</option>
+                                    <option *ngFor="let program of programData" [value]="program.lob">
+                                        {{program.lobName}} </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Primary State<span class="required">*</span></label>
+                                <select class="form-control dropdown_border" formControlName="State">
+                                    <option value=''>Select</option>
+                                    <option *ngFor="let state of StateList">{{state}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-block">
+            <div class="pcr-block">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                        <button class="btn cancel-btn width-120">Cancel</button>
+                        <button class="btn btn-theme-radius width-120" (click)="CreateQuote()">Save</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>

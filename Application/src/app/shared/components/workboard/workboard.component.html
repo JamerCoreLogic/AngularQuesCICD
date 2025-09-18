@@ -1,0 +1,106 @@
+<div class="page-content-right" style="height:153px !important">
+
+  <div class="pcr-block workBoardSection">
+
+    <div class="tab-slider--nav">
+      <ul class="tab-slider--tabs">
+        <li class="tab-slider--trigger" [class.active]="workboardType == 'trasaction'" rel="trasaction"
+          (click)="getWorkboardList('trasaction')"><span></span>Transactions</li>
+        <li class="tab-slider--trigger" [class.active]="workboardType == 'notifications'" rel="notifications"
+          (click)="getWorkboardList('notifications')"><span></span>Notifications</li>
+        <li class="tab-slider--trigger" [class.active]="workboardType == 'alerts'" rel="alerts"
+          (click)="getWorkboardList('alerts')"><span></span>Alfred Alerts</li>
+      </ul>
+    </div>
+
+    <ng-container *ngIf="workboardList?.length > 0 && workboardType =='trasaction'">
+
+      <div class="tab-slider--carousel">
+        <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="false" [interval]="false"
+          [showIndicators]="workboardList.length > itemsPerSlide" [indicatorsByChunk]="true">
+          <slide *ngFor="let item of workboardList">
+            <div class="padding">
+              <h4 class="pcrbs-heading"><span
+                  (click)="redirectToQuoteslist(item[0].status, null)">{{item[0]?item[0].status:item.status}}</span>
+              </h4>
+              <p class="pcrbs-count" style="cursor: pointer" (click)="redirectToQuoteslist(item[0].status, null)">
+                {{item[0]?item[0].totalValue:item.total}}</p>
+            </div>
+            <ul class="pcrbs-details">
+              <li class="padding">
+                <span (click)="redirectToQuoteslist(item[0].status, item[1].status)"
+                  class="pd-hdng">{{item[1].status}}</span>
+                <p><span (click)="redirectToQuoteslist(item[0].status, item[1].status)" class="pd-upr"
+                    style="cursor: pointer">{{item[1].totalValue}}</span></p>
+              </li>
+              <li>
+                <span (click)="redirectToQuoteslist(item[0].status, item[2].status)"
+                  class="pd-hdng">{{item[2].status}}</span>
+                <p><span (click)="redirectToQuoteslist(item[0].status, item[2].status)" class="pd-upr"
+                    style="cursor: pointer">{{item[2].totalValue}}</span></p>
+              </li>
+            </ul>
+
+          </slide>
+
+        </carousel>
+      </div>
+
+    </ng-container>
+
+    <ng-container *ngIf="workboardList?.length > 0 && workboardType =='alerts'">
+
+      <div class="tab-slider--carousel splTabsSlider">
+        <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="false" [interval]="false"
+          [indicatorsByChunk]="true" [showIndicators]="workboardList.length > itemsPerSlide" style="height: 50px;">
+          <slide *ngFor="let items of workboardList">
+            <div *ngFor="let item of items;let i = index">
+              <div class="padding" (click)="redirectToQuoteslist(item.status, null)"
+                style="display: flex; height: 64px;">
+                <span>
+                  <img [src]="item.url" style="
+                              width: 18px;
+                              margin-right: 5px;
+                              position: relative;
+                              top: -3px;
+                          " />
+                </span>
+
+                <h4 class="pcrbs-heading" style="
+                            width: 120px;
+                        "><span>{{item.status}}</span></h4>
+                <span>
+                  <p class="pcrbs-count" style="cursor: pointer">{{item.total}}</p>
+                </span>
+
+
+
+              </div>
+            </div>
+          </slide>
+
+        </carousel>
+      </div>
+
+    </ng-container>
+
+    <ng-container *ngIf="workboardList?.length > 0 && workboardType =='notifications'">
+
+      <div class="tab-slider--carousel splTabsSlider">
+        <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="false" [interval]="false"
+          [indicatorsByChunk]="true" [showIndicators]="workboardList.length > itemsPerSlide" style="height: 50px;">
+          <slide *ngFor="let items of workboardList">
+            <div *ngFor="let item of items;let i = index">
+              <div class="padding" (click)="redirectToQuoteslist(item.status, null)">
+                <h4 class="pcrbs-heading"><span>{{item.status}}</span></h4>
+                <p class="pcrbs-count" style="cursor: pointer">{{item.total}}</p>
+              </div>
+            </div>
+          </slide>
+
+        </carousel>
+      </div>
+
+    </ng-container>
+  </div>
+</div>

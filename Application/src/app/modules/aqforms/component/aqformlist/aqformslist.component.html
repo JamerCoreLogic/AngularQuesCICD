@@ -1,0 +1,65 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>{{dataSourceAccordian['LOB']}} Forms</h4>
+    </div>
+    <div class="ql-header-right">
+        <button (click)="addForm()" class="btn-theme">
+            + Form
+        </button>
+
+    </div>
+</div>
+
+<div class="transferquote-content">
+    <div class="single-block">
+        <div class="pcr-heading wid100 pgblock-heading">
+            <h4> {{dataSourceAccordian['State']}} <span>-</span> {{dataSourceAccordian['FormType']}}</h4>
+        </div>
+        <div class="pcr-block mt-0">
+            <div class="pcr_b_inner">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+
+                    <table class="quote-table row-border hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Form No.</th>
+                                <th *ngIf="dataSourceAccordian['LOB'] == 'Package Policy'" style="width: 20%;">Lob</th>
+                                <th style="width: 20%;">Effective Date</th>
+                                <th style="width: 20%;">Expiration Date</th>
+                                <th style="width: 10%;">Status</th>
+                                <th style="width: 10%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let formDetails of formList; let num = index" class="main-row">
+                                <td>{{num + 1}}</td>
+                                <td *ngIf="dataSourceAccordian['LOB'] == 'Package Policy'">{{formDetails?.selectedLob'}}
+                                </td>
+                                <td>{{formDetails?.effectiveFrom | date:'MM/dd/yyyy'}}</td>
+                                <td>{{formDetails?.effectiveTo | date:'MM/dd/yyyy'}}</td>
+                                <td><span> <img *ngIf="formDetails.isActive== true" src="assets/images/active.png"> <img
+                                            *ngIf="formDetails.isActive == false" src="assets/images/inactive.png">
+                                        &nbsp;{{formDetails.isActive == true ? 'Active' : (formDetails.isActive == false
+                                        ? 'Inactive' : '')}}
+                                    </span></td>
+                                <td>
+                                    <span (click)="onFormEdit(formDetails['formId'])"
+                                        class="hiperLink">Edit</span>&nbsp;
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <p *ngIf="showError" class="noRecordMessage">No Record Found.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="single-block">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right rm-pad-left rm-pad-right">
+            <button type="button" (click)="onCancel()" class="button_white">Cancel</button>
+        </div>
+    </div>
+</div>

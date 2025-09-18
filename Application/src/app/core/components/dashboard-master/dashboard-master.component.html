@@ -1,0 +1,7 @@
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+<!-- <app-chat-dailog *ngIf="roleCode == 'Agent'"></app-chat-dailog>  -->
+<lib-aqchatboard [identifier]="identifier" [name]="name" [isOpen]="isOpen" [email]="email" [userid]="userid"
+    [portallink]="portallink" [isFQOpen]="isFQOpen" (NavigateToPortal)="NavigateToPortal($event)"
+    (NavigateToPortalFQ)="NavigateToPortalFQ($event)"
+    *ngIf="isAgent && (identifier.indexOf('convelo')==-1 && identifier.indexOf('lambis')==-1)"></lib-aqchatboard>

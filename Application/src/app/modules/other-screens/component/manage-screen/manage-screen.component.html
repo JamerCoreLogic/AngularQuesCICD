@@ -1,0 +1,138 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>{{FormName}}</h4>
+    </div>
+</div>
+<form [formGroup]="aqFormsGroup">
+    <div class="transferquote-content">
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Form Information</h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="FormType.value==0 && (FormType.touched || isSubmitted)">Form
+                                    Type*</label>
+                                <select class="form-control dropdown_border"
+                                    [class.errorIP]="FormType.value==0 && (FormType.touched || isSubmitted)"
+                                    formControlName="QuoteType">
+                                    <option value=''>Select</option>
+                                    <option *ngFor="let formType of formTypeList" [value]="formType.shortName">
+                                        {{formType.parameterName}}</option>
+                                </select>
+                                <div class="display-error">
+                                    <span *ngIf="FormType.value==0 && (FormType.touched || isSubmitted)">
+                                        <!-- Form Type Required -->
+                                        {{_Manageformscreen.Formtype.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero"> -->
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="EffectiveFrom.invalid && isSubmitted">Effective Date*</label>
+                                <input type="text" placeholder="MM/dd/yyyy" formControlName="EffectiveFrom" bsDatepicker
+                                    [bsConfig]="{ showWeekNumbers:false }" [bsValue]="bsEffectiveDate"
+                                    [class.errorIP]="EffectiveFrom.invalid && isSubmitted"
+                                    class="form-control textbox_border_input" [readonly]="true">
+                                <div class="display-error">
+                                    <div *ngIf="EffectiveFrom.invalid && isSubmitted">
+                                        <span *ngIf="EffectiveFrom.errors.required">
+                                            <!-- Effective Date Required -->
+                                            {{_Manageformscreen.EffectiveDate.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="EffectiveTo.invalid && isSubmitted">Expiration Date</label>
+                                <input type="text" [class.errorIP]="EffectiveTo.invalid && isSubmitted"
+                                    placeholder="MM/dd/yyyy" formControlName="EffectiveTo" bsDatepicker
+                                    [bsConfig]="{ showWeekNumbers:false }" [minDate]="minDate"
+                                    [bsValue]="bsExpirationDate" class="form-control textbox_border_input"
+                                    [readonly]="true">
+                                <div class="display-error">
+
+                                    <div *ngIf="EffectiveTo.invalid && isSubmitted">
+                                        <span *ngIf="EffectiveTo.errors.required">
+                                            <!-- Expiration Date Required -->
+                                            {{_Manageformscreen.ExpirationDate.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel_relative"
+                                    [class.errorIPLabel]="!isFileExists && isSubmitted">Upload Excel</label>
+                                <input type="file" (change)="uploadExcel($event)" placeholder="Upload file" />
+                                <div class="display-error">
+                                    <span *ngIf="!isFileExists && isSubmitted">
+                                        <!-- File Required -->
+                                        {{_Manageformscreen.FileRequired.required}}
+                                    </span>
+                                    <span *ngIf="!isvalidExtension && isSubmitted && isFileExists">
+                                        <!-- Invalid file  -->
+                                        {{_Manageformscreen.FileRequired.valid}}
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div *ngIf="isEdit && downloadExcelName && base64EncodedExcel"
+                            class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <div class="form-group">
+                                <!-- <button style="margin-top: 20px;" (click)="Download()">Download</button><span> &nbsp;&nbsp;{{downloadExcelName}}</span> -->
+
+                                <button [disabled]="disableDownExcel" class="button_white"
+                                    style="margin-top: 24px; float: left;" (click)="Download()">Download <i
+                                        aria-hidden="true" class="fa fa-download"></i></button><span
+                                    style="display: inline-block;margin-top: 27px; float: left;"
+                                    [ngClass]="disableDownExcel?'text-muted':''">
+                                    &nbsp;&nbsp;{{downloadExcelName}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group fg_half">
+                                <label class="textbox_borderlabel_relative">Status</label>
+                                <label class="switch">
+                                    <input type="checkbox" formControlName="IsActive" />
+                                    <div></div>
+                                </label>
+                                <div class="display-error">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-block">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right rm-pad-left rm-pad-right">
+                <button type="button" (click)="onCancel()" class="button_white">Cancel</button>
+                <button type="submit" (click)="onSaveForm()" class="btn-theme">Save</button>
+            </div>
+        </div>
+
+    </div>
+</form>

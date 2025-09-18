@@ -1,0 +1,45 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4> List of Forms</h4>
+    </div>
+</div>
+<div class="transferquote-content">
+    <div class="single-block listparameterLeft">
+        <ul class="list-group list-group-flush parameterList" id="paramKey" style="padding: 4px 0px 10px 0px;">
+            <input type="text" readonly *ngFor="let data of formTypeList; let i=index; trackBy: trackByFormType"
+                [value]="data.formTypeDescription" class="list-group-item border-0 parameterListIp"
+                [ngClass]="{'active': selectedScreen == data.formType}" (keydown)="keyDownScreen($event,data,i)"
+                (click)="OnScreenChange(data)">
+        </ul>
+    </div>
+    <div class="single-block tableMarginZero listparameterRight">
+        <div class="pcr-heading pgblock-heading">
+            <h4>{{selectedScreen.formTypeDescription}} Forms <button class="button_white" style="float:right;"
+                    (click)="addEditScreenForm('add',null)">+ Form</button></h4>
+
+        </div>
+        <div class="single-block tableMarginZero paremetertableGrid">
+            <lib-data-view [DataSource]="dataSource" [NoRecordsMessage]="NoRecordsMessage" [Pagination]="false"
+                [ColumnList]="ColumnList">
+                <ng-template #DataViewHeading>
+                    <th> Effective Date</th>
+                    <th> Expiration Date</th>
+                    <th> Status</th>
+                    <th>Action</th>
+                </ng-template>
+                <ng-template #DataViewContent let-data="data">
+                    <ng-container>
+                        <td><span>{{data.effectiveFrom | date:'MM/dd/yyyy'}}</span></td>
+                        <td><span>{{data.effectiveTo | date:'MM/dd/yyyy'}}</span></td>
+                        <td><span> <img *ngIf="data.isActive == true" src="assets/images/active.png"> <img
+                                    *ngIf="data.isActive == false" src="assets/images/inactive.png">
+                                &nbsp;{{data.isActive == true ? 'Active' : (data.isActive == false ? 'Inactive' : '')}}
+                            </span>
+                        </td>
+                        <td><span class="hiperLink" (click)="addEditScreenForm('edit',data)">Edit</span></td>
+                    </ng-container>
+                </ng-template>
+            </lib-data-view>
+        </div>
+    </div>
+</div>

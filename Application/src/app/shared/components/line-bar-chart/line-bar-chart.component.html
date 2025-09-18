@@ -1,0 +1,65 @@
+<div class="chart-wrapper">
+  <svg class="chart-svg" [attr.viewBox]="'0 0 ' + width + ' ' + height">
+    <!-- Grid + Y labels -->
+    <g>
+      <line *ngFor="let t of ticks"
+            [attr.x1]="chartLeft" [attr.x2]="chartRight"
+            [attr.y1]="getY(t)" [attr.y2]="getY(t)"
+            stroke="#e5e7eb" stroke-dasharray="4"/>
+      <!-- Y tick labels -->
+      <text *ngFor="let t of ticks"
+            [attr.x]="chartLeft - 10"
+            [attr.y]="getY(t) + 4"
+            text-anchor="end"
+            font-size="18"
+            fill="#6b7280">
+        {{t}}
+      </text>
+      <!-- Add 0 at bottom -->
+      <text [attr.x]="chartLeft - 10"
+            [attr.y]="chartBottom"
+            text-anchor="end"
+            font-size="18"
+            fill="#6b7280">
+        0
+      </text>
+    </g>
+
+    <!-- Bars: A (purple) -->
+    <rect *ngFor="let v of datasetA; let i = index"
+          [attr.x]="getX(i) - barWidth - barGap/2"
+          [attr.y]="getY(v)"
+          [attr.width]="barWidth"
+          [attr.height]="chartBottom - getY(v)"
+          rx="6" ry="6" fill="#6C63FF">
+      <title>{{labels[i]}} A: {{v}}</title>
+    </rect>
+
+    <!-- Bars: B (cyan) -->
+    <rect *ngFor="let v of datasetB; let i = index"
+          [attr.x]="getX(i) + barGap/2"
+          [attr.y]="getY(v)"
+          [attr.width]="barWidth"
+          [attr.height]="chartBottom - getY(v)"
+          rx="6" ry="6" fill="#22D3EE">
+      <title>{{labels[i]}} B: {{v}}</title>
+    </rect>
+
+    <!-- Line -->
+    <polyline [attr.points]="linePoints"
+              fill="none" stroke="#EF4444" stroke-width="3"
+              stroke-linecap="round" stroke-linejoin="round"/>
+    <circle *ngFor="let v of lineData; let i = index"
+            [attr.cx]="getX(i)" [attr.cy]="getY(v)" r="4" fill="#EF4444">
+      <title>{{labels[i]}}: {{v}}</title>
+    </circle>
+
+    <!-- X labels -->
+    <text *ngFor="let m of labels; let i=index"
+          [attr.x]="getX(i)" [attr.y]="height - 8"
+          text-anchor="middle" font-size="12" fill="#6b7280">
+      {{ m }}
+    </text>
+  </svg>
+</div>
+

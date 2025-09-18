@@ -1,0 +1,141 @@
+<div class="select-quick-quote-header">
+    <h2>New Quote</h2>
+    <span (click)="cancel()" class="close-dialog"><img src="assets/images/delete-popup.png"></span>
+</div>
+<form [formGroup]="QuotesForm">
+    <div class="pagemodal-content" [style.height]=" (LobList.length>2) ? '360px' : '300px'">
+        <div class="modal_select_quote">
+            <div class="col-md-12 pd_zero">
+                <div class="form-group">
+                    <label class="textbox_borderlabel_relative mb-10">Select Quote Type</label>
+                    <div class="styled-radio">
+                        <div class="radio" style="margin: 0 16px;"
+                            *ngIf="(identifier.indexOf('convelo')==-1 && identifier.indexOf('lambis')==-1 && identifier.indexOf('demo')==-1 && identifier.indexOf('aqnext')==-1)">
+                            <input type="radio" id="SQ_Quick" value="QQ" dataTextFocus formControlName="QuoteType"
+                                checked>
+                            <label for="SQ_Quick" class="alert_check">
+                                <div class="checker"></div>
+                                Quick Quote
+                            </label>
+                        </div>
+                        <div class="radio" style="margin: 0 16px;">
+                            <input type="radio" formControlName="QuoteType" value="FQ" id="SQ_Full">
+                            <label for="SQ_Full" class="alert_check">
+                                <div class="checker"></div>
+                                Full Quote
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12"
+            [ngStyle]="(LobList.length>2) ? {'margin-bottom':'5%','margin-top':'11px'}:  {'margin-bottom':'5.5%','margin-top':'20px'} ">
+            <div class="form-group" style="padding: 0px 8px;">
+                <label class="textbox_borderlabel" style="margin-top: -19px; margin-left:-6px;">Line of Business</label>
+                <div *ngFor="let lob of LobList"
+                    style="display:inline-block ; margin-top:9px; margin-right:10px; font-size: 14px;">
+                    <input type="checkbox"
+                        *ngIf="((identifier.indexOf('convelo')==-1 && identifier.indexOf('lambis')==-1  && identifier.indexOf('demo')==-1 && identifier.indexOf('aqnext')==-1))"
+                        [value]="lob.lob" (change)="onCheckChange($event)" style="margin:5px">
+                    <ng-container
+                        *ngIf="((identifier.indexOf('convelo')==-1 && identifier.indexOf('lambis')==-1 && identifier.indexOf('demo')==-1 && identifier.indexOf('aqnext')==-1))">{{lob.lobName}}</ng-container>
+                    <div class="styled-radio">
+                        <div class="radio" style="margin: 0;"
+                            *ngIf="identifier.indexOf('convelo')!=-1 || identifier.indexOf('lambis')!=-1  || identifier.indexOf('demo')!=-1 || identifier.indexOf('aqnext')!==-1">
+                            <input type="radio" id="{{lob.lob}}" name="lob" [value]="lob.lob"
+                                (change)="onRadioCheckChange($event)" dataTextFocus>
+                            <label for="{{lob.lob}}" class="alert_check">
+                                <div class="checker"></div>
+                                {{lob.lobName}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12"
+            *ngIf="(identifier.indexOf('convelo')==-1 && identifier.indexOf('lambis')==-1  && identifier.indexOf('demo')==-1 && identifier.indexOf('aqnext')==-1)">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="textbox_borderlabel">Primary State</label>
+                    <select class="form-control dropdown_border" formControlName="State">
+                        <option value="">Select</option>
+                        <option *ngFor="let state of StateList" [value]="state.stateDescription">
+                            {{state.stateDescription}}</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12"
+            *ngIf="(identifier.indexOf('convelo')!=-1 || identifier.indexOf('lambis')!=-1 ||  identifier.indexOf('demo')!=-1 || identifier.indexOf('aqnext')!==-1)">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="textbox_borderlabel">Primary State</label>
+                    <select class="form-control dropdown_border" formControlName="State">
+                        <option value="">Select</option>
+                        <option *ngFor="let state of StateList" [value]="state.stateDescription">
+                            {{state.stateDescription}}</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-12" style="  margin-top: 16px;"
+            *ngIf="(identifier.indexOf('convelo')==-1 && identifier.indexOf('lambis')==-1 && identifier.indexOf('demo')==-1 && identifier.indexOf('aqnext')==-1)">
+            <div class="col-sm-4">
+
+                <div class="form-group">
+                    <label class="textbox_borderlabel_relative" style="
+                    margin-bottom: 12px;
+                ">
+                        Do you have ACORD form?</label> <br />
+
+                    <div class="radio" style="
+                    display: inline-block;
+                    margin-left: 14px;
+                ">
+                        <input type="radio" id="acordYes" value="yes" formControlName="accordYN">
+                        <label for="acordYes" class="alert_check" style="border: none;">
+                            <div class="checker"></div>
+                            Yes
+                        </label>
+                    </div>
+                    <div class="radio" style="
+                    display: inline-block;
+                    margin-left: 14px;
+                ">
+                        <input type="radio" formControlName="accordYN" value="no" id="acordNo">
+                        <label for="acordNo" class="alert_check" style="border: none;">
+                            <div class="checker"></div>
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group" *ngIf="accordYN.value == 'yes'">
+                    <label class="textbox_borderlabel_relative" style="
+                    margin-bottom: 12px;
+                "><br /></label>
+                    <input type="file" id='accordfile' accept="application/pdf" placeholder="Upload file"
+                        (change)="printFile($event)" name='accordfile'
+                        style="margin-left: 20px;margin-top: 33px; font-size: 14px;" />
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <button type="button" (click)="cancel()" class="button_white"
+                style="margin-top:12px; float:right;">Cancel</button>
+
+            <button type="submit" (click)="onClose()"
+                [disabled]="(QuotesForm.invalid && accordYN.value == 'no') || (accordYN.value == 'yes' && !formData)"
+                class="btn-theme" style="margin-top:12px; float:right;">OK</button>
+        </div>
+    </div>
+</form>

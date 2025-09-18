@@ -1,0 +1,100 @@
+@import "primary-color.css";
+
+.btn-theme-radius {
+    width: 100%;
+    text-align: center;
+    /* background-color: #f07930; */
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 16px;
+    border-radius: 20px;
+}
+.btn-theme-radius:hover, .btn-theme-radius:focus {
+    background-color: var(--primary-hover-color);
+    color: #fff;
+    outline: 0;
+    box-shadow: none;
+}
+.quoteBtn {
+    font-size: 13px;
+    border:none;
+    padding: 3px 8px;
+}
+.quoteBtn:hover {
+    background-color: var(--primary-hover-color);
+    color: #fff;
+}
+
+.right-buttons {
+    text-align: right;
+}
+.cancel-btn {
+    font-size: 16px;
+    background-color: #ebebeb;
+    color: #333;
+    border:1px solid #333;
+    margin-right: 10px;
+    border-radius: 1.25rem;
+    width: 160px;
+}
+.cancel-btn:hover, .cancel-btn:visited, .cancel-btn:focus {
+    color: #333;
+    outline: none;
+}
+.fix_width {
+    width: 160px;
+}
+.button_white {
+    margin-left: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-weight: 400;
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    height: 30px;
+    padding: 0 8px 0 8px;
+    word-break: break-word;
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    color: #000;
+    min-width: 80px;
+}
+.button_white:hover, .button_white:focus {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    outline: 0;
+}
+
+.btn-theme {
+    margin-left: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-weight: 400;
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    height: 30px;
+    padding: 0 8px 0 8px;
+    word-break: break-word;
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    color: #000;
+    min-width: 80px;
+}
+.btn-theme:hover, .btn-theme:focus {
+    background: var(--primary-color);
+    color: #fff;
+    border: 1px solid var(--primary-color);
+    outline:none;
+}
+
+.btn-theme.disabledButton {
+    opacity: 0.5 !important;
+}

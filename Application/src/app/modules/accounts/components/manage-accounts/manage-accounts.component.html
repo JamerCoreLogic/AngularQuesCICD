@@ -1,0 +1,387 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>My Account</h4>
+    </div>
+</div>
+<div class="transferquote-content">
+    <form [formGroup]="accountForm">
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Account Details</h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Username</label>
+                                <div class="disabled-roles">
+                                    <span>{{UserName.value}}</span>
+                                </div>
+                                <div class="display-error">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <span class="changepwd-link" (click)="ShowChangePassword()">Change Password</span>
+                            </div>
+                        </div>
+                        <div *ngIf="isChangePassword">
+                            <!--Change Password-->
+                            <app-myaccount-change-password (passwordChanged)="confirmPasswordChange($event)">
+                            </app-myaccount-change-password>
+                            <!---->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Personal Details</h4>
+            </div>
+            <div class="pcr-block">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="FirstName.invalid && submitted">First Name<span
+                                        class="required">*</span></label>
+                                <input formControlName="FirstName" dataTextFocus type="text"
+                                    placeholder="Add First Name" class="form-control textbox_border_input"
+                                    maxlength="50" (keypress)="ValidateKey.key($event)"
+                                    [class.errorIP]="FirstName.invalid && submitted">
+                                <div class="display-error">
+                                    <div *ngIf="FirstName.invalid && submitted">
+                                        <span *ngIf="FirstName.errors.required">
+                                            <!-- First Name Required -->
+                                            {{_ManageAccontScreen.FirstName.required}}
+                                        </span>
+                                        <span *ngIf="FirstName.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_ManageAccontScreen.FirstName.space}}
+                                        </span>
+                                        <span *ngIf="FirstName.errors.whitespace">
+                                            <!-- First Name Required -->
+                                            {{_ManageAccontScreen.FirstName.whitespace}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Middle Name</label>
+                                <input formControlName="Middlename" type="text" placeholder="Add Middle Name"
+                                    class="form-control textbox_border_input" maxlength="50"
+                                    (keypress)="ValidateKey.key($event)">
+                                <div class="display-error">
+                                    <span *ngIf="middleName.errors?.pattern">
+                                        <!-- One Space Allowed Between Words -->
+                                        {{_ManageAccontScreen.MiddleName.space}}
+                                    </span>
+
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="LastName.invalid && submitted">Last Name<span
+                                        class="required">*</span></label>
+                                <input formControlName="LastName" type="text" placeholder="Add Last Name"
+                                    class="form-control textbox_border_input" maxlength="50"
+                                    (keypress)="ValidateKey.key($event)"
+                                    [class.errorIP]="LastName.invalid && submitted">
+                                <div class="display-error">
+                                    <div *ngIf="LastName.invalid && submitted">
+                                        <span *ngIf="LastName.errors.required">
+                                            <!-- Last Name Required -->
+                                            {{_ManageAccontScreen.LastName.required}}
+                                        </span>
+                                        <span *ngIf="LastName.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_ManageAccontScreen.LastName.space}}
+                                        </span>
+                                        <span *ngIf="LastName.errors.whitespace">
+                                            <!-- Last Name Required -->
+                                            {{_ManageAccontScreen.LastName.whitespace}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="Zip.invalid && (submitted || isZipInvalid)">Zip<span
+                                        class="required">*</span></label>
+                                <input formControlName="Zip" (keypress)="ValidateKey.WholeNumbers($event, 5)"
+                                    placeholder="Add Zip" type="text" class="form-control textbox_border_input"
+                                    [class.errorIP]="Zip.invalid && (submitted || isZipInvalid)">
+                                <div class="display-error">
+                                    <div *ngIf="Zip.invalid && (submitted || isZipInvalid)">
+                                        <span *ngIf="Zip.errors.required"> {{_ManageAccontScreen.Zip.required}}</span>
+                                        <span *ngIf="Zip.errors.minlength">
+                                            <!-- Zip Code must be 5 characters -->
+                                            {{_ManageAccontScreen.Zip.lenth}}
+                                        </span>
+                                        <span *ngIf="Zip.errors.notvalid">{{zipErrorMessage}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">City</label>
+                                <input formControlName="City" type="text" class="form-control textbox_border_input"
+                                    placeholder="Add City">
+                                <div class="display-error">
+                                    <div *ngIf="City.invalid && submitted">
+                                        <span *ngIf="City.errors.required">
+                                            <!-- City Required -->
+                                            {{_ManageAccontScreen.City.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">State</label>
+                                <input formControlName="State" type="text" class="form-control textbox_border_input"
+                                    placeholder="Add State">
+                                <div class="display-error">
+                                    <div *ngIf="State.invalid && submitted">
+                                        <span *ngIf="State.errors.required">
+                                            <!-- State Required -->
+                                            {{_ManageAccontScreen.State.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="(AddressLine1.invalid && submitted) || isAddress1Valid">Street
+                                    Address<span class="required">*</span></label>
+                                <input formControlName="AddressLine1"
+                                    [class.errorIP]="(AddressLine1.invalid && submitted) || isAddress1Valid"
+                                    (blur)="validateAddress()" type="text" placeholder="Add Address Line 1"
+                                    class="form-control textbox_border_input" maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="AddressLine1.invalid && submitted">
+                                        <span *ngIf="AddressLine1.errors.whitespace">
+                                            <!-- Street Address Required -->
+                                            {{_ManageAccontScreen.StreetAddress.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <input formControlName="AddressLine2" type="text" placeholder="Add Address Line 2"
+                                    class="form-control textbox_border_input" maxlength="50">
+                                <div class="display-error">
+
+                                    <div *ngIf="AddressLine1.invalid && submitted && !isAddress1Valid">
+                                        <span *ngIf="AddressLine1.errors.required">
+                                            <!-- Street Address Required -->
+                                            {{_ManageAccontScreen.StreetAddress.required}}
+                                        </span>
+                                        <span *ngIf="AddressLine1.errors.whitespace">
+                                            <!-- Street Address Required -->
+                                            {{_ManageAccontScreen.StreetAddress.space}}
+                                        </span>
+                                    </div>
+                                    <span *ngIf="isAddress1Valid">{{address1ErrorMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Email Address<span class="required">*</span></label>
+                                <div class="disabled-roles">
+                                    <span>{{Email.value}}</span>
+                                </div>
+                                <div class="display-error">
+                                    <div *ngIf="Email.invalid && submitted">
+                                        <span *ngIf="Email.errors.required">
+                                            <!-- Email Address Required -->
+                                            {{_ManageAccontScreen.EmailAddress.required}}
+                                        </span>
+                                        <span *ngIf="Email.errors.email">
+                                            <!-- Enter Valid Email Adddress -->
+                                            {{_ManageAccontScreen.EmailAddress.valid}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="PhoneCell.invalid && submitted ">Cell Phone<span
+                                        class="required">*</span></label>
+                                <input formControlName="PhoneCell" placeholder="(999) 999-9999" id="tel" maxlength="14"
+                                    [phoneControl]="accountForm.controls['PhoneCell']" phoneMask
+                                    [preValue]="accountForm.value.PhoneCell" type="text"
+                                    class="form-control textbox_border_input"
+                                    [class.errorIP]="PhoneCell.invalid && (submitted || PhoneCell.touched)">
+                                <div class="display-error">
+                                    <div *ngIf="PhoneCell.invalid && (submitted || PhoneCell.touched) ">
+                                        <span *ngIf="PhoneCell.errors.required">
+                                            <!-- Cell Phone Required -->
+                                            {{_ManageAccontScreen.CellPhone.required}}
+                                        </span>
+                                        <span *ngIf="PhoneCell.errors.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_ManageAccontScreen.CellPhone.format}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Office Phone</label>
+                                <input formControlName="PhoneOffice" placeholder="(999) 999-9999" id="tel"
+                                    maxlength="14" [phoneControl]="accountForm.controls['PhoneOffice']" phoneMask
+                                    [preValue]="accountForm.value.PhoneOffice" placeholder="(999) 999-9999" type="text"
+                                    class="form-control textbox_border_input"
+                                    [class.errorIP]="PhoneOffice.invalid && (submitted || PhoneOffice.touched)">
+
+                                <div class="display-error">
+                                    <div *ngIf="PhoneOffice.invalid && (submitted || PhoneOffice.touched)">
+                                        <span *ngIf="PhoneOffice.errors.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_ManageAccontScreen.OfficePhone.format}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Home Phone</label>
+                                <input formControlName="PhoneHome" placeholder="(999) 999-9999" id="tel" maxlength="14"
+                                    [phoneControl]="accountForm.controls['PhoneHome']" phoneMask
+                                    [preValue]="accountForm.value.PhoneHome" placeholder="(999) 999-9999" type="text"
+                                    class="form-control textbox_border_input"
+                                    [class.errorIP]="PhoneHome.invalid && (submitted || PhoneHome.touched)">
+
+                                <div class="display-error">
+                                    <div *ngIf="PhoneHome.invalid && (submitted || PhoneHome.touched)">
+                                        <span *ngIf="PhoneHome.errors.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_ManageAccontScreen.HomePhone.format}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Fax #</label>
+
+                                <input formControlName="Fax" placeholder="(999) 999-9999" id="tel" maxlength="14"
+                                    [phoneControl]="accountForm.controls['Fax']" phoneMask
+                                    [preValue]="accountForm.value.Fax" placeholder="(999) 999-9999" type="text"
+                                    class="form-control textbox_border_input"
+                                    [class.errorIP]="Fax.invalid && (submitted || Fax.touched)">
+
+                                <div class="display-error">
+                                    <div *ngIf="Fax.invalid && (submitted || Fax.touched)">
+                                        <span *ngIf="Fax.errors.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_ManageAccontScreen.Fax.format}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Roles</label>
+                                <div class="disabled-roles accountRoles">
+                                    <span *ngFor="let role of roles">
+                                        {{role.roleName}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero mt-20"></div>
+                        <div *ngIf="RoleCode == 'AgencyAdmin' || RoleCode == 'Agent' || RoleCode == 'Manager' || RoleCode == 'Supervisor'"
+                            class="col-xs-12 col-sm-4 col-md-3 col-lg-3 pd_zero">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Agency Name</label>
+                                <div class="disabled-roles">
+                                    <span>{{AgencyName.value}}</span>
+                                </div>
+                                <div class="display-error">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isHierarchyVisible" class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Hierarchy</h4>
+            </div>
+            <div class="pcr-block">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div *ngIf="SupervisorName.value" class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Supervisor</label>
+                                <div class="disabled-roles">
+                                    <span> {{SupervisorName.value}}</span>
+                                </div>
+                                <div class="display-error">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="ManagerName.value" class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Manager</label>
+                                <div class="disabled-roles">
+                                    <span> {{ManagerName.value}}</span>
+                                </div>
+                                <div class="display-error">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="single-block">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right rm-pad-left rm-pad-right">
+                <button type="button" (click)="redirectToHome()" class="button_white">Cancel</button>
+                <button type="submit" (click)="SaveAccountWithOserverPattern()" class="btn-theme">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

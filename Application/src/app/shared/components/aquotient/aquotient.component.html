@@ -1,0 +1,18 @@
+<div class="hf-left-panel">
+    <div class="hflp-first">
+        <span class="hflp-first-heading">AQ</span>
+    </div>
+    <div class="hflp-second">
+        <ul>
+            <li *ngFor="let item of quotientData">
+                <p>
+                    <span class="hflp-second-heading">{{item.performanceMeasureName}}</span>
+                    <span class="hflp-second-rating">{{item.value}}</span>
+                    <span class="hflp-second-rating-star">
+                        <img *ngFor="let i of generateArray(item.value)" src="assets/images/Yellow_Star.png">
+                        <img *ngFor="let i of generateArray(5 - item.value)" src="assets/images/Yellow_grey.png">
+                    </span></p>
+            </li>
+        </ul>
+    </div>
+</div>

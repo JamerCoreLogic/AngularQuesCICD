@@ -1,0 +1,682 @@
+{
+    "data": {
+        "quote": [
+            {
+                "quoteId": 29,
+                "quoteNumber": "QCPA000001",
+                "policyNumber": "PCP0000001",
+                "isOpenTask": true,
+                "insuredName": " Anthony Michae Benjamin",
+                "alfredFlag": "True",
+                "currentStatus": null,
+                "alerts": [
+                    {
+                        "alferdAlertTypeID": 1,
+                        "description": "Flood",
+                        "iconURL": "http://makri.kmgus.com/agencyqapi/Documents/AgencyQImages/AlertsImages/quoteicon3.png"
+                    },
+                    {
+                        "alferdAlertTypeID": 2,
+                        "description": "Fire Risk",
+                        "iconURL": "http://makri.kmgus.com/agencyqapi/Documents/AgencyQImages/AlertsImages/quoteicon4.png"
+                    }
+                ]
+            },
+            {
+                "quoteId": 30,
+                "quoteNumber": "QCPA000001",
+                "policyNumber": "PCP0000001",
+                "isOpenTask": true,
+                "insuredName": " Jacob  Christopher",
+                "alfredFlag": "True",
+                "currentStatus": null,
+                "alerts": [
+                    {
+                        "alferdAlertTypeID": 2,
+                        "description": "Fire Risk",
+                        "iconURL": "http://makri.kmgus.com/agencyqapi/Documents/AgencyQImages/AlertsImages/quoteicon4.png"
+                    }
+                ]
+            },
+            {
+                "quoteId": 31,
+                "quoteNumber": "QCPA000001",
+                "policyNumber": "PCP0000001",
+                "isOpenTask": true,
+                "insuredName": " Daniel  William",
+                "alfredFlag": "True",
+                "currentStatus": null,
+                "alerts": [
+                    {
+                        "alferdAlertTypeID": 3,
+                        "description": "Earthquake Risk",
+                        "iconURL": "http://makri.kmgus.com/agencyqapi/Documents/AgencyQImages/AlertsImages/quoteicon1.png"
+                    }
+                ]
+            },
+            {
+                "quoteId": 32,
+                "quoteNumber": "QCPA000001",
+                "policyNumber": "PCP0000001",
+                "isOpenTask": null,
+                "insuredName": " Alexander  Noah",
+                "alfredFlag": "True",
+                "currentStatus": null,
+                "alerts": [
+                    {
+                        "alferdAlertTypeID": 2,
+                        "description": "Fire Risk",
+                        "iconURL": "http://makri.kmgus.com/agencyqapi/Documents/AgencyQImages/AlertsImages/quoteicon4.png"
+                    },
+                    {
+                        "alferdAlertTypeID": 3,
+                        "description": "Earthquake Risk",
+                        "iconURL": "http://makri.kmgus.com/agencyqapi/Documents/AgencyQImages/AlertsImages/quoteicon1.png"
+                    }
+                ]
+            },
+            {
+                "quoteId": 33,
+                "quoteNumber": "QCPA000001",
+                "policyNumber": "PCP0000001",
+                "isOpenTask": null,
+                "insuredName": " Michael James Jose",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 34,
+                "quoteNumber": "QCPA000001",
+                "policyNumber": "PCP0000001",
+                "isOpenTask": null,
+                "insuredName": " Michael Benjamin Elijah",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 35,
+                "quoteNumber": "QCPA000007",
+                "policyNumber": "PCP0000007",
+                "isOpenTask": null,
+                "insuredName": " William Jose Gavin",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 36,
+                "quoteNumber": "QCPA000008",
+                "policyNumber": "PCP0000008",
+                "isOpenTask": true,
+                "insuredName": " Noah  Andrew",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 37,
+                "quoteNumber": "QCPA000009",
+                "policyNumber": "PCP0000009",
+                "isOpenTask": true,
+                "insuredName": " Aiden  Anthony",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 38,
+                "quoteNumber": "QCPA000010",
+                "policyNumber": "PCP0000010",
+                "isOpenTask": true,
+                "insuredName": " Ethan  Jacob",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 39,
+                "quoteNumber": "QCPA000011",
+                "policyNumber": "PCP0000011",
+                "isOpenTask": false,
+                "insuredName": " Benjamin  James",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 40,
+                "quoteNumber": "QCPA000012",
+                "policyNumber": "PCP0000012",
+                "isOpenTask": true,
+                "insuredName": " Benjamin William David",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 41,
+                "quoteNumber": "QCPA000013",
+                "policyNumber": "PCP0000013",
+                "isOpenTask": false,
+                "insuredName": " Christopher Noah Daniel",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 42,
+                "quoteNumber": "QCPA000014",
+                "policyNumber": "PCP0000014",
+                "isOpenTask": false,
+                "insuredName": " Jackson  Gavin",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 43,
+                "quoteNumber": "QCPA000015",
+                "policyNumber": "PCP0000015",
+                "isOpenTask": false,
+                "insuredName": " Jose  Ethan",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 44,
+                "quoteNumber": "QCPA000016",
+                "policyNumber": "PCP0000016",
+                "isOpenTask": false,
+                "insuredName": " Elijah Benjamin Logan",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 45,
+                "quoteNumber": "QCPA000017",
+                "policyNumber": "PCP0000017",
+                "isOpenTask": false,
+                "insuredName": " David  Benjamin",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 46,
+                "quoteNumber": "QCPA000018",
+                "policyNumber": "PCP0000018",
+                "isOpenTask": false,
+                "insuredName": " Daniel Anthony Daniel",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 47,
+                "quoteNumber": "QCPA000019",
+                "policyNumber": "PCP0000019",
+                "isOpenTask": false,
+                "insuredName": " Gavin  William",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 48,
+                "quoteNumber": "QCPA000020",
+                "policyNumber": "PCP0000020",
+                "isOpenTask": true,
+                "insuredName": " Andrew Daniel Benjamin",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 49,
+                "quoteNumber": "QCPA000021",
+                "policyNumber": "PCP0000021",
+                "isOpenTask": true,
+                "insuredName": " Ethan  William",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 50,
+                "quoteNumber": "QCPA000022",
+                "policyNumber": "PCP0000022",
+                "isOpenTask": false,
+                "insuredName": " Logan  William",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 51,
+                "quoteNumber": "QCPA000023",
+                "policyNumber": "PCP0000023",
+                "isOpenTask": true,
+                "insuredName": " Tyler Daniel Christopher",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 52,
+                "quoteNumber": "QCPA000024",
+                "policyNumber": "PCP0000024",
+                "isOpenTask": false,
+                "insuredName": " Kanisha   Waycott",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 53,
+                "quoteNumber": "QCPA000025",
+                "policyNumber": "PCP0000025",
+                "isOpenTask": true,
+                "insuredName": " Emerson   Bowley",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 54,
+                "quoteNumber": "QCPA000001",
+                "policyNumber": "PCP0000001",
+                "isOpenTask": false,
+                "insuredName": " James  Butt",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 56,
+                "quoteNumber": "QCPA000003",
+                "policyNumber": "PCP0000003",
+                "isOpenTask": false,
+                "insuredName": " Art  Venere",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 57,
+                "quoteNumber": "QCPA000004",
+                "policyNumber": "PCP0000004",
+                "isOpenTask": true,
+                "insuredName": " Lenna  Paprocki",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 58,
+                "quoteNumber": "QCPA000005",
+                "policyNumber": "PCP0000005",
+                "isOpenTask": false,
+                "insuredName": " Donette  Foller",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 59,
+                "quoteNumber": "QCPA000006",
+                "policyNumber": "PCP0000006",
+                "isOpenTask": true,
+                "insuredName": " Simona  Morasca",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 60,
+                "quoteNumber": "QCPA000007",
+                "policyNumber": "PCP0000007",
+                "isOpenTask": false,
+                "insuredName": " Mitsue  Tollner",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 61,
+                "quoteNumber": "QCPA000008",
+                "policyNumber": "PCP0000008",
+                "isOpenTask": true,
+                "insuredName": " Leota  Dilliard",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 62,
+                "quoteNumber": "QCPA000009",
+                "policyNumber": "PCP0000009",
+                "isOpenTask": false,
+                "insuredName": " Sage  Wieser",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 63,
+                "quoteNumber": "QCPA000010",
+                "policyNumber": "PCP0000010",
+                "isOpenTask": true,
+                "insuredName": " Kris  Marrier",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 64,
+                "quoteNumber": "QCPA000011",
+                "policyNumber": "PCP0000011",
+                "isOpenTask": false,
+                "insuredName": " Minna  Amigon",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 65,
+                "quoteNumber": "QCPA000012",
+                "policyNumber": "PCP0000012",
+                "isOpenTask": true,
+                "insuredName": " Abel  Maclead",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 66,
+                "quoteNumber": "QCPA000013",
+                "policyNumber": "PCP0000013",
+                "isOpenTask": false,
+                "insuredName": " Kiley  Caldarera",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 67,
+                "quoteNumber": "QCPA000014",
+                "policyNumber": "PCP0000014",
+                "isOpenTask": true,
+                "insuredName": " Graciela  Ruta",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 68,
+                "quoteNumber": "QCPA000015",
+                "policyNumber": "PCP0000015",
+                "isOpenTask": false,
+                "insuredName": " Cammy  Albares",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 69,
+                "quoteNumber": "QCPA000016",
+                "policyNumber": "PCP0000016",
+                "isOpenTask": true,
+                "insuredName": " Mattie  Poquette",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 70,
+                "quoteNumber": "QCPA000017",
+                "policyNumber": "PCP0000017",
+                "isOpenTask": false,
+                "insuredName": " Meaghan  Garufi",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 71,
+                "quoteNumber": "QCPA000018",
+                "policyNumber": "PCP0000018",
+                "isOpenTask": true,
+                "insuredName": " Gladys  Rim",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 72,
+                "quoteNumber": "QCPA000019",
+                "policyNumber": "PCP0000019",
+                "isOpenTask": false,
+                "insuredName": " Yuki  Whobrey",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 73,
+                "quoteNumber": "QCPA000020",
+                "policyNumber": "PCP0000020",
+                "isOpenTask": true,
+                "insuredName": " Fletcher  Flosi",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 74,
+                "quoteNumber": "QCPA000021",
+                "policyNumber": "PCP0000021",
+                "isOpenTask": false,
+                "insuredName": " Bette  Nicka",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 75,
+                "quoteNumber": "QCPA000022",
+                "policyNumber": "PCP0000022",
+                "isOpenTask": true,
+                "insuredName": " Veronika  Inouye",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 76,
+                "quoteNumber": "QCPA000023",
+                "policyNumber": "PCP0000023",
+                "isOpenTask": false,
+                "insuredName": " Willard  Kolmetz",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 77,
+                "quoteNumber": "QCPA000024",
+                "policyNumber": "PCP0000024",
+                "isOpenTask": true,
+                "insuredName": " Maryann  Royster",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 78,
+                "quoteNumber": "QCPA000025",
+                "policyNumber": "PCP0000025",
+                "isOpenTask": false,
+                "insuredName": " Alisha  Slusarski",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 79,
+                "quoteNumber": "QCPA000026",
+                "policyNumber": "PCP0000026",
+                "isOpenTask": true,
+                "insuredName": " Allene  Iturbide",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 80,
+                "quoteNumber": "QCPA000027",
+                "policyNumber": "PCP0000027",
+                "isOpenTask": false,
+                "insuredName": " Chanel  Caudy",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 81,
+                "quoteNumber": "QCPA000028",
+                "policyNumber": "PCP0000028",
+                "isOpenTask": true,
+                "insuredName": " Ezekiel  Chui",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 82,
+                "quoteNumber": "QCPA000029",
+                "policyNumber": "PCP0000029",
+                "isOpenTask": false,
+                "insuredName": " Willow  Kusko",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 83,
+                "quoteNumber": "QCPA000030",
+                "policyNumber": "PCP0000030",
+                "isOpenTask": true,
+                "insuredName": " Bernardo  Figeroa",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 84,
+                "quoteNumber": "QCPA000031",
+                "policyNumber": "PCP0000031",
+                "isOpenTask": false,
+                "insuredName": " Ammie  Corrio",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 85,
+                "quoteNumber": "QCPA000032",
+                "policyNumber": "PCP0000032",
+                "isOpenTask": true,
+                "insuredName": " Francine  Vocelka",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 86,
+                "quoteNumber": "QCPA000033",
+                "policyNumber": "PCP0000033",
+                "isOpenTask": false,
+                "insuredName": " Ernie  Stenseth",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 87,
+                "quoteNumber": "QCPA000034",
+                "policyNumber": "PCP0000034",
+                "isOpenTask": true,
+                "insuredName": " Albina  Glick",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 88,
+                "quoteNumber": "QCPA000035",
+                "policyNumber": "PCP0000035",
+                "isOpenTask": false,
+                "insuredName": " Alishia  Sergi",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 89,
+                "quoteNumber": "QCPA000036",
+                "policyNumber": "PCP0000036",
+                "isOpenTask": true,
+                "insuredName": " Solange  Shinko",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 90,
+                "quoteNumber": "QCPA000037",
+                "policyNumber": "PCP0000037",
+                "isOpenTask": false,
+                "insuredName": " Jose  Stockham",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 91,
+                "quoteNumber": "QCPA000038",
+                "policyNumber": "PCP0000038",
+                "isOpenTask": true,
+                "insuredName": " Rozella  Ostrosky",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 92,
+                "quoteNumber": "QCPA000039",
+                "policyNumber": "PCP0000039",
+                "isOpenTask": false,
+                "insuredName": " Valentine  Gillian",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            },
+            {
+                "quoteId": 93,
+                "quoteNumber": "QCPA000040",
+                "policyNumber": "PCP0000040",
+                "isOpenTask": true,
+                "insuredName": " Kati  Rulapaugh",
+                "alfredFlag": "False",
+                "currentStatus": null,
+                "alerts": []
+            }
+        ]
+    },
+    "success": true,
+    "message": null
+}

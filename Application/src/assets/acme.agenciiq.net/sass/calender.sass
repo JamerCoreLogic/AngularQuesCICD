@@ -1,0 +1,12 @@
+@import './secondary-color.sass'
+
+.theme-green
+  .bs-datepicker-head
+    background-color: $base-color
+
+  .bs-datepicker-body table td
+    &.week span
+      color: $base-color
+
+    span.selected, &.selected span, span[class*="select-"]:after, &[class*="select-"] span:after
+      background-color: $base-color

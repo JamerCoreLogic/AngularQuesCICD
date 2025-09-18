@@ -1,0 +1,13 @@
+{
+    "application-bg-color": "#eef0ed",
+    "primary-color":"#a3dc8f",
+    "primary-hover-color":"#96c287",
+    "primary-text-color":"#ffffff",
+    "section-bg-color":"#ffffff",
+    "section-hover-color":"#e0e3de",    
+    "footer-bg-color": "#f7f7f7",
+    "footer-text-color":"#8f8686",
+    "dashboard-header-bg":"#07449d",
+    "dashboard-header-bg-hover":"#1472dd",
+    "primary-error-color":"red"
+}

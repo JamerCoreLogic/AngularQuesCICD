@@ -1,0 +1,45 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>List of Forms</h4>
+    </div>
+</div>
+<div class="transferquote-content">
+    <div class="single-block listparameterLeft">
+        <div class="pcr-heading pgblock-heading">
+            <div class="qth-left">
+                <select class="greybg-input" (change)="setLob($event.target.value)" [(ngModel)]="selectedLOB">
+                    <option *ngFor="let lobItem of LOBList" [value]="lobItem.lob">
+                        {{lobItem.lobName}}</option>
+                </select>
+            </div>
+        </div>
+
+        <ul class="list-group list-group-flush parameterList" id="paramKey">
+            <input type="text" readonly class="list-group-item border-0 parameterListIp"
+                *ngFor="let state of listState; let i = index" [ngClass]="{'active': selectedState == state.state}"
+                [value]="state.state" (keydown)="keyDownState($event,state,i)" (click)="OnstateChange(state)">
+        </ul>
+    </div>
+    <div class="single-block tableMarginZero listparameterRight">
+        <div class="pcr-heading pgblock-heading">
+            <h4>{{selectedState}} </h4>
+        </div>
+        <div class="single-block tableMarginZero paremetertableGrid">
+            <lib-data-view [DataSource]="formTypeList" [ColumnList]="ColumnList" [Pagination]="false">
+                <ng-template #DataViewHeading>
+                    <th style="width: 40%;">Form Type</th>
+                    <th style="width: 55%;">Action</th>
+                </ng-template>
+                <ng-template #DataViewContent let-data="data">
+                    <ng-container>
+                        <td>{{data.parameterName}}</td>
+                        <td>
+                            <span class="hiperLink" (click)="getAqFormList(data)">Edit</span>
+                        </td>
+                    </ng-container>
+                </ng-template>
+            </lib-data-view>
+        </div>
+    </div>
+
+</div>

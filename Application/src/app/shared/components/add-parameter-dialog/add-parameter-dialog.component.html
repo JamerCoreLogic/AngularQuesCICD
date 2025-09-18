@@ -1,0 +1,49 @@
+
+<div class="select-quick-quote-header">
+    <h2>{{modalTitle}}</h2>
+    <span (click)="cancel()" class="close-dialog"><img src="assets/images/delete-popup.png"></span>
+</div>
+<form [formGroup]="addParameterKeyForm">
+    <div class="pagemodal-content uploadXMLModal">
+        <div class="modal_select_quote">
+        </div>
+        <div class="col-md-12">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="textbox_borderlabel" [class.errorIPLabel]="ParameterCode.invalid && submitted">Parameter Code<span class="required" >*</span></label>
+                    <input formControlName="ParameterCode" type="text"  maxlength="100"
+                        class="form-control textbox_border_input" dataTextFocus placeholder="Add Full Name" id="ParameterCode">
+                        <!--(keypress)="ValidateKey.key($event)">-->
+                        <div class="display-error">
+                        <div *ngIf="ParameterCode.invalid && submitted">
+                            <span *ngIf="ParameterCode.errors.required">
+                                <!-- Parameter Code Required -->
+                                Parameter Code Required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label class="textbox_borderlabel" [class.errorIPLabel]="DisplayName.invalid && submitted">Display Name<span class="required" >*</span></label>
+                    <input formControlName="DisplayName" type="text"  maxlength="100"
+                        class="form-control textbox_border_input" dataTextFocus placeholder="Display Name">
+                        <!--(keypress)="ValidateKey.key($event)">-->
+                    <div class="display-error">
+                        <div *ngIf="DisplayName.invalid && submitted">
+                            <span *ngIf="DisplayName.errors.required">
+                                <!-- Display Name Required -->
+                                Display Name Required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="pagemodal-footer">
+    <button type="button" (click)="cancel()" class="button_white">Cancel</button>
+    <button type="submit" (click)="saveParameterKey()"  class="btn-theme">Save</button>
+</div>

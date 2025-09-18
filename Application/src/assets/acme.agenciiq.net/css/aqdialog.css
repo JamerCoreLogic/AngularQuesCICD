@@ -1,0 +1,97 @@
+@import "primary-color.css";
+.quickQuotesLayer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    border: 1px solid #9b9b9b;
+    border-radius: 5px;
+}
+
+.select-quick-quote-container {
+    background: white;
+    width: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+}
+
+.select-quick-quote-header {
+    border-bottom: 1px solid #d9d4d4;
+    background: #fff;
+    min-height: 45px;
+}
+
+.select-quick-quote-header h2{
+    font-size: 18px;
+    text-align: center;
+    margin: 0;
+    line-height: 44px;
+}
+
+.select-quick-quote-header .close-dialog {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 20px;
+    width: 36px;
+    height: 44px;
+    text-align: center;
+    cursor: pointer;
+    color: #5a5858;
+}
+.select-quick-quote-main {
+    padding: 10px;
+    border-bottom: 1px solid #d7d1d1;
+    background:rgb(246, 243, 243);
+}
+
+.select-quick-quote-main h3{
+    font-size: 16px;
+    text-align: center;
+}
+
+.modal_select_quote {
+    text-align: center;
+    display: inline-block;
+    float: left;
+    width: 100%;
+    padding-top: 6px;
+    background: #f5f5f6;
+    margin-bottom: 15px;
+}
+.pagemodal-content {
+    padding: 0px;
+    height: 320px;
+    background: #ffffff;
+}
+.single-text {
+    display: inline-block;
+    padding: 81px 20px;
+    width: 100%;
+    text-align: center;
+}
+.pagemodal-footer {
+    position: absolute;    
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+    background: #fff;
+}
+
+/*.pagemodal-footer button{
+    width: 150px;   
+}*/
+
+.alert_check {
+    border-radius: 4px;
+    background-color: #fff !important;
+    border:1px solid #dbd9d5;
+}
+.checkbox input:checked + .alert_check {
+    border: 1px solid var(--primary-color);
+}
