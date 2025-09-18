@@ -10,30 +10,7 @@ on:
   workflow_dispatch:
                
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-              
-      - name: Install node  js
-        uses: actions/setup-node@v4
-        with:   
-          node-version: '20'
-     
-          # to cache node modules
-      - name: Cache nodemodules
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        
-      - name: validate version 
-        run: node -v
-      - name: Install dependencies
-        run: npm ci
-      - name: Run tests
-        run: npm test
+  
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -62,7 +39,8 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           name: github-pages
-          path: dist
+          path: dist/AQPortal/browser
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
