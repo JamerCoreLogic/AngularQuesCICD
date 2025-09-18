@@ -23,7 +23,8 @@
               "crypto-js",
               "pdfjs-dist/build/pdf",
               "pdfjs-dist/web/pdf_viewer",
-              "sweetalert2"
+              "sweetalert2",
+              "baseHref": "/AngularQuesCICD/"
             ],
             "outputPath": "dist/adjuster-locator-app",
             "index": "src/index.html",
@@ -193,3 +194,4 @@
     "analytics": false
   }
 }
+
