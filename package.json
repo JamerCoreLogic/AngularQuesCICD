@@ -6,8 +6,8 @@
     "start": "ng serve --configuration=dev",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration dev",
-    "test": "ng test",
-    "homepage": "/"
+    "test": "ng test"
+    
   },
   "private": true,
   "dependencies": {
@@ -94,6 +94,7 @@
     "typescript": "~4.9.5"
   }
 }
+
 
 
 
