@@ -1,4 +1,4 @@
-name: DeploymentReactAppToGitHubPages 
+name: DeploymentAngularAppToGitHubPages 
 on:
   push:
     branches:
@@ -60,3 +60,4 @@ jobs:
      
 
           
+
