@@ -1,0 +1,20 @@
+  # name of the workflow
+name: Greetings 
+# event that triggers the workflow
+on:
+    # trigger on push to main branch
+  push:
+    branches:
+      - master
+# jobs to be executed      
+jobs:
+    # single job named 'greeting'
+  greet:
+    # run of the job on the latest Ubuntu runner
+    runs-on: ubuntu-latest
+    steps:
+        # step to check out the repository
+      - name: Say Hello
+        run: echo "Hello, World!"
+      - name: Say Goodbye
+        run: echo "Goodbye, World!"
