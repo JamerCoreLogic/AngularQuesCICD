@@ -1,0 +1,22 @@
+<ng-container *ngIf="QuoteStage == 'QQ'">
+    <aq-form  
+    [BaseURL]="baseURL" 
+    [AQFormDataIn]="AQFormData" 
+    [AQFormDataIn] = "AQFormData"
+    [ClientID]="ClientID" 
+    [FormDefinition]="programFormDefinition"
+    [FormDataID]="FormDataID" 
+    [DevMode]="DevMode"
+    (AQCancelDataOut)="AQCancelDataOut($event)"
+    (AQFormDataOut)='getFormDataMaster($event)'
+>
+</aq-form>
+</ng-container>
+
+
+<!--
+      (AQFormDataOut)='getFormDataMaster($event)' 
+    (AQCheckboxDataOut)="AQCheckboxDataOut($event)" 
+    
+
+-->

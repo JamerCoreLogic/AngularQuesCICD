@@ -1,0 +1,43 @@
+<header>
+    <div class="row">
+        <div class="col-12 col-md-3">
+            <div class="logo-holder">
+                <img [src]="mgaLogo">
+                <!-- <img src="assets/united.agenciiq.net/images/login/mgaLogo.png"> -->
+                <!-- <span class="mga-name">{{mgaName}}</span> -->
+            </div>
+        </div>
+        <div class="col-12 col-md-9">
+            <div class="header-powred-by">
+                <span>
+                    <!-- <a href="http://www.agenciiq.com" target="_blank"> -->
+                        <!-- <img src="assets/images/logo.jpg"> -->
+                        <!-- <img src="assets/united.agenciiq.net/images/login/poweredBy.png"> -->
+                        <img [src]="aqLogo">
+                    <!-- </a> -->
+                </span>
+            </div>
+            <div class="header-settings">
+                <span *ngIf="logoutIconStatus == 'Enabled'" title="Logout" (click)="logOut()" class="hs-single">
+                    <img style="cursor:pointer;" src="assets/images/logout.jpg">
+                </span>
+                <span *ngIf="logoutIconStatus == 'Disabled'" title="Logout" class="hs-single disabled">
+                    <img src="assets/images/logout.jpg">
+                </span>
+                <span class="hs-single">
+                    <img src="assets/images/user-icon.png">&nbsp;
+                    <span class="aq-username">{{username}} </span>
+                    <p class="hs-agency-name">{{agencyName}}</p>
+                </span>
+            </div>
+            <div class="header-powred-by-small">
+                <span *ngIf="homeIconStatus == 'Enabled'" (click)="redirectToHome()" class="hs-single">
+                    <img style="cursor: pointer;" title="Home" src="assets/images/home_Icon_enabled.png">&nbsp;
+                </span>
+                <span *ngIf="homeIconStatus == 'Disabled'" class="hs-single">
+                    <img title="Home" src="assets/images/home_icon_disabled.png">&nbsp;
+                </span>
+            </div>
+        </div>
+    </div>
+</header>

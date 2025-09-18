@@ -1,0 +1,359 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>MGA Configuration</h4>
+    </div>
+</div>
+<div class="transferquote-content">
+    <form [formGroup]="MGAConfigForms">
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Basic Information</h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 pdlZero">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="getControl('name').invalid && isSubmited">MGA Name<span
+                                        class="required">*</span></label>
+                                <input type="text" id="MgaName"
+                                    [class.errorIP]="getControl('name').invalid && isSubmited" formControlName="name"
+                                    class="form-control textbox_border_input" dataTextFocus placeholder="Add MGA Name"
+                                    maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="getControl('name').invalid && isSubmited">
+                                        <span *ngIf="getControl('name').errors.required">
+                                            <!-- MGA Name Required -->
+                                            {{_MgaConfigScreen.MgaName.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!--                             
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Description<span
+                                        class="required">*</span></label>
+                                <input type="text" id="description" formControlName="description"
+                                    class="form-control textbox_border_input" placeholder="Add Description"
+                                    maxlength="200">
+                                <div class="display-error">
+                                    <div *ngIf="getControl('description').invalid && isSubmited">
+                                        <span *ngIf="getControl('description').errors.required">
+                                                Description  Required 
+                                            {{_MgaConfigScreen.Description.required}}
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="getControl('zip').invalid && (isSubmited || isZipInvalid)">Zip<span
+                                        class="required">*</span></label>
+                                <input type="text" id="zip" (keypress)="ValidateKey.WholeNumbers($event, 5)"
+                                    [class.errorIP]="getControl('zip').invalid &&  (isSubmited || isZipInvalid)"
+                                    formControlName="zip" maxlength="5" class="form-control textbox_border_input"
+                                    placeholder="Add Zip Code" maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="getControl('zip').invalid && (isSubmited || isZipInvalid)">
+                                        <span *ngIf="getControl('zip').errors.required">
+                                            <!-- Zip Required -->
+                                            {{_MgaConfigScreen.Zip.required}}
+                                        </span>
+                                        <span *ngIf="getControl('zip').errors.minlength">
+                                            <!-- Zip Code must be 5 characters -->
+                                            {{_MgaConfigScreen.Zip.lenth}}
+                                        </span>
+                                        <span *ngIf="getControl('zip').errors.notvalid">
+                                            <!-- Zip Required -->
+                                            {{zipErrorMessage}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="getControl('city').invalid && isSubmited">City<span
+                                        class="required">*</span></label>
+                                <input type="text" id="city" [class.errorIP]="getControl('city').invalid && isSubmited"
+                                    formControlName="city" class="form-control textbox_border_input"
+                                    placeholder="Add City" maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="getControl('city').invalid && isSubmited">
+                                        <span *ngIf="getControl('city').errors.required">
+                                            <!-- City Required -->
+                                            {{_MgaConfigScreen.City.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="getControl('state').invalid && isSubmited">State<span
+                                        class="required">*</span></label>
+                                <input type="text" id="state"
+                                    [class.errorIP]="getControl('state').invalid && isSubmited" formControlName="state"
+                                    class="form-control textbox_border_input" placeholder="Add State" maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="getControl('state').invalid && isSubmited">
+                                        <span *ngIf="getControl('state').errors.required">
+                                            <!-- State Required -->
+                                            {{_MgaConfigScreen.State.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div class="logoContainer">
+                            <div class="logoContainerImage">
+                                <img [src]="mgaLogo" />
+                            </div>
+                            <div class="form-group fg_half">
+                                <label>Upload New Logo</label>
+                                <span *ngIf="!isFileExists">
+                                </span>
+                                <input type="file" accept=".png,.jpg,.jpeg" (change)="uploadExcel($event)"
+                                    placeholder="Upload file" style="font-size: 14px;" />
+                                <div class="display-error">
+
+                                    <span *ngIf="!isvalidExtension && isFileExists">
+                                        Invalid file
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="(getControl('addressLine1').invalid && isSubmited)  || isAddress1Valid">Street
+                                    Address<span class="required">*</span></label>
+                                <input type="text" id="addressLine1"
+                                    [class.errorIP]="(getControl('addressLine1').invalid && isSubmited) || isAddress1Valid"
+                                    (blur)="validateAddress()" formControlName="addressLine1"
+                                    class="form-control textbox_border_input" placeholder="Add Address Line 1"
+                                    maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="getControl('addressLine1').invalid && isSubmited">
+                                        <span *ngIf="getControl('addressLine1').errors.whitespace">
+                                            <!-- Street Address Required -->
+                                            {{_MgaConfigScreen.StreetAddress.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <input type="text" id="addressLine2" formControlName="addressLine2"
+                                    class="form-control textbox_border_input" placeholder="Add Address Line 2"
+                                    maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="getControl('addressLine1').invalid && isSubmited && !isAddress1Valid">
+                                        <span *ngIf="getControl('addressLine1').errors.required">
+                                            <!-- Street Address  Required -->
+                                            {{_MgaConfigScreen.StreetAddress.required}}
+                                        </span>
+                                        <!-- <span *ngIf="getControl('addressLine1').errors.whitespace"> -->
+                                        <!-- Street Address Required -->
+                                        <!-- {{_MgaConfigScreen.StreetAddress.space}}
+                                        </span> -->
+                                    </div>
+                                    <span *ngIf="isAddress1Valid">{{address1ErrorMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="getControl('contactPerson').invalid && isSubmited">Primary
+                                    Contact<span class="required">*</span></label>
+                                <input type="text" id="contactPerson"
+                                    [class.errorIP]="getControl('contactPerson').invalid && (getControl('contactPerson').touched || isSubmited)"
+                                    formControlName="contactPerson" class="form-control textbox_border_input"
+                                    placeholder="Add Primary Contact" maxlength="50">
+                                <div class="display-error">
+                                    <div
+                                        *ngIf="getControl('contactPerson').invalid && (getControl('contactPerson').touched || isSubmited)">
+                                        <span *ngIf="getControl('contactPerson').errors.required">
+                                            <!-- Primary Contact  Required -->
+                                            {{_MgaConfigScreen.PrimaryContact.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="getControl('email').invalid && isSubmited">Email Address<span
+                                        class="required">*</span></label>
+                                <input type="text" id="email"
+                                    [class.errorIP]="getControl('email').invalid && isSubmited" formControlName="email"
+                                    class="form-control textbox_border_input" placeholder="Add Email Address"
+                                    maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="getControl('email').invalid && isSubmited">
+                                        <span *ngIf="getControl('email').errors.required">
+                                            <!-- Email Required -->
+                                            {{_MgaConfigScreen.EmailAddress.required}}
+                                        </span>
+                                        <span *ngIf="getControl('email').errors.email">
+                                            <!-- Email must be a valid email address -->
+                                            {{_MgaConfigScreen.EmailAddress.valid}}
+                                        </span>
+                                        <span [hidden]="!getControl('email').errors?.pattern">
+                                            <!-- Invalid pattern -->
+                                            {{_MgaConfigScreen.EmailAddress.pattern}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="getControl('phoneHome').invalid && isSubmited">Phone<span
+                                        class="required">*</span></label>
+                                <input type="text" id="tel"
+                                    [class.errorIP]="getControl('phoneHome').invalid && (getControl('phoneHome').touched || isSubmited)"
+                                    formControlName="phoneHome" [phoneControl]="getControl('phoneHome')" phoneMask
+                                    maxlength="14" [preValue]="getControl('phoneHome').value"
+                                    class="form-control textbox_border_input" placeholder="(999) 999-9999">
+                                <div class="display-error">
+                                    <div
+                                        *ngIf="getControl('phoneHome').invalid && (isSubmited || getControl('phoneHome').touched)">
+                                        <span *ngIf="getControl('phoneHome').errors.required">
+                                            <!-- Phone Required -->
+                                            {{_MgaConfigScreen.Phone.required}}
+
+                                        </span>
+                                        <span *ngIf="getControl('phoneHome').errors.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_MgaConfigScreen.Phone.format}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="getControl('fax').invalid && isSubmited">Fax</label>
+                                <input type="text" [class.errorIP]="getControl('fax').invalid && isSubmited"
+                                    placeholder="(999) 999-9999" formControlName="fax"
+                                    class="form-control textbox_border_input" id="tel"
+                                    [phoneControl]="getControl('fax')" phoneMask maxlength="14"
+                                    [preValue]="getControl('fax').value">
+                                <div class="display-error">
+                                    <div *ngIf="getControl('fax').invalid && (getControl('fax').touched || isSubmited)">
+                                        <span *ngIf="getControl('fax').errors.required">
+                                            <!-- Fax Required -->
+                                            {{_MgaConfigScreen.Fax.required}}
+                                        </span>
+                                        <span *ngIf="getControl('fax').errors.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_MgaConfigScreen.Fax.format}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero">
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel_relative">Carriers<span
+                                        class="required">*</span></label>
+                                <lib-aq-multiselect [OptionList]="carrierList" [CheckBoxName]="carrierCheckBoxName"
+                                    [CheckBoxValue]="carrierCheckBoxValue" [DropdownName]="carrierDropdown"
+                                    [IsEditable]="true" (SelectedListOutput)="SelectedCarrierList($event)">
+                                </lib-aq-multiselect>
+                                <div class="display-error">
+                                    <span *ngIf="selectedCarrier.length == 0">
+                                        Carriers Required
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero">
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel_relative">States<span
+                                        class="required">*</span></label>
+                                <lib-aq-multiselect [OptionList]="stateList" [CheckBoxName]="stateCheckBoxName"
+                                    [CheckBoxValue]="stateCheckBoxValue" [DropdownName]="stateDropDown"
+                                    [IsEditable]="true" (SelectedListOutput)="SelectedStateList($event)">
+                                </lib-aq-multiselect>
+                                <div class="display-error">
+                                    <span *ngIf="selectedState.length == 0">
+                                        States Required
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero">
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel_relative">Line of Business<span
+                                        class="required">*</span></label>
+                                <lib-aq-multiselect [OptionList]="lobList" [CheckBoxName]="lobCheckBoxName"
+                                    [CheckBoxValue]="lobCheckBoxValue" [DropdownName]="lobDropDown" [IsEditable]="true"
+                                    (SelectedListOutput)="SelectedLobList($event)">
+                                </lib-aq-multiselect>
+                                <div class="display-error">
+                                    <span *ngIf="selectedLob.length == 0">
+                                        Line of Business Required
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pdlZero"
+                    *ngIf="(identifier.indexOf('convelo')!=-1 || identifier.indexOf('lambis')!=-1)">
+                        <label class="textbox_borderlabel_relative">State Lobs </label>
+                        <ng-container *ngFor="let lob of lobList; let i=index">
+                            <div class="form-group" *ngIf="lob.checked">
+                                <div class="col-xs-9 col-sm-9 col-md-3 col-lg-9">
+                                    <label class="textbox_borderlabel_relative">{{lob.lobDescription}}</label>
+                                    <lib-aq-multiselect [OptionList]="lob.states"
+                                        [CheckBoxName]="'parameterName'"  [CheckBoxValue]="'parameterId'" DropdownName="{{i+lob.lobDescription}}"
+                                        [IsEditable]="true">
+                                    </lib-aq-multiselect>
+                                </div>
+                            </div>
+                        </ng-container>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-block">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right rm-pad-left rm-pad-right">
+                <button type="button" (click)="navigateBack()" class="button_white">Cancel</button>
+                <button type="submit" (click)="SaveAccountWithOserverPattern()" class="btn-theme">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

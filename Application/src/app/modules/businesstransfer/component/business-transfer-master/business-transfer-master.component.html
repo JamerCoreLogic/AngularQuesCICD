@@ -1,0 +1,65 @@
+<app-inner-header></app-inner-header>
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>Book of Business Transfer</h4>
+    </div>
+    <div class="ql-header-right">
+
+    </div>
+</div>
+<div class="quotelist-content">
+  
+    <lib-quote-view [DataSource]="dataSource" [ColumnList]="QuotesColumnList" [Pagination]="true" [TotalItems]="totalItem"
+        [NoRecordsMessage]="NoRecordsMessage" [IsCheckboxEnable]="isCheckboxEnable" [AgentList]="agentList"
+        [IsHeaderChkSelected]="isHeaderChkSelected" (NewPage)="NewPage($event)" (SearchQuote)="SearchQuote($event)"
+        (ChangePageSize)="ChangePageSize($event)" [AdvanceFilterEnabled]='true'
+        [HideAdvanceFilterOption]="HideAdvFilterOption" (OutputAdvanceFilter)="getAdvanceFilter($event)"
+        (TransferToAgentId)="setTransferToAgentId($event)" (FinalTransferQuotesId)="setFinalTransferQuotesId($event)"
+        (TransferBusiness)="transferBusiness()" (TransferToAgentName)="setTransferToAgentName($event)"
+        (TransferFrmAgentId)="setTransferFrmAgentId($event)" (TransferMessage)="setTransferMessage($event)"
+        (OutputClearAllFilter)="clearAllFilter()">
+
+        <ng-template #AdvanceFilter>
+            <div class="filter-block" *ngIf="FilterOpen">
+                <app-advance-filter (filterSearch)="filterSearch($event)" (clearAll)="clearAdvanceFilterForm()"
+                    (cancel)="cancelAdvanceFilterForm()"></app-advance-filter>
+            </div>
+
+        </ng-template>
+
+        <ng-template #DataViewHeading>
+            <th (click)="sortQuotes('ref')" style="width: 10%;">Ref <img src="assets/images/sort.png"></th>
+            <th style="width: 12%;">Insured Name</th>
+            <th style="width: 12%;">Agent Name</th>
+            <th style="width: 12%;">Agency Name</th>
+            <th style="width: 10%;">Underwriter</th>
+            <th style="width: 10%;">UW Assistant</th>
+            <th style="width: 7%;">LOB</th>
+            <th style="width: 14%;">Effective Date</th>
+            <th style="width: 14%;">Alfred Alerts</th>
+        </ng-template>
+        
+        <ng-template #DataViewContent let-data="data">
+            <td><span>{{data.ref}}</span></td>
+            <td><span class="insuredname" (click)="getInsuredDetail(data,'Business')">{{data.insuredName}}</span>
+            </td>
+            <td><span>{{data.agentName}}</span></td>
+            <td><span>{{data.agencyName}}</span></td>
+            <td><span>{{data.underwriter}}</span></td>
+            <td><span>{{data.underwriterAssistant}}</span></td>
+            <td><span>{{data.lob}}</span></td>
+            <td><span>{{data.effective_Date | date:'MM/dd/yyyy'}}</span></td>
+
+            <td>
+                <div class="table-alfred-icons">
+                    <div class="tooltip" *ngFor="let alert of data.alerts">
+                        <img [src]="alert.iconURL" />
+                        <span class="tooltiptext">{{alert.description}}</span>
+                    </div>
+                </div>
+            </td>
+        </ng-template>
+   </lib-quote-view>
+
+
+</div>

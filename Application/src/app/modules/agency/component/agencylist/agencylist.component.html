@@ -1,0 +1,58 @@
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>List of Agencies</h4>
+    </div>
+    <div class="ql-header-right">
+        <button *ngIf="isAddAgency" (click)="AddAgency()" class="btn-theme">
+            + Agency
+        </button>
+        <button class="btn-theme" *ngIf="upload">
+            <img class="upload_image" src="assets/images/upload.png"> Upload
+        </button>
+    </div>
+</div>
+<div class="quotelist-content qsl">
+    <div class="switchTabsAQ">
+        <ul>
+            <!-- (click)="agencyType ='tab1'" -->
+            <li class="active" [class.active]="agencyType == 'register'" rel="tab1" (click)="getAgencyList('Yes')">
+                <span>Registered Agencies</span>
+            </li>
+            <li *ngIf="isAddAgency" [class.active]="agencyType == 'unRegister'" rel="tab2" (click)="getAgencyList('No')">
+                <span>Unregistered Agencies</span>
+            </li>
+        </ul>
+    </div>
+    <div class="switchTabsContent">
+        <div class="">
+            <lib-data-view [DataSource]="dataSource" [SortingColumn]="sortedColumnName"  [NoRecordsMessage]="NoRecordsMessage" [Pagination]="true"
+        [ColumnList]="ColumnList">
+                <ng-template #DataViewHeading>
+                    <th style="width: 12%;" (click)="sortAgents('agencyName')">Agency Name <img src="assets/images/sort.png"></th>
+                    <th style="width: 12%;">Address</th>
+                    <th style="width: 12%;">Primary Contact</th>
+                    <th style="width: 12%;">Phone #</th>
+                    <th style="width: 12%;">Email</th>
+                    <th style="width: 12%;">License #</th>
+                    <th style="width: 10%;">License Expiration Date </th>
+                    <th style="width: 10%;">Registered</th>
+                    <th style="width: 10%;">Action</th>
+                </ng-template>
+                <ng-template #DataViewContent let-data="data">
+                    <td><span>{{data.agencyName}}</span></td>
+                    <td>{{data.addressLine1}}</td>
+                    <td><span>{{data.contactPerson}}</span></td>
+                    <td><span>{{data.phoneOffice | PhoneMask}}</span></td>
+                    <td>{{data.email}}</td>
+                    <td><span>{{data.npn}}</span></td>
+                    <td><span>{{data.npnExpirationDate | date:'MM/dd/yyyy'}}</span></td>
+                    <td>{{data.registered}}</td>
+                    <td>
+                        <span (click)="EditAgency(data.agencyId)" class="hiperLink">Edit</span>
+                    </td>
+                </ng-template>
+            </lib-data-view>
+        </div>
+    </div>
+    
+</div>

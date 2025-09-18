@@ -1,0 +1,65 @@
+<div class="hf-right-panel">
+    <div class="hf-right-panel-headerValues">
+        <h4>Key Performance Indicators</h4>
+        <div id="periodFilterMenu" class="rollingFilter">
+            <p  id="periodFilterMenu">{{selectedPeriod}} <span  id="periodFilterMenu"><img  id="periodFilterMenu"  src="assets/images/rollingFilter.png"></span></p>
+        </div>
+        <div class="rollingCallender">
+            <div class="arrowSpan">
+              <!--   <span>
+                    <img src="assets/images/doubleArrowPointingLeft.png">
+                </span> -->
+                <span (click)="ChangePeriod('<',selectedPeriodText)">
+                    <img src="assets/images/singleArrorPointingLeft.png">
+                </span>
+            </div>
+            <div class="calanderDates">
+                <p>{{selectedPeriodText?selectedPeriodText.displayValue:""}}</p>
+            </div>
+            <div class="arrowSpan">
+                <span (click)="ChangePeriod('>',selectedPeriodText)">
+                    <img src="assets/images/singleArrorPointingRight.png">
+                </span>
+               <!--  <span>
+                    <img src="assets/images/doubleArrowPointingRight.png">
+                </span> -->
+            </div>
+        </div>
+    </div>
+    <div class="hf-right-panel-limit" id="ScrollingDiv">
+        <div class="hfrp-single" *ngFor="let data of resp">
+            <p class="hfrps-heading">{{data.performanceMeasureName}}<br/>{{data.performanceMeasureNameStr}}</p>
+            <p class="hfrps-count">{{data.value}}</p>
+            <p *ngIf="data.growth != 'NA'" class="hfrp-percent">
+                <span [class.downMove]="data.growthFlag=='RD'">
+                    <span *ngIf="data.growthFlag=='RD'">
+                        <img src="assets/images/downs.png">
+                    </span>
+                    <span *ngIf="data.growthFlag=='GU'">
+                        <img src="assets/images/ups.png">
+                    </span>
+                    {{data.growth}}
+                </span>
+            </p>
+        </div>
+        <!-- <span class="left-arrow-slider" (click)="MoveHeader('left')"><img src="assets/images/arrow-left1.png"></span>
+        <span class="right-arrow-slider" (click)="MoveHeader('right')"><img src="assets/images/arrow-right1.png"></span> -->
+    </div>
+</div>
+
+<div class="sidefilter-modal" *ngIf="sidebarfiltermodal">
+    <ul>
+        <li (click)="showPeriodData('Month')">
+            <span>Month</span>
+        </li>
+        <li (click)="showPeriodData('Quarter')">
+            <span>Quarter</span>
+        </li>
+        <li (click)="showPeriodData('Year')">
+            <span>Year</span>
+        </li>
+    </ul>
+</div>
+
+
+    

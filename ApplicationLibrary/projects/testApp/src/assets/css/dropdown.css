@@ -1,0 +1,13 @@
+.dropdown_border {
+    background-color: #fbfbfb;
+    height: 34px;
+    border-radius: 0px;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    color: #000;
+}
+.dropdown_border:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ccc;
+}

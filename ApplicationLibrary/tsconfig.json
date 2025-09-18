@@ -1,0 +1,175 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "aqlogin": [
+        "dist/aqlogin"
+      ],
+      "aqlogin/*": [
+        "dist/aqlogin/*"
+      ],
+      "user": [
+        "dist/user"
+      ],
+      "user/*": [
+        "dist/user/*"
+      ],
+      "aquser": [
+        "dist/aquser"
+      ],
+      "aquser/*": [
+        "dist/aquser/*"
+      ],
+      "aqagent": [
+        "dist/aqagent"
+      ],
+      "aqagent/*": [
+        "dist/aqagent/*"
+      ],
+      "aqagency": [
+        "dist/aqagency"
+      ],
+      "aqagency/*": [
+        "dist/aqagency/*"
+      ],
+      "aqquotes": [
+        "dist/aqquotes"
+      ],
+      "aqquotes/*": [
+        "dist/aqquotes/*"
+      ],
+      "aqcore": [
+        "dist/aqcore"
+      ],
+      "aqcore/*": [
+        "dist/aqcore/*"
+      ],
+      "aqtodo": [
+        "dist/aqtodo"
+      ],
+      "aqtodo/*": [
+        "dist/aqtodo/*"
+      ],
+      "aqalfred": [
+        "dist/aqalfred",
+        "dist/aqalfred"
+      ],
+      "aqalfred/*": [
+        "dist/aqalfred/*",
+        "dist/aqalfred/*"
+      ],
+      "acomponents": [
+        "dist/acomponents"
+      ],
+      "acomponents/*": [
+        "dist/acomponents/*"
+      ],
+      "aqcomponents": [
+        "dist/aqcomponents"
+      ],
+      "aqcomponents/*": [
+        "dist/aqcomponents/*"
+      ],
+      "aqto-do": [
+        "dist/aqto-do"
+      ],
+      "aqto-do/*": [
+        "dist/aqto-do/*"
+      ],
+      "aqadmin": [
+        "dist/aqadmin"
+      ],
+      "aqadmin/*": [
+        "dist/aqadmin/*"
+      ],
+      "aqworkboard": [
+        "dist/aqworkboard",
+        "dist/aqworkboard",
+        "dist/aqworkboard"
+      ],
+      "aqworkboard/*": [
+        "dist/aqworkboard/*",
+        "dist/aqworkboard/*",
+        "dist/aqworkboard/*"
+      ],
+      "aqbusinesstransfer": [
+        "dist/aqbusinesstransfer"
+      ],
+      "aqbusinesstransfer/*": [
+        "dist/aqbusinesstransfer/*"
+      ],
+      "multiselect": [
+        "dist/multiselect"
+      ],
+      "multiselect/*": [
+        "dist/multiselect/*"
+      ],
+      "aqforms": [
+        "dist/aqforms"
+      ],
+      "aqforms/*": [
+        "dist/aqforms/*"
+      ],
+      "aqcarrier": [
+        "dist/aqcarrier"
+      ],
+      "aqcarrier/*": [
+        "dist/aqcarrier/*"
+      ],
+      "aq-programs": [
+        "dist/aq-programs"
+      ],
+      "aq-programs/*": [
+        "dist/aq-programs/*"
+      ],
+      "aq-chatbot": [
+        "dist/aq-chatbot"
+      ],
+      "aq-chatbot/*": [
+        "dist/aq-chatbot/*"
+      ],
+      "mga-config": [
+        "dist/mga-config"
+      ],
+      "mga-config/*": [
+        "dist/mga-config/*"
+      ],
+      "aqchatboard": [
+        "dist/aqchatboard"
+      ],
+      "aqchatboard/*": [
+        "dist/aqchatboard/*"
+      ],
+      "stripe-payment": [
+        "dist/stripe-payment",
+        "dist/stripe-payment"
+      ],
+      "stripe-payment/*": [
+        "dist/stripe-payment/*",
+        "dist/stripe-payment/*"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

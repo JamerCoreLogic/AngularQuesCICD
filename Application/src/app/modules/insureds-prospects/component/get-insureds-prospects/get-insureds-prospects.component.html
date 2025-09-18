@@ -1,0 +1,32 @@
+<!-- <app-inner-header ></app-inner-header> -->
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>Insureds/Prospects</h4>
+    </div>
+</div>
+<div class="quotelist-content">
+    <lib-data-view [DataSource]="dataSource" [SortingColumn]="sortedColumnName" [NoRecordsMessage]="NoRecordsMessage"
+        [Pagination]="true" [ColumnList]="ColumnList">
+        <ng-template #DataViewHeading>
+            <th (click)="sortInsured('insuredName')" style="width:15%"> Name <img src="assets/images/sort.png"></th>
+            <th style="width:15%">City</th>
+            <th style="width:15%">State</th>
+            <th style="width:15%">Phone</th>
+            <th style="width:15%">Email</th>
+            <th style="width:15%">Insured/Prospect</th>
+            <th style="width:10%">Action</th>
+        </ng-template>
+        <ng-template #DataViewContent let-data="data">
+            <td>{{data.insuredName}}</td>
+            <td>{{data.city}}</td>
+            <td>{{data.state}}</td>
+            <td>{{data.phoneCell}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.insuredType}}</td>
+            <td>
+                <!-- (click)="addAqProgramForm('edit',data)" -->
+                <span class="hiperLink" (click)="getInsuredDetail(data,'insured')">View</span>
+            </td>
+        </ng-template>
+    </lib-data-view>
+</div>

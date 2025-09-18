@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@agenciiq/aqcontrol-lib": "file:../fbui/dist/aqcontrol-lib/agenciiq-aqcontrol-lib-0.3.0.tgz"
+  }
+}

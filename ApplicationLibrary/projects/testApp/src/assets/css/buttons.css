@@ -1,0 +1,41 @@
+.btn-theme-radius {
+    width: 100%;
+    text-align: center;
+    background-color: #f07930;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 20px;
+}
+.btn-theme-radius:hover, .btn-theme-radius:focus {
+    color: #fff;
+    outline: 0;
+    box-shadow: none;
+}
+.quoteBtn {
+    font-size: 13px;
+    border:none;
+    padding: 3px 8px;
+}
+.quoteBtn:hover {
+    background-color: #f07930;
+    color: #fff;
+}
+
+.right-buttons {
+    text-align: right;
+}
+.cancel-btn {
+    font-size: 16px;
+    background-color: #ebebeb;
+    color: #333;
+    border:1px solid #333;
+    margin-right: 10px;
+    border-radius: 1.25rem;
+}
+.cancel-btn:hover, .cancel-btn:visited, .cancel-btn:focus {
+    color: #333;
+    outline: none;
+}
+.fix_width {
+    width: 160px;
+}

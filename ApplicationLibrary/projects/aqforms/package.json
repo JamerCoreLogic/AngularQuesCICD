@@ -1,0 +1,11 @@
+{
+  "name": "@agenciiq/aqforms",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^19.2.10",
+    "@angular/core": "^19.2.10"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

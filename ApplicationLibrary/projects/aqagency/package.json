@@ -1,0 +1,13 @@
+{
+  "name": "@agenciiq/agency",
+  "version": "0.0.3",
+  "peerDependencies": {
+    "@angular/common": "^19.2.10",
+    "@angular/core": "^19.2.10"
+  },
+  "devDependencies": {
+    "@angular/common": "^19.2.10",
+    "@angular/core": "^19.2.10",
+    "typescript": "^5.8.3"
+  }
+}

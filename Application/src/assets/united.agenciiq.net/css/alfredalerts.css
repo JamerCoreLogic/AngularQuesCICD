@@ -1,0 +1,276 @@
+@import "primary-color.css";
+.alfred-alerts-header {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+    height: 34px;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 10px;
+}
+
+.alfred-alerts-heading {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.alfred-alerts-heading h4 {
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+.alfred_icon img {
+    vertical-align: bottom;
+}
+
+.alfred-alert-pagination {
+    margin-left: 20px;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.alfred-toggle-button {
+    text-align: right;
+    
+}
+
+.alfred-alert-pagination .arrow {
+    font-size: 18px;
+    padding: 3px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.alfred-alerts-header-right {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.alfred-alerts-header-right .todo-search {
+    margin-top: 0px;
+}
+
+.alfred-alerts-header-right .todo-search input {
+    height: 28px;
+    border-radius: 0px !important;
+}
+
+.alfred-alerts-header-right span {        
+    text-align: right;
+}
+.alfred-alerts-header-right span img {
+    cursor: pointer;
+}
+
+.pcr-block {
+    display: inline-block;
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
+
+.alfred-alerts-container {
+   /*  display: inline-block;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px; */
+
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+}
+
+.alfred-alerts-container-expand {
+    /*  display: inline-block;
+     float: left;
+     width: 100%;
+     margin-bottom: 10px; */
+ 
+     display: grid;
+     grid-template-columns: 20% 20% 20% 20% 20%;
+ }
+
+.alfred-alerts-container-block{
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.alfred-alert-item {
+    /* display: inline-block;    
+    width: 23%;
+    padding: 10px 15px;
+    border: 1px solid #e6e6e7;
+    margin: 10px 1%;
+    height: 176px;
+    cursor: pointer; */
+
+    padding: 5px 7px;
+    border: 1px solid var(--section-hover-color);
+    margin: 0px 10px 0px 0px;
+    cursor: pointer;
+    min-height: 82px;
+    margin-bottom: 10px;
+}
+
+.alfred-alert-item_block {
+    display: grid;
+    width: 97.5%;
+    padding: 10px 15px;
+    border: 1px solid var(--section-hover-color);
+    margin: 5px 1%;
+    height: auto;
+    grid-template-columns: 50% 50%;
+    cursor: pointer;
+}
+
+.alfred-alert-item:hover, .alfred-alert-item_block:hover {
+    background-color: var(--section-hover-color);
+}
+
+.alfred-alert-item h4, .alfred-alert-item_block h4 {
+    font-size: 12px;
+    color: #212529;
+    margin-bottom: 8px;
+    display: inline-block;
+    float: left;
+    width: 100%;
+}
+
+.alfred-alert-item_block h4 span {
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 5px;
+    display: inline;
+    line-height: 26px;
+    font-weight: 400;
+}
+
+.alfred-alert-item h6, .alfred-alert-item_block h6 {
+    font-size: 12px;
+    color:#0078ff;
+    margin-bottom: 5px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.alfred-alert-item_block h6 span{
+    color: #000;
+    font-weight: 400;
+    padding-left: 16px;
+}
+
+.alfred-alert-item ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+}
+
+.alfred-alert-item_block ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+}
+
+.alfred-alert-item ul li {
+    display: inline-block;
+    width: auto;
+    margin-bottom: 0px;
+    float: left;
+    margin-right: 15px;
+    font-size: 11px;
+}
+
+.alfred-alert-item_block ul li {
+    display: inline;
+    width: auto;
+    margin-bottom: 0px;
+    font-size: 12px;
+    margin-right: 20px;
+    line-height: 40px;
+}
+
+.alfred-alert-item ul li img, .alfred-alert-item_block ul li img {
+    width: 18px;
+    vertical-align: text-bottom;
+}
+.alfred-alert-item ul li span, .alfred-alert-item_block ul li span {
+    margin-left: 5px;
+}
+
+.alfred-toggle-button span img, .single_alert_block span img {
+    width: 40%;
+    cursor: pointer;
+}
+.alfred-alerts-container-expand {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.alfredAlertsFirstRow span.todoList-icon {
+    float: right;
+}
+
+.alfredAlertsFirstRow span:nth-child(2){
+    padding-left:0px; float:left
+}
+.alfredAlertsFirstRow span:nth-last-child(1) {
+    float:left;
+    font-size:12px;
+    padding-left:15px
+}
+.alfredAlertsSecondRow {
+    padding-bottom: 5px; 
+    border-bottom: 1px solid #e6e6e7; 
+    margin-bottom: 5px;
+}
+.alfredAlertsSecondRow span:nth-child(1) {
+    color: #0078ff;
+}
+.alfredAlertsSecondRow .todolist_status {
+    float: right;
+    margin-left: 3px;
+}
+.alfredAlertsThirsRow {
+    font-weight: bold !important;
+    font-size: 13px;
+    color: #000 !important; 
+    margin-bottom: 3px;
+}
+.alfredAlertsRowListings {
+    display: block; 
+    width: 100%; 
+    float: left; 
+    margin-bottom: 5px;
+}
+.alfredAlertsFirstPara {
+    padding-bottom:0px; 
+    font-size: 11px; 
+    display: inline-block; 
+    width: 100%; 
+    float: left; 
+    margin-bottom: 5px;
+}
+.alfredAlertsFirstPara span {
+    color: #000;
+    font-weight: 600;
+    font-weight: 11px; 
+    float:left;
+}
+.alfredAlertsSecondPara {
+    padding-bottom:0px; 
+    font-size: 11px; 
+    display: inline-block; 
+    width: 100%; 
+    float: left; 
+    margin-bottom: 0px;
+}
+.alfredAlertsSecondPara span:nth-child(1) {
+    color: #000;
+    font-weight: 600;
+    font-weight: 11px; 
+    float:left;
+}
+.alfredAlertsSecondPara span:nth-last-child(1) {
+    float: right;
+    margin-right: 0px;
+}

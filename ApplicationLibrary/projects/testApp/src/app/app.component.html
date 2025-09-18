@@ -1,0 +1,107 @@
+<!-- <lib-aqchatboard [identifier]="identifier" [name]="name" [isOpen]="isOpen" [email]="email" [portallink]="portallink"
+    ></lib-aqchatboard>
+
+ -->
+
+
+ <lib-quote-view 
+    [DataSource]="dataSource" 
+    [ColumnList]="QuotesColumnList" 
+    [Pagination]="true" 
+    [TotalItems]="totalItem"
+    [NoRecordsMessage]="NoRecordsMessage" 
+    (ChangePageSize)="ChangePageSize($event)"
+    
+    (OutputClearAllFilter)="clearAllFilter()"
+    (NewPage)="NewPage($event)" 
+    (SearchQuote)="SearchQuote($event)"
+
+    
+    [IsCheckboxEnable]="isCheckboxEnable" 
+    [AgentList]="agentList"
+    [IsHeaderChkSelected]="isHeaderChkSelected" 
+    
+    (TransferToAgentId)="setTransferToAgentId($event)" 
+    (FinalTransferQuotesId)="setFinalTransferQuotesId($event)"
+    (TransferBusiness)="transferBusiness()" 
+    (TransferToAgentName)="setTransferToAgentName($event)"
+    (TransferFrmAgentId)="setTransferFrmAgentId($event)" 
+    (TransferMessage)="setTransferMessage($event)"
+
+
+    [AdvanceFilterEnabled]='true'
+    [HideAdvanceFilterOption]="HideAdvFilterOption" 
+    
+    (OutputAdvanceFilter)="getAdvanceFilter($event)"
+    
+    
+    >
+
+
+    <ng-template #AdvanceFilter>
+        <div class="filter-block" *ngIf="FilterOpen">
+            <app-advance-filter (filterSearch)="filterSearch($event)" (clearAll)="clearAdvanceFilterForm()"
+                (cancel)="cancelAdvanceFilterForm()"></app-advance-filter>
+        </div>
+    </ng-template>
+
+
+
+    <ng-template #DataViewHeading>
+        <th (click)="sortQuotes('ref')" style="width: 12%;">Ref <img src="assets/images/sort.png"></th>
+        <th style="width: 14%;">Insured Name</th>
+        <th style="width: 10%;">Agent Name</th>
+        <th style="width: 12%;">Agency Name</th>
+        <th style="width: 11%;">Underwriter</th>
+        <th style="width: 15%;">UW Assistant</th>
+        <th style="width: 7%;">LOB</th>
+        <th style="width: 14%;">Effective Date</th>
+        <th style="width: 14%;">Alfred Alerts</th>
+    </ng-template>
+
+    <ng-template #DataViewContent let-data="data">
+        <td><span>{{data.ref}}</span></td>
+        <td (click)="getInsuredDetail(data,'dashboard')"><span class="insuredname">{{data.insuredName}}</span>
+        </td>
+        <td><span>{{data.agentName}}</span></td>
+        <td><span>{{data.agencyName}}</span></td>
+        <td><span>{{data.underwriter}}</span></td>
+        <td><span>{{data.underwriterAssistant}}</span></td>
+        <td><span>{{data.lob}}</span></td>
+        <td><span>{{data.effective_Date | date:'MM/dd/yyyy'}}</span></td>
+
+        <td>
+            <div class="table-alfred-icons">
+                <div class="tooltip" *ngFor="let alert of data.alerts">
+                    <img [src]="alert.iconURL" />
+                    <span class="tooltiptext">{{alert.description}}</span>
+                </div>
+            </div>
+        </td>
+    </ng-template>
+
+    <ng-template #DataViewInnerHeading>
+        <th style="width: 35%;">Status</th>
+        <th style="width: 35%;">Date</th>
+        <th style="width: 10%;">Premium</th>
+    </ng-template>
+
+
+    <ng-template #DataViewInnerContent let-innerdata="innerdata">
+        <td>
+            <div class="tooltip">{{innerdata.status}}
+            </div>
+        </td>
+        <td><span *ngIf="innerdata.renewal_Date">Renewal Date
+                {{innerdata.renewal_Date | date:'MM/dd/yyyy'}}</span>
+            <span *ngIf="innerdata.endorsement_Date">Endorsement Date
+                {{innerdata.endorsement_Date  | date:'MM/dd/yyyy'}}</span>
+            <span *ngIf="innerdata.cancel_Date">Cancel Date
+                {{innerdata.cancel_Date  | date:'MM/dd/yyyy'}}</span>
+            <span *ngIf="!innerdata.cancel_Date && !innerdata.renewal_Date && !innerdata.endorsement_Date">Quote
+                Request Date {{innerdata.created_Date  | date:'MM/dd/yyyy'}}</span></td>
+        <td><span *ngIf="innerdata.premium > 0">{{innerdata.premium | currency}}</span>
+            <span class="text-danger" *ngIf="innerdata.refundPremium > 0">-{{innerdata.refundPremium | currency}}</span>
+        </td>
+    </ng-template>
+</lib-quote-view> 

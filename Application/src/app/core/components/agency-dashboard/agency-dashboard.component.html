@@ -1,0 +1,30 @@
+<div class="header-fixed">
+        <div class="row">
+            <div class="col-12 col-md-4 rm-pad-right">
+                <app-aquotient></app-aquotient>
+            </div>
+            <div class="col-12 col-md-8 rm-pad-left">
+                <app-headerbar></app-headerbar>
+            </div>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div *ngIf="!isAlfredAlertsExpanded" [ngClass]="evt? 'col-12' : 'col-12 col-md-4 rm-pad-right'">
+                    <app-todolist (toggleTodoExpand)="toggleTodoExpand($event)"></app-todolist>
+            </div>
+            <div [ngClass]="isAlfredAlertsExpanded?'col-12':'col-12 col-md-8 rm-pad-left'" *ngIf="!evt">
+                <section *ngIf="!isAlfredAlertsExpanded">
+                    <app-workboard></app-workboard>
+                </section>
+               
+                <!-- <section *ngIf="!isAlfredAlertsExpanded">
+                    <app-quotes-chart></app-quotes-chart>
+                </section> -->
+                <section>
+                    <app-workbooklist></app-workbooklist>
+                </section> 
+                <app-alfred-alerts (ToggleExpand)="toggleAlfredExpand($event)"></app-alfred-alerts>
+            </div>
+        </div> 
+    </div>

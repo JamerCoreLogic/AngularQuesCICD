@@ -1,0 +1,690 @@
+<app-outer-header></app-outer-header>
+<!-- Start -->
+<div class="quotelist-header">
+    <div class="ql-header-left">
+        <h4>{{pageTitle}}</h4>
+    </div>
+</div>
+
+<div class="transferquote-content" *ngIf="!nextClicked">
+    <form [formGroup]="addagent">
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Basic Information</h4>
+            </div>
+            <div class="pcr-block mt-0">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="fname.invalid &&  (fname.touched || hitNext)">First Name<span
+                                        class="required">*</span></label>
+                                <input type="text" id="FirstName" [class.errorIP]="fname.invalid && (fname.touched || hitNext)"
+                                    class="form-control textbox_border_input" placeholder="Add  First Name"
+                                    formControlName="FirstName" maxlength="50" (keypress)="ValidateKey.key($event)">
+                                <div class="display-error">
+                                    <div *ngIf="fname.invalid && (fname.touched || hitNext)">
+                                        <span *ngIf="fname.errors.required">
+                                            <!-- First Name Required -->
+                                            {{_AddGuestScreen.FirstName.required}}
+                                        </span>
+                                        <span *ngIf="fname.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddGuestScreen.FirstName.pattern}}
+                                        </span>
+                                        <span *ngIf="fname.errors.maxlength">
+                                            <!-- Fifty Character is Allowed -->
+                                            {{_AddGuestScreen.FirstName.lenth}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel">Middle Name</label>
+                                <input type="text" id="Middlename" class="form-control textbox_border_input"
+                                    placeholder="Add Middle Name" formControlName="Middlename" maxlength="50"
+                                    (keypress)="ValidateKey.key($event)">
+                                <div class="display-error">
+                                    <div *ngIf="Mname.invalid && (Mname.touched || hitNext)">
+                                        <span *ngIf="Mname.errors.required">
+                                            <!-- Middle Name Required -->
+                                            {{_AddGuestScreen.Middlename.required}}
+                                        </span>
+                                        <span *ngIf="Mname.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddGuestScreen.Middlename.pattern}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel" [class.errorIPLabel]="lname.invalid && (lname.touched || hitNext)">Last
+                                    Name<span class="required">*</span></label>
+                                <input type="text" id="LastName" [class.errorIP]="lname.invalid && (lname.touched || hitNext)"
+                                    class="form-control textbox_border_input" placeholder="Add Last Name" maxlength="50"
+                                    formControlName="LastName" (keypress)="ValidateKey.key($event)">
+                                <div class="display-error">
+                                    <div *ngIf="lname.invalid &&  (lname.touched || hitNext)">
+                                        <span *ngIf="lname.errors.required">
+                                            <!-- Last Name Required -->
+                                            {{_AddGuestScreen.LastName.required}}
+                                        </span>
+                                        <span *ngIf="lname.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddGuestScreen.LastName.pattern}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel" [class.errorIPLabel]="email.invalid && (email.touched || hitNext)">Email
+                                    Address<span class="required">*</span></label>
+                                <input type="text" class="form-control textbox_border_input"
+                                    placeholder="Add Email Address" formControlName="Email"
+                                    [class.errorIP]="email.invalid && (email.touched || hitNext)">
+                                <div class="display-error">
+                                    <div *ngIf="email.invalid && (email.touched || hitNext)">
+                                        <span *ngIf="email.errors.required">
+                                            <!-- Email Address Required -->
+                                            {{_AddGuestScreen.Email.required}}
+                                        </span>
+                                        <span *ngIf="email.errors.email">
+                                            <!-- Email must be a valid email address -->
+                                            {{_AddGuestScreen.Email.valid}}
+                                        </span>
+                                        <span [hidden]="!email.errors?.pattern">
+                                            <!-- Invalid pattern -->
+                                            {{_AddGuestScreen.Email.pattern}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="phonecell.invalid && (phonecell.touched || hitNext)">Phone Number<span
+                                        class="required">*</span></label>
+                                <input type="text" placeholder="(999) 999-9999" id="tel" maxlength="14"
+                                    [phoneControl]="addagent.controls['PhoneCell']" phoneMask
+                                    [preValue]="addagent.value.PhoneCell" placeholder="(999) 999-9999"
+                                    class="form-control textbox_border_input" formControlName="PhoneCell"
+                                    [class.errorIP]="phonecell.invalid &&  (phonecell.touched || hitNext)">
+                                <div class="display-error">
+                                    <div *ngIf="phonecell.invalid && (phonecell.touched || hitNext)">
+                                        <span *ngIf="phonecell.errors?.required">
+                                            <!-- Cell Phone Required -->
+                                            {{_AddGuestScreen.PhoneCell.required}}
+                                        </span>
+                                        <span *ngIf="phonecell.errors?.pattern">
+                                            <!-- Invalid Format -->
+                                            {{_AddGuestScreen.PhoneCell.pattern}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="agency.invalid &&  (agency.touched || hitNext)">Agency Name<span
+                                        class="required">*</span></label>
+                                <input type="text" id="AgencyName" [class.errorIP]="agency.invalid && (agency.touched || hitNext)"
+                                    class="form-control textbox_border_input" placeholder="Add  Agency Name"
+                                    formControlName="AgencyName" maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="agency.invalid && (agency.touched || hitNext)">
+                                        <span *ngIf="agency.errors.required">
+                                            <!-- Agency Name Required -->
+                                            {{_AddGuestScreen.Agencyname.required}}
+                                        </span>
+                                        <span *ngIf="agency.errors?.pattern">
+                                            <!-- One Space Allowed Between Words -->
+                                            {{_AddGuestScreen.Agencyname.pattern}}
+                                        </span>
+                                        <span *ngIf="agency.errors.maxlength">
+                                            <!-- Fifty Character is Allowed -->
+                                            {{_AddGuestScreen.Agencyname.lenth}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" *ngIf="pageTitle=='Submit Business'">
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="Website.invalid &&  (Website.touched || hitNext)">Website<span
+                                        class="required">*</span></label>
+                                <input type="text" id="Website" [class.errorIP]="Website.invalid && (Website.touched || hitNext)"
+                                    class="form-control textbox_border_input" placeholder="Website"
+                                    formControlName="Website" maxlength="50">
+                                <div class="display-error">
+                                    <div *ngIf="Website.invalid && (Website.touched || hitNext)">
+                                        <span *ngIf="Website.errors.required">
+                                            {{_AddGuestScreen.Website.required}}
+                                        </span>
+                                        <span *ngIf="Website.errors?.pattern">
+                                            <!-- {{_AddGuestScreen.Website.pattern}} -->
+                                        </span>
+                                        <span *ngIf="Website.errors.maxlength">
+                                            <!-- {{_AddGuestScreen.Website.lenth}} -->
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="pageTitle=='Get Appointed'">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                            <label>
+                                Please download the following
+                                documents, which you will need to complete. Afterward, please upload the finalized
+                                documents to submit your registration request.
+                            </label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                            <a href="javascript:void(0);" style="color: var(--primary-color);"
+                                (click)="downloadPdfTemplate('Completed Producer Application.pdf')" class="form-group">
+                                <img width="20" height="20"
+                                    src="https://img.icons8.com/ios-filled/50/downloads-folder--v1.png"
+                                    alt="downloads-folder--v1" /> Completed Producer Application Template
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                            <a href="javascript:void(0);" style="color: var(--primary-color);"
+                                (click)="downloadPdfTemplate('Completed Agency W-9.pdf')" class="form-group">
+                                <img width="20" height="20"
+                                    src="https://img.icons8.com/ios-filled/50/downloads-folder--v1.png"
+                                    alt="downloads-folder--v1" /> Completed Agency W-9 Template
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                            <a href="javascript:void(0);" style="color: var(--primary-color);"
+                                (click)="downloadPdfTemplate('Convelo Producer Agreement.pdf')" class="form-group">
+                                <img width="20" height="20"
+                                    src="https://img.icons8.com/ios-filled/50/downloads-folder--v1.png"
+                                    alt="downloads-folder--v1" /> Convelo Producer Agreement Template
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                            <a href="javascript:void(0);" style="color: var(--primary-color);"
+                                (click)="downloadPdfTemplate('Direct Deposit Information.pdf')" class="form-group">
+                                <img width="20" height="20"
+                                    src="https://img.icons8.com/ios-filled/50/downloads-folder--v1.png"
+                                    alt="downloads-folder--v1" /> Direct Deposit Information Template
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="single-block">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right rm-pad-left rm-pad-right">
+                <button type="button" class="button_white" (click)="cancel()">Cancel</button>
+                <button type="submit" class="btn-theme" (click)="next()">Next</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="transferquote-content" *ngIf="nextClicked">
+    <form [formGroup]="addagent">
+
+        <div class="single-block">
+            <div class="pcr-heading wid100 pgblock-heading">
+                <h4>Documents</h4>
+            </div>
+            <div class="pcr-block mt-0" *ngIf="pageTitle=='Get Appointed'">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel"
+                                [class.errorIPLabel]="CopyOfYourAgency.invalid &&  submitted">Copy of
+                                your Agency Resident and Non-Resident Agency License(s)<span
+                                    class="required">*</span></label>
+                            <br>
+                            <div style="display: flex;">
+                                <button class="btn-theme" id="fake-file-btn"
+                                    style="  margin-left: 15px; margin-right:15px;"
+                                    (click)="openFIle('CopyOfYourAgency')">Choose File</button>
+                                <span style="font-weight: 500; font-size: 13px;" id="CopyOfYourAgencyName">
+                                    {{ getFileName('CopyOfYourAgency') }}</span>
+                                <button *ngIf="getFileName('CopyOfYourAgency')" class="button_white"
+                                    id="CopyOfYourAgencyRemove" style="margin-left: 15px; display:'block';"
+                                    (click)="RemoveFile('CopyOfYourAgency')">X</button>
+                            </div>
+                            <input type="file" accept="application/pdf" id="CopyOfYourAgency"
+                                [class.errorIP]="CopyOfYourAgency.invalid && submitted"
+                                class="form-control textbox_border_input"
+                                (change)="onFileChange($event, 'CopyOfYourAgency')" style="display: none;">
+                            <div class="display-error">
+                                <div *ngIf="CopyOfYourAgency.invalid && submitted">
+                                    <span *ngIf="CopyOfYourAgency.errors.required">
+                                        <!-- First Name Required -->
+                                        {{_AddGuestScreen.CopyOfYourAgency.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel"
+                                [class.errorIPLabel]="CopyOfResident.invalid &&  submitted">Copy of
+                                Resident and
+                                Non-Resident Agent License(s)<span class="required">*</span></label>
+                            <br>
+                            <div style="display: flex;">
+                                <button class="btn-theme" id="fake-file-btn"
+                                    style="  margin-left: 15px; margin-right:15px;"
+                                    (click)="openFIle('CopyOfResident')">Choose File</button>
+                                <span style="font-weight: 500; font-size: 13px;" id="CopyOfResidentName">
+                                    {{ getFileName('CopyOfResident') }}</span>
+                                <button *ngIf="getFileName('CopyOfResident')" class="button_white" id="CopyOfResidentRemove"
+                                    style="  margin-left: 15px; display:'block';"
+                                    (click)="RemoveFile('CopyOfResident')">X</button>
+                            </div>
+                            <input type="file" accept="application/pdf" id="CopyOfResident"
+                                [class.errorIP]="CopyOfResident.invalid && submitted"
+                                class="form-control textbox_border_input"
+                                (change)="onFileChange($event, 'CopyOfResident')" style="display: none;">
+                            <div class="display-error">
+                                <div *ngIf="CopyOfResident.invalid && submitted">
+                                    <span *ngIf="CopyOfResident.errors.required">
+                                        <!-- First Name Required -->
+                                        {{_AddGuestScreen.CopyOfResident.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel"
+                                [class.errorIPLabel]="CopyOfSurplus.invalid &&  submitted">Copy of
+                                Surplus
+                                Lines Resident and
+                                Non-Resident Agent License(s) (if applicable)</label>
+                            <br>
+                            <div style="display: flex;">
+                                <button class="btn-theme" id="fake-file-btn"
+                                    style="  margin-left: 15px; margin-right:15px;"
+                                    (click)="openFIle('CopyOfSurplus')">Choose File</button>
+                                <span style="font-weight: 500; font-size: 13px;" id="CopyOfSurplusName">{{
+                                    getFileName('CopyOfSurplus') }}</span>
+                                <button *ngIf="getFileName('CopyOfSurplus')" class="button_white" id="CopyOfSurplusRemove"
+                                    style="  margin-left: 15px; display: block;"
+                                    (click)="RemoveFile('CopyOfSurplus')">X</button>
+                            </div>
+                            <input type="file" accept="application/pdf" id="CopyOfSurplus"
+                                [class.errorIP]="CopyOfSurplus.invalid && submitted"
+                                class="form-control textbox_border_input"
+                                (change)="onFileChange($event, 'CopyOfSurplus')" style="display: none;">
+                            <div class="display-error">
+                                <div *ngIf="CopyOfSurplus.invalid && submitted">
+                                    <span *ngIf="CopyOfSurplus.errors.required">
+                                        <!-- First Name Required -->
+                                        {{_AddGuestScreen.CopyOfSurplus.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel"
+                                [class.errorIPLabel]="CopyOfYourEandO.invalid &&  submitted">Copy of your
+                                E&O Policy
+                                Declarations Page<span class="required">*</span></label>
+                            <br>
+                            <div style="display: flex;">
+                                <button class="btn-theme" id="fake-file-btn"
+                                    style="  margin-left: 15px; margin-right:15px;"
+                                    (click)="openFIle('CopyOfYourEandO')">Choose File</button>
+                                <span style="font-weight: 500; font-size: 13px;" id="CopyOfYourEandOName">{{
+                                    getFileName('CopyOfYourEandO') }}</span>
+                                <button *ngIf="getFileName('CopyOfYourEandO')" class="button_white" id="CopyOfYourEandORemove"
+                                    style="  margin-left: 15px; display: block;"
+                                    (click)="RemoveFile('CopyOfYourEandO')">X</button>
+                            </div>
+                            <input type="file" accept="application/pdf" id="CopyOfYourEandO"
+                                [class.errorIP]="CopyOfYourEandO.invalid && submitted"
+                                class="form-control textbox_border_input"
+                                (change)="onFileChange($event, 'CopyOfYourEandO')" style="display: none;">
+                            <div class="display-error">
+                                <div *ngIf="CopyOfYourEandO.invalid && submitted">
+                                    <span *ngIf="CopyOfYourEandO.errors.required">
+                                        <!-- First Name Required -->
+                                        {{_AddGuestScreen.CopyOfYourEandO.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel"
+                                [class.errorIPLabel]="CompletedProducerApplication.invalid &&  submitted">Completed
+                                Producer Application<span class="required">*</span></label>
+                            <br>
+                            <div style="display: flex;">
+                                <button class="btn-theme" id="fake-file-btn"
+                                    style="  margin-left: 15px; margin-right:15px;"
+                                    (click)="openFIle('CompletedProducerApplication')">Choose File</button>
+                                <span style="font-weight: 500; font-size: 13px;"
+                                    id="CompletedProducerApplicationName">{{ getFileName('CompletedProducerApplication')
+                                    }}</span>
+                                <button *ngIf="getFileName('CompletedProducerApplication')" class="button_white" id="CompletedProducerApplicationRemove"
+                                    style="  margin-left: 15px; display: block;"
+                                    (click)="RemoveFile('CompletedProducerApplication')">X</button>
+                            </div>
+                            <input type="file" accept="application/pdf" id="CompletedProducerApplication"
+                                [class.errorIP]="CompletedProducerApplication.invalid && submitted"
+                                class="form-control textbox_border_input"
+                                (change)="onFileChange($event, 'CompletedProducerApplication')" style="display: none;">
+                            <div class="display-error">
+                                <div *ngIf="CompletedProducerApplication.invalid && submitted">
+                                    <span *ngIf="CompletedProducerApplication.errors.required">
+                                        <!-- First Name Required -->
+                                        {{_AddGuestScreen.CompletedProducerApplication.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel"
+                                [class.errorIPLabel]="CompletedAgencyW9.invalid && submitted">Completed Agency W-9<span
+                                    class="required">*</span></label>
+                            <br>
+                            <div style="display: flex;">
+                                <button class="btn-theme" id="fake-file-btn"
+                                    style="  margin-left: 15px; margin-right:15px;"
+                                    (click)="openFIle('CompletedAgencyW9')">Choose File</button>
+                                <span style="font-weight: 500; font-size: 13px;" id="CompletedAgencyW9Name">{{
+                                    getFileName('CompletedAgencyW9') }}</span>
+                                <button *ngIf="getFileName('CompletedAgencyW9')" class="button_white" id="CompletedAgencyW9Remove"
+                                    style="  margin-left: 15px; display: block;"
+                                    (click)="RemoveFile('CompletedAgencyW9')">X</button>
+                            </div>
+                            <input type="file" accept="application/pdf" id="CompletedAgencyW9"
+                                class="form-control textbox_border_input"
+                                [class.errorIP]="CompletedAgencyW9.invalid && submitted"
+                                (change)="onFileChange($event, 'CompletedAgencyW9')" style="display: none;">
+                            <div class="display-error">
+                                <div *ngIf="CompletedAgencyW9.invalid && submitted">
+                                    <span *ngIf="CompletedAgencyW9.errors.required">
+                                        <!-- Middle Name Required -->
+                                        {{_AddGuestScreen.CompletedAgencyW9.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div class="form-group">
+                            <label class="textbox_borderlabel"
+                                [class.errorIPLabel]="ConveloProducerAgreement.invalid && submitted">Convelo Producer
+                                Agreement<span class="required">*</span></label>
+                            <br>
+                            <div style="display: flex;">
+                                <button class="btn-theme" id="fake-file-btn"
+                                    style="  margin-left: 15px; margin-right:15px;"
+                                    (click)="openFIle('ConveloProducerAgreement')">Choose File</button>
+                                <span style="font-weight: 500; font-size: 13px;" id="ConveloProducerAgreementName">{{
+                                    getFileName('ConveloProducerAgreement') }}</span>
+                                <button *ngIf="getFileName('ConveloProducerAgreement')" class="button_white" id="ConveloProducerAgreementRemove"
+                                    style="  margin-left: 15px; display: block;"
+                                    (click)="RemoveFile('ConveloProducerAgreement')">X</button>
+                            </div>
+                            <input type="file" accept="application/pdf" id="ConveloProducerAgreement"
+                                [class.errorIP]="ConveloProducerAgreement.invalid && submitted"
+                                class="form-control textbox_border_input"
+                                (change)="onFileChange($event, 'ConveloProducerAgreement')" style="display: none;">
+                            <div class="display-error">
+                                <div *ngIf="ConveloProducerAgreement.invalid &&  submitted">
+                                    <span *ngIf="ConveloProducerAgreement.errors.required">
+                                        <!-- Last Name Required -->
+                                        {{_AddGuestScreen.ConveloProducerAgreement.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <!-- <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"> -->
+                        <div class="form-group">
+                            <label class="textbox_borderlabel"
+                                [class.errorIPLabel]="DirectDepositInformation.invalid && submitted">Direct Deposit
+                                Information<span class="required">*</span></label>
+                            <br>
+                            <div style="display: flex;">
+                                <button class="btn-theme" id="fake-file-btn"
+                                    style="  margin-left: 15px; margin-right:15px;"
+                                    (click)="openFIle('DirectDepositInformation')">Choose File</button>
+                                <span style="font-weight: 500; font-size: 13px;" id="DirectDepositInformationName">{{
+                                    getFileName('DirectDepositInformation') }}</span>
+                                <button *ngIf="getFileName('DirectDepositInformation')" class="button_white" id="DirectDepositInformationRemove"
+                                    style="  margin-left: 15px; display: block;"
+                                    (click)="RemoveFile('DirectDepositInformation')">X</button>
+                            </div>
+                            <input type="file" accept="application/pdf" id="DirectDepositInformation"
+                                [class.errorIP]="DirectDepositInformation.invalid && submitted"
+                                class="form-control textbox_border_input"
+                                (change)="onFileChange($event, 'DirectDepositInformation')" style="display: none;">
+                            <div class="display-error">
+                                <div *ngIf="DirectDepositInformation.invalid && submitted">
+                                    <span *ngIf="DirectDepositInformation.errors.required">
+                                        <!-- DirectDepositInformation Address Required -->
+                                        {{_AddGuestScreen.DirectDepositInformation.required}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="pcr-block mt-0" *ngIf="pageTitle=='Submit Business'">
+                <div class="pcr_b_inner">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div>
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="TargetPremiums.invalid &&  submitted">Target premiums and
+                                    need-by date<span class="required">*</span></label>
+                                <br>
+                                <div style="display: flex;">
+                                    <button class="btn-theme" id="fake-file-btn"
+                                        style="  margin-left: 15px; margin-right:15px;"
+                                        (click)="openFIle('TargetPremiums')">Choose File</button>
+                                    <span style="font-weight: 500; font-size: 13px;" id="TargetPremiumsName">{{
+                                        getFileName('TargetPremiums') }}</span>
+                                    <button *ngIf="getFileName('TargetPremiums')" class="button_white" id="TargetPremiumsRemove"
+                                        style="  margin-left: 15px; display: block;"
+                                        (click)="RemoveFile('TargetPremiums')">X</button>
+                                </div>
+                                <input type="file" accept="application/pdf" id="TargetPremiums"
+                                    [class.errorIP]="TargetPremiums.invalid && submitted"
+                                    class="form-control textbox_border_input"
+                                    (change)="onFileChange($event, 'TargetPremiums')" style="display: none;">
+                                <div class="display-error">
+                                    <div *ngIf="TargetPremiums.invalid && submitted">
+                                        <span *ngIf="TargetPremiums.errors.required">
+                                            <!-- First Name Required -->
+                                            {{_AddGuestScreen.TargetPremiums.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div>
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="AcordApplication.invalid && submitted">ACORD
+                                    application(s)<span class="required">*</span></label>
+                                <br>
+                                <div style="display: flex;">
+                                    <button class="btn-theme" id="fake-file-btn"
+                                        style="  margin-left: 15px; margin-right:15px;"
+                                        (click)="openFIle('AcordApplication')">Choose File</button>
+                                    <span style="font-weight: 500; font-size: 13px;" id="AcordApplicationName">{{
+                                        getFileName('AcordApplication') }}</span>
+                                    <button *ngIf="getFileName('AcordApplication')" class="button_white" id="AcordApplicationRemove"
+                                        style="  margin-left: 15px; display: block;"
+                                        (click)="RemoveFile('AcordApplication')">X</button>
+                                </div>
+                                <input type="file" accept="application/pdf" id="AcordApplication"
+                                    [class.errorIP]="AcordApplication.invalid && submitted"
+                                    class="form-control textbox_border_input"
+                                    (change)="onFileChange($event, 'AcordApplication')" style="display: none;">
+                                <div class="display-error">
+                                    <div *ngIf="AcordApplication.invalid && submitted">
+                                        <span *ngIf="AcordApplication.errors.required">
+                                            <!-- Middle Name Required -->
+                                            {{_AddGuestScreen.AcordApplication.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div>
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="SupplementalApplication.invalid && submitted">Supplemental
+                                    application
+                                    (competitor supplement is OK)</label>
+                                <br>
+                                <div style="display: flex;">
+                                    <button class="btn-theme" id="fake-file-btn"
+                                        style="  margin-left: 15px; margin-right:15px;"
+                                        (click)="openFIle('SupplementalApplication')">Choose File</button>
+                                    <span style="font-weight: 500; font-size: 13px;" id="SupplementalApplicationName">{{
+                                        getFileName('SupplementalApplication') }}</span>
+                                    <button *ngIf="getFileName('SupplementalApplication')" class="button_white" id="SupplementalApplicationRemove"
+                                        style="  margin-left: 15px; display: block;"
+                                        (click)="RemoveFile('SupplementalApplication')">X</button>
+                                </div>
+                                <input type="file" accept="application/pdf" id="SupplementalApplication"
+                                    [class.errorIP]="SupplementalApplication.invalid && submitted"
+                                    class="form-control textbox_border_input"
+                                    (change)="onFileChange($event, 'SupplementalApplication')" style="display: none;">
+                                <div class="display-error">
+                                    <div *ngIf="SupplementalApplication.invalid &&  submitted">
+                                        <span *ngIf="SupplementalApplication.errors.required">
+                                            <!-- Last Name Required -->
+                                            {{_AddGuestScreen.SupplementalApplication.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div>
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="ThreeToFiveYearsLoss.invalid && submitted">3-5
+                                    years’ loss runs</label>
+                                <br>
+                                <div style="display: flex;">
+                                    <button class="btn-theme" id="fake-file-btn"
+                                        style="  margin-left: 15px; margin-right:15px;"
+                                        (click)="openFIle('ThreeToFiveYearsLoss')">Choose File</button>
+                                    <span style="font-weight: 500; font-size: 13px;" id="ThreeToFiveYearsLossName">{{
+                                        getFileName('ThreeToFiveYearsLoss') }}</span>
+                                    <button *ngIf="getFileName('ThreeToFiveYearsLoss')" class="button_white" id="ThreeToFiveYearsLossRemove"
+                                        style="  margin-left: 15px; display: block;"
+                                        (click)="RemoveFile('ThreeToFiveYearsLoss')">X</button>
+                                </div>
+                                <input type="file" accept="application/pdf" id="ThreeToFiveYearsLoss"
+                                    [class.errorIP]="ThreeToFiveYearsLoss.invalid && submitted"
+                                    class="form-control textbox_border_input"
+                                    (change)="onFileChange($event, 'ThreeToFiveYearsLoss')" style="display: none;">
+                                <div class="display-error">
+                                    <div *ngIf="ThreeToFiveYearsLoss.invalid && submitted">
+                                        <span *ngIf="ThreeToFiveYearsLoss.errors.required">
+                                            <!-- ThreeToFiveYearsLoss Address Required -->
+                                            {{_AddGuestScreen.ThreeToFiveYearsLoss.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pd_zero">
+                        <div>
+                            <div class="form-group">
+                                <label class="textbox_borderlabel"
+                                    [class.errorIPLabel]="CurrentExperienceMod.invalid && submitted">Current Experience
+                                    Mod worksheet
+                                    (if quoting workers’ compensation)</label>
+                                <br>
+                                <div style="display: flex;">
+                                    <button class="btn-theme" id="fake-file-btn"
+                                        style="  margin-left: 15px; margin-right:15px;"
+                                        (click)="openFIle('CurrentExperienceMod')">Choose File</button>
+                                    <span style="font-weight: 500; font-size: 13px;" id="CurrentExperienceModName">{{
+                                        getFileName('CurrentExperienceMod') }}</span>
+                                    <button *ngIf="getFileName('CurrentExperienceMod')" class="button_white" id="CurrentExperienceModRemove"
+                                        style="  margin-left: 15px; display: block;"
+                                        (click)="RemoveFile('CurrentExperienceMod')">X</button>
+                                </div>
+                                <input type="file" accept="application/pdf" id="CurrentExperienceMod"
+                                    [class.errorIP]="CurrentExperienceMod.invalid && submitted"
+                                    class="form-control textbox_border_input"
+                                    (change)="onFileChange($event, 'CurrentExperienceMod')" style="display: none;">
+
+                                <div class="display-error">
+                                    <div *ngIf="CurrentExperienceMod.invalid && submitted">
+                                        <span *ngIf="CurrentExperienceMod.errors.required">
+                                            <!-- CurrentExperienceMod Address Required -->
+                                            {{_AddGuestScreen.CurrentExperienceMod.required}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="single-block">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right rm-pad-left rm-pad-right">
+                <!-- <button type="button" class="button_white" (click)="cancel()">Cancel</button> -->
+                <button type="submit" class="btn-theme" (click)="next()">Previous</button>
+                <button type="submit" class="btn-theme" (click)="addAgent()">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--End  -->
+<app-footer></app-footer>

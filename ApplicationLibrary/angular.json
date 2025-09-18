@@ -1,0 +1,674 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "AQLogin": {
+      "projectType": "library",
+      "root": "projects/aqlogin",
+      "sourceRoot": "projects/aqlogin/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqlogin/tsconfig.lib.json",
+            "project": "projects/aqlogin/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqlogin/src/test.ts",
+            "tsConfig": "projects/aqlogin/tsconfig.spec.json",
+            "karmaConfig": "projects/aqlogin/karma.conf.js"
+          }
+        }
+      }
+    },
+    "testApp": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/testApp",
+      "sourceRoot": "projects/testApp/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": {
+              "base": "dist/testApp"
+            },
+            "index": "projects/testApp/src/index.html",
+            "polyfills": [
+              "projects/testApp/src/polyfills.ts"
+            ],
+            "tsConfig": "projects/testApp/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/testApp/src/favicon.ico",
+              "projects/testApp/src/assets"
+            ],
+            "styles": [
+              "projects/testApp/src/styles.css"
+            ],
+            "scripts": [],
+            "extractLicenses": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true,
+            "browser": "projects/testApp/src/main.ts"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/testApp/src/environments/environment.ts",
+                  "with": "projects/testApp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "testApp:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "testApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "testApp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/testApp/src/test.ts",
+            "polyfills": "projects/testApp/src/polyfills.ts",
+            "tsConfig": "projects/testApp/tsconfig.spec.json",
+            "karmaConfig": "projects/testApp/karma.conf.js",
+            "assets": [
+              "projects/testApp/src/favicon.ico",
+              "projects/testApp/src/assets"
+            ],
+            "styles": [
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "projects/testApp/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/testApp/e2e/protractor.conf.js",
+            "devServerTarget": "testApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "testApp:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "AQAgent": {
+      "projectType": "library",
+      "root": "projects/aqagent",
+      "sourceRoot": "projects/aqagent/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqagent/tsconfig.lib.json",
+            "project": "projects/aqagent/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqagent/src/test.ts",
+            "tsConfig": "projects/aqagent/tsconfig.spec.json",
+            "karmaConfig": "projects/aqagent/karma.conf.js"
+          }
+        }
+      }
+    },
+    "AQAgency": {
+      "projectType": "library",
+      "root": "projects/aqagency",
+      "sourceRoot": "projects/aqagency/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqagency/tsconfig.lib.json",
+            "project": "projects/aqagency/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqagency/src/test.ts",
+            "tsConfig": "projects/aqagency/tsconfig.spec.json",
+            "karmaConfig": "projects/aqagency/karma.conf.js"
+          }
+        }
+      }
+    },
+    "AQQuotes": {
+      "projectType": "library",
+      "root": "projects/aqquotes",
+      "sourceRoot": "projects/aqquotes/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqquotes/tsconfig.lib.json",
+            "project": "projects/aqquotes/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqquotes/src/test.ts",
+            "tsConfig": "projects/aqquotes/tsconfig.spec.json",
+            "karmaConfig": "projects/aqquotes/karma.conf.js"
+          }
+        }
+      }
+    },
+    "AQCore": {
+      "projectType": "library",
+      "root": "projects/aqcore",
+      "sourceRoot": "projects/aqcore/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqcore/tsconfig.lib.json",
+            "project": "projects/aqcore/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqcore/src/test.ts",
+            "tsConfig": "projects/aqcore/tsconfig.spec.json",
+            "karmaConfig": "projects/aqcore/karma.conf.js"
+          }
+        }
+      }
+    },
+    "aqtodo": {
+      "projectType": "library",
+      "root": "projects/aqtodo",
+      "sourceRoot": "projects/aqtodo/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqtodo/tsconfig.lib.json",
+            "project": "projects/aqtodo/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqtodo/src/test.ts",
+            "tsConfig": "projects/aqtodo/tsconfig.spec.json",
+            "karmaConfig": "projects/aqtodo/karma.conf.js"
+          }
+        }
+      }
+    },
+    "aqalfred": {
+      "projectType": "library",
+      "root": "projects/aqalfred",
+      "sourceRoot": "projects/aqalfred/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqalfred/tsconfig.lib.json",
+            "project": "projects/aqalfred/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqalfred/src/test.ts",
+            "tsConfig": "projects/aqalfred/tsconfig.spec.json",
+            "karmaConfig": "projects/aqalfred/karma.conf.js"
+          }
+        }
+      }
+    },
+    "acomponents": {
+      "projectType": "library",
+      "root": "projects/acomponents",
+      "sourceRoot": "projects/acomponents/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/acomponents/tsconfig.lib.json",
+            "project": "projects/acomponents/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/acomponents/src/test.ts",
+            "tsConfig": "projects/acomponents/tsconfig.spec.json",
+            "karmaConfig": "projects/acomponents/karma.conf.js"
+          }
+        }
+      }
+    },
+    "AQComponents": {
+      "projectType": "library",
+      "root": "projects/aqcomponents",
+      "sourceRoot": "projects/aqcomponents/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqcomponents/tsconfig.lib.json",
+            "project": "projects/aqcomponents/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqcomponents/src/test.ts",
+            "tsConfig": "projects/aqcomponents/tsconfig.spec.json",
+            "karmaConfig": "projects/aqcomponents/karma.conf.js"
+          }
+        }
+      }
+    },
+    "AQToDo": {
+      "projectType": "library",
+      "root": "projects/aqto-do",
+      "sourceRoot": "projects/aqto-do/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqto-do/tsconfig.lib.json",
+            "project": "projects/aqto-do/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqto-do/src/test.ts",
+            "tsConfig": "projects/aqto-do/tsconfig.spec.json",
+            "karmaConfig": "projects/aqto-do/karma.conf.js"
+          }
+        }
+      }
+    },
+    "AQAlfred": {
+      "projectType": "library",
+      "root": "projects/aqalfred",
+      "sourceRoot": "projects/aqalfred/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqalfred/tsconfig.lib.json",
+            "project": "projects/aqalfred/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqalfred/src/test.ts",
+            "tsConfig": "projects/aqalfred/tsconfig.spec.json",
+            "karmaConfig": "projects/aqalfred/karma.conf.js"
+          }
+        }
+      }
+    },
+    "AQAdmin": {
+      "projectType": "library",
+      "root": "projects/aqadmin",
+      "sourceRoot": "projects/aqadmin/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqadmin/tsconfig.lib.json",
+            "project": "projects/aqadmin/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqadmin/src/test.ts",
+            "tsConfig": "projects/aqadmin/tsconfig.spec.json",
+            "karmaConfig": "projects/aqadmin/karma.conf.js"
+          }
+        }
+      }
+    },
+    "Aqkpi": {
+      "projectType": "library",
+      "root": "projects/aqkpi",
+      "sourceRoot": "projects/aqkpi/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqkpi/tsconfig.lib.json",
+            "project": "projects/aqkpi/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqkpi/src/test.ts",
+            "tsConfig": "projects/aqkpi/tsconfig.spec.json",
+            "karmaConfig": "projects/aqkpi/karma.conf.js"
+          }
+        }
+      }
+    },
+    "aqworkboard": {
+      "projectType": "library",
+      "root": "projects/aqworkboard",
+      "sourceRoot": "projects/aqworkboard/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqworkboard/tsconfig.lib.json",
+            "project": "projects/aqworkboard/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqworkboard/src/test.ts",
+            "tsConfig": "projects/aqworkboard/tsconfig.spec.json",
+            "karmaConfig": "projects/aqworkboard/karma.conf.js"
+          }
+        }
+      }
+    },
+    "aqbusinesstransfer": {
+      "projectType": "library",
+      "root": "projects/aqbusinesstransfer",
+      "sourceRoot": "projects/aqbusinesstransfer/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqbusinesstransfer/tsconfig.lib.json",
+            "project": "projects/aqbusinesstransfer/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqbusinesstransfer/src/test.ts",
+            "tsConfig": "projects/aqbusinesstransfer/tsconfig.spec.json",
+            "karmaConfig": "projects/aqbusinesstransfer/karma.conf.js"
+          }
+        }
+      }
+    },
+    "multiselect": {
+      "projectType": "library",
+      "root": "projects/multiselect",
+      "sourceRoot": "projects/multiselect/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/multiselect/tsconfig.lib.json",
+            "project": "projects/multiselect/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/multiselect/src/test.ts",
+            "tsConfig": "projects/multiselect/tsconfig.spec.json",
+            "karmaConfig": "projects/multiselect/karma.conf.js"
+          }
+        }
+      }
+    },
+    "aq-programs": {
+      "projectType": "library",
+      "root": "projects/aq-programs",
+      "sourceRoot": "projects/aq-programs/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aq-programs/tsconfig.lib.json",
+            "project": "projects/aq-programs/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aq-programs/src/test.ts",
+            "tsConfig": "projects/aq-programs/tsconfig.spec.json",
+            "karmaConfig": "projects/aq-programs/karma.conf.js"
+          }
+        }
+      }
+    },
+    "aqforms": {
+      "projectType": "library",
+      "root": "projects/aqforms",
+      "sourceRoot": "projects/aqforms/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqforms/tsconfig.lib.json",
+            "project": "projects/aqforms/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqforms/src/test.ts",
+            "tsConfig": "projects/aqforms/tsconfig.spec.json",
+            "karmaConfig": "projects/aqforms/karma.conf.js"
+          }
+        }
+      }
+    },
+    "AQCarrier": {
+      "projectType": "library",
+      "root": "projects/aqcarrier",
+      "sourceRoot": "projects/aqcarrier/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqcarrier/tsconfig.lib.json",
+            "project": "projects/aqcarrier/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqcarrier/src/test.ts",
+            "tsConfig": "projects/aqcarrier/tsconfig.spec.json",
+            "karmaConfig": "projects/aqcarrier/karma.conf.js"
+          }
+        }
+      }
+    },
+    "aq-chatbot": {
+      "projectType": "library",
+      "root": "projects/aq-chatbot",
+      "sourceRoot": "projects/aq-chatbot/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aq-chatbot/tsconfig.lib.json",
+            "project": "projects/aq-chatbot/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aq-chatbot/src/test.ts",
+            "tsConfig": "projects/aq-chatbot/tsconfig.spec.json",
+            "karmaConfig": "projects/aq-chatbot/karma.conf.js"
+          }
+        }
+      }
+    },
+    "mga-config": {
+      "projectType": "library",
+      "root": "projects/mga-config",
+      "sourceRoot": "projects/mga-config/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/mga-config/tsconfig.lib.json",
+            "project": "projects/mga-config/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mga-config/src/test.ts",
+            "tsConfig": "projects/mga-config/tsconfig.spec.json",
+            "karmaConfig": "projects/mga-config/karma.conf.js"
+          }
+        }
+      }
+    },
+    "aqchatboard": {
+      "projectType": "library",
+      "root": "projects/aqchatboard",
+      "sourceRoot": "projects/aqchatboard/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/aqchatboard/tsconfig.lib.json",
+            "project": "projects/aqchatboard/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aqchatboard/src/test.ts",
+            "tsConfig": "projects/aqchatboard/tsconfig.spec.json",
+            "karmaConfig": "projects/aqchatboard/karma.conf.js"
+          }
+        }
+      }
+    },
+    "paymentGateway": {
+      "projectType": "library",
+      "root": "projects/payment-gateway",
+      "sourceRoot": "projects/payment-gateway/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/payment-gateway/tsconfig.lib.json",
+            "project": "projects/payment-gateway/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/payment-gateway/src/test.ts",
+            "tsConfig": "projects/payment-gateway/tsconfig.spec.json",
+            "karmaConfig": "projects/payment-gateway/karma.conf.js"
+          }
+        }
+      }
+    },
+    "payment-gateway": {
+      "projectType": "library",
+      "root": "projects/payment-gateway",
+      "sourceRoot": "projects/payment-gateway/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/payment-gateway/tsconfig.lib.json",
+            "project": "projects/payment-gateway/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/payment-gateway/src/test.ts",
+            "tsConfig": "projects/payment-gateway/tsconfig.spec.json",
+            "karmaConfig": "projects/payment-gateway/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "79ef0a9f-9d9f-4a57-8114-de3e0f9e9ebb"
+  }
+}

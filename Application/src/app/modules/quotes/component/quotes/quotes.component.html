@@ -1,0 +1,33 @@
+
+<ng-container *ngIf="QuoteStage == true">
+  <aq-form  
+    [BaseURL]="baseURL" 
+    [FormMode]="formMode" 
+    [AQFormDataIn]="AQFormData" 
+    [ClientID]="ClientID" 
+    [FormDefinition]="FormDefinition"
+    [FormDataID]="FormDataID" 
+    [DevMode]="DevMode" 
+    [Lob]="lob"
+    [Variables]="variables"
+    (AQFormDataOut)='getFormDataMaster($event)' 
+    (AQCheckboxDataOut)="AQCheckboxDataOut($event)" 
+    (AQCancelDataOut)="AQCancelDataOut($event)">
+  </aq-form>
+</ng-container>
+
+<ng-container *ngIf="QuoteStage == false"> 
+  <aq-form  
+    [BaseURL]="baseURL" 
+    [FormMode]="formMode" 
+    [AQFormDataIn]="AQFormData" 
+    [ClientID]="ClientID" 
+    [FormDefinition]="FormDefinition"
+    [FormDataID]="FormDataID" 
+    [DevMode]="DevMode" 
+    [Lob]="lob"
+    [Variables]="variables"
+    (AQFormDataOut)='getFormDataMaster($event)'  
+    (AQCheckboxDataOut)="AQCheckboxDataOut($event)" 
+    (AQCancelDataOut)="AQCancelDataOut($event)"></aq-form>
+</ng-container>

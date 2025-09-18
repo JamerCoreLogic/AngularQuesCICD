@@ -1,0 +1,11 @@
+{
+  "name": "@agenciiq/aqkpi",
+  "version": "0.0.2",
+  "peerDependencies": {
+    "@angular/common": "^19.2.10",
+    "@angular/core": "^19.2.10"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

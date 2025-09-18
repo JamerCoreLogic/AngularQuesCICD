@@ -1,0 +1,56 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class AQFormsApi {
+    private _formsListApi = '/AQAPI/api/AQForms/GetAQForm';
+    private _formsGetApi = '/AQAPI/api/AQForms/GetAQFormById';
+    //private _formsCreateApi = '/AQAPI/api/AQForms/SaveAQForms';
+    private _formsCreateApi = '/AQAPI/api/AQForms/SaveAQFormsExcel';
+    private _getFormsNewApi= '/AQAPI/api/AQForms/GetForms';
+    private _formsExcelUploadApi = 'http://fb.spectraltech.ai/dev/api/api/aqform/UploadAQFile';
+    private _downloadExcelFileApi = '/AQAPI/api/AQForms/GetExcelFormDownload';
+    private _getAQFormList = '/AQAPI/api/AQForms/GetAQFormList';
+
+    //api/AQForms/GetExcelFormDownload
+    get getFormsNewApi(){
+        return this._getFormsNewApi
+    }
+
+    get formsListApi() {
+        return this._formsListApi;
+    }
+
+    get formsGetApi() {
+        return this._formsGetApi;
+    }
+
+    get formsExcelUploadApi() {
+        return this._formsExcelUploadApi;
+    }
+
+    get formsCreateApi() {
+        return this._formsCreateApi;
+    }
+
+    get downloadExcelFile() {
+        return this._downloadExcelFileApi;
+    }
+
+    get getAQFormList(){
+        return this._getAQFormList;
+    }
+
+
+    set formsListApiEndPoint(value) {
+        this._formsListApi = value + this._formsListApi;
+        this._formsGetApi = value + this.formsGetApi;
+        this._formsCreateApi = value + this._formsCreateApi;
+        this._getFormsNewApi = value + this._getFormsNewApi;
+        this._downloadExcelFileApi = value + this._downloadExcelFileApi;
+        this._getAQFormList = value + this._getAQFormList;
+        
+    }
+}

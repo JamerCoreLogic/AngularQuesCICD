@@ -1,0 +1,174 @@
+<div class="inner-table-action" *ngIf="inneritem">
+  <ng-container *ngIf="!IsUnderWriterGroupUser">
+    <span *ngIf=" 
+    inneritem['status'].toLowerCase() == 'quick quote under process' ||
+    inneritem['status'].toLowerCase() == 'quick quote generated' ||
+    inneritem['status'].toLowerCase() == 'full quote under process' ||
+    inneritem['status'].toLowerCase() == 'submission sent' ||
+    inneritem['status'].toLowerCase() == 'referred to underwriter' ||
+    inneritem['status'].toLowerCase() == 'submission complete' ||
+    inneritem['status'].toLowerCase() == 'submission declined' ||    
+    inneritem['status'].toLowerCase() == 'bind under process' ||
+    inneritem['status'].toLowerCase() == 'bind request sent' ||
+    inneritem['status'].toLowerCase() == 'binder created' ||
+    inneritem['status'].toLowerCase() == 'declined' ||
+    inneritem['status'].toLowerCase() == 'issue under process' ||      
+    inneritem['status'].toLowerCase() == 'issue request sent' || 
+    inneritem['status'].toLowerCase() == 'policy issued' ||
+    inneritem['status'].toLowerCase() == 'in force policy' ||
+    inneritem['status'].toLowerCase() == 'policy Bound' ||
+    inneritem['status'].toLowerCase() == 'quoted'" 
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'COPY')">Copy</span>
+  </ng-container>
+
+  <ng-container *ngIf="!IsUnderWriterGroupUser">
+    <span *ngIf="(inneritem['status'].toLowerCase() == 'in force policy' 
+    && !IsStageAvailable('cancellation under process') 
+    && !IsStageAvailable('Cancellation Request Sent')) && inneritem['allowCancel']"
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'Cancel')">Cancel</span>
+  </ng-container>
+
+  <ng-container *ngIf="!IsUnderWriterGroupUser">
+    <span *ngIf="
+    inneritem['status'].toLowerCase() == 'quick quote under process' ||
+    inneritem['status'].toLowerCase() == 'quick quote generated' || 
+    inneritem['status'].toLowerCase() == 'full quote under process' ||     
+    inneritem['status'].toLowerCase() == 'underwriter queries' || 
+    inneritem['status'].toLowerCase() == 'bind under process' ||
+ 
+    
+    inneritem['status'].toLowerCase() == 'submission complete' ||
+    
+    (inneritem['status'].toLowerCase() == 'endorsement under process' && 
+     !IsStageAvailable('cancellation under process') && 
+     !IsStageAvailable('Cancellation Request Sent') ) ||
+
+    (inneritem['status'].toLowerCase() == 'renewal under process'  && 
+    !IsStageAvailable('cancellation under process') && 
+    !IsStageAvailable('Cancellation Request Sent'))||
+
+    inneritem['status'].toLowerCase() == 'cancellation under process' ||
+
+    (inneritem['status'].toLowerCase() == 'endorsement request sent'&& 
+    !IsStageAvailable('cancellation under process') && 
+    !IsStageAvailable('Cancellation Request Sent') ) ||
+    
+    (inneritem['status'].toLowerCase() == 'issue under process' && 
+    !IsStageAvailable('cancellation under process') && 
+    !IsStageAvailable('Cancellation Request Sent'))" class='cursorpointer'
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'EDIT')">Edit</span>
+  </ng-container>
+
+
+  <span *ngIf="inneritem['status'].toLowerCase() == 'referred to underwriter' ||
+  inneritem['status'].toLowerCase() == 'submission sent' ||  
+  inneritem['status'].toLowerCase() == 'submission complete' ||  
+  inneritem['status'].toLowerCase() == 'quoted' ||
+  inneritem['status'].toLowerCase() == 'bind request sent' ||
+  inneritem['status'].toLowerCase() == 'bind request' ||
+  inneritem['status'].toLowerCase() == 'binder created' ||  
+  inneritem['status'].toLowerCase() == 'submission declined'  ||   
+  inneritem['status'].toLowerCase() == 'submission request'  ||     
+  inneritem['status'].toLowerCase() == 'issue request sent' ||
+  inneritem['status'].toLowerCase() == 'issue request' ||
+  inneritem['status'].toLowerCase() == 'policy issued' || 
+  inneritem['status'].toLowerCase() == 'endorsement under process' ||
+  inneritem['status'].toLowerCase() == 'renewal under process' ||
+  inneritem['status'].toLowerCase() == 'endorsement request sent' ||
+  inneritem['status'].toLowerCase() == 'endorsement created' ||
+  inneritem['status'].toLowerCase() == 'cancellation under process' ||
+  inneritem['status'].toLowerCase() == 'cancellation request sent' ||
+  inneritem['status'].toLowerCase() == 'cancelled' ||
+  inneritem['status'].toLowerCase() == 'in force policy'" class='cursorpointer'
+    (click)="setViewPolicyData(inneritem.quoteId,0,item, 'VIEW')">View</span>
+
+
+  <ng-container *ngIf="!IsUnderWriterGroupUser && (identifier.indexOf('convelo')==-1 && identifier.indexOf('lambis')==-1)">
+    <span *ngIf="inneritem['status'].toLowerCase() == 'submission complete'"
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'BIND')">Bind</span>
+  </ng-container>
+
+  <ng-container *ngIf="!IsUnderWriterGroupUser">
+    <span *ngIf="
+      inneritem['status'].toLowerCase() == 'bind under process'"
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'EDIT')">Bind</span>
+  </ng-container>
+
+  <ng-container *ngIf="!IsUnderWriterGroupUser">
+    <span *ngIf="
+      inneritem['status'].toLowerCase() == 'binder created' ||
+      inneritem['status'] == 'endorsement created' ||
+      inneritem['status'] == 'policy bound'"
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'ISSUE')">Issue</span>
+  </ng-container>
+
+  <ng-container *ngIf="!IsUnderWriterGroupUser">
+    <span *ngIf="inneritem['status'].toLowerCase()  == 'issue under process'"
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'EDIT')">Issue</span>
+  </ng-container>
+
+  <ng-container *ngIf="!IsUnderWriterGroupUser && (identifier.indexOf('convelo')==-1 && identifier.indexOf('lambis')==-1)">
+    <span style="width:58px" *ngIf="inneritem['status'].toLowerCase()  == 'quick quote under process' ||
+  inneritem['status'].toLowerCase()  == 'full quote under process'"
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'EDIT')">Complete Quote</span>
+  </ng-container>
+
+  <!-- <ng-container *ngIf="!IsUnderWriterGroupUser">
+    <span *ngIf="inneritem['status'].toLowerCase()  == 'quick quote generated'"
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'FULLQUOTE')">Convert to Quote</span>
+  </ng-container> -->
+
+  <ng-container *ngIf="!IsUnderWriterGroupUser">
+    <span *ngIf="inneritem['pendingRenewal'] 
+    && inneritem['status'].toLowerCase()  == 'in force policy' 
+    && StageCount('in force policy') == 1
+    && !IsStageAvailable('cancellation under process') 
+    && !IsStageAvailable('Cancellation Request Sent') 
+    && !IsStageAvailable('Renewal Under Process')
+    && !IsStageAvailable('Bind Under Process')
+    && !IsStageAvailable('Bind request sent')    
+    && !IsStageAvailable('Binder Created')    
+    && !IsStageAvailable('issue under process')
+    && !IsStageAvailable('issue request sent')
+    
+    && !IsStageAvailable('submission complete')
+    && !IsStageAvailable('submission sent')
+    && !IsStageAvailable('submission declined')
+    && !IsStageAvailable('full quote under process')    
+    && !IsStageAvailable('Referred to Underwriter')"
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'RENEWAL')">Renew</span>
+  </ng-container>
+
+  <ng-container *ngIf="!IsUnderWriterGroupUser">
+    <span *ngIf="(inneritem['status'].toLowerCase()  == 'in force policy' 
+    && StageCount('in force policy') == 1
+    && !IsStageAvailable('cancellation under process') 
+    && !IsStageAvailable('Cancellation Request Sent') 
+    
+    && !IsStageAvailable('Bind Under Process')
+    && !IsStageAvailable('Bind request sent')
+    && !IsStageAvailable('Endorsement under process')
+    && !IsStageAvailable('issue under process')
+    && !IsStageAvailable('issue request sent')
+    && !IsStageAvailable('Binder Created')
+    && !IsStageAvailable('submission complete')
+    && !IsStageAvailable('submission sent')
+    && !IsStageAvailable('full quote under process')
+    && !IsStageAvailable('Referred to Underwriter')
+    && !IsStageAvailable('submission declined')) && inneritem['allowEndorsement']"
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'ENDORSEMENT')">Endorse</span>
+  </ng-container>
+
+  <ng-container *ngIf="!IsUnderWriterGroupUser">
+    <span *ngIf="inneritem['status'].toLowerCase()  == 'cancelled'"
+      (click)="setViewPolicyData(inneritem.quoteId,0,item, 'REINSTATE')">Reinstate</span>
+  </ng-container>
+
+  <ng-container *ngIf="(inneritem['status'].toLowerCase()  != 'quick quote under process' ||
+  inneritem['status'].toLowerCase()  != 'full quote under process')&& ((identifier.indexOf('convelo')==-1 && identifier.indexOf('lambis')==-1) || inneritem['status'].toLowerCase()  == 'submission complete' ||
+  inneritem['status'].toLowerCase() == 'quoted' ) ">
+    <span (click)="setViewPolicyData(inneritem.quoteId,0,item, 'Documents')">Documents</span>
+  </ng-container>
+
+
+</div>

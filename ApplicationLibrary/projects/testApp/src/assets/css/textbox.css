@@ -1,0 +1,73 @@
+.textbox-underlinelabel {
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 0px;
+    float: left;
+}
+.textbox-underline {
+    font-size: 16px;
+    height: 32px;
+    border-radius: 0;
+    border:none;
+    outline: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #dedcd7;
+    padding-left: 0px;
+}
+.textbox-underline:focus {
+    outline: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #f07930;
+}
+.greybg-input {
+    width: 100%;
+    font-size: 14px;
+    height: 30px;
+    background-color: #e8e8e8;
+    color: #000;
+    box-shadow: none;
+    border:1px solid #e8e8e8;
+    padding: 0px 10px;
+}
+.greybg-input:focus {
+    border:1px solid #241d1a;
+    outline: 0;
+    box-shadow: none;
+    background-color: #ffff;
+}
+
+.textbox_borderlabel {
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+}
+.textbox_border_input {
+    background-color: #fbfbfb;
+    height: 34px;
+    border-radius: 0px;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    color: #000;
+}
+.textbox_border_input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ccc;
+}
+.date-picker-txt-box .mat-form-field-infix {
+    margin-top: -20px;
+}
+.date-picker-txt-box .mat-form-field-wrapper {
+    height: 34px;
+    padding: 0px;
+}
+.date-picker-txt-box input {
+    border: 1px solid #ced4da;
+    height: 34px;
+    font-size: 14px;
+    padding: .375rem .75rem;
+}
+.date-picker-txt-box .mat-form-field-underline {
+    display: none;
+}
